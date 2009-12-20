@@ -1,0 +1,191 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+
+	<Script file="CommonersQuestRewards.lua"/>
+
+	<Button name="CQKEP_QuestButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="210" y="16"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnClick>
+				CommonersQuest.Reward.QuestClicked(self);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="CQKEP_RewardsetButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="210" y="16"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnClick>
+				CommonersQuest.Reward.RewardsetClicked(self);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<!-- reward set edit frame -->
+	<Frame name="CommonersQuestRewardframe" parent="UIParent" hidden="true" enableMouse="true" toplevel="true" movable="true">
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Size>
+			<AbsDimension x="800" y="50"/>
+		</Size>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Scripts>
+			<OnLoad>
+				CommonersQuest.Reward.OnLoad(self);
+				<!-- make it closeable with ESC -->
+				tinsert(UISpecialFrames,self:GetName());
+			</OnLoad>
+			<OnShow>
+				CommonersQuest.Reward.OnShow(self);
+			</OnShow>
+			<OnEvent>
+				CommonersQuest.Reward.OnEvent(self, event, ...);
+			</OnEvent>
+			<OnUpdate>
+				CommonersQuest.Reward.OnUpdateEvent(arg1);
+			</OnUpdate>
+			<OnMouseDown>
+				if (arg1 == "LeftButton") then
+					self:StartMoving()
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				self:StopMovingOrSizing()
+			</OnMouseUp>
+		</Scripts>
+
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="CQKEP_QuestListTitle" inherits="GameFontNormal" text="Quests">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="20" y="-20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="CQKEP_RewardsetListTitle" inherits="GameFontNormal" text="Rewards">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="260" y="-20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="CommonersQuestRewardsItem1" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="CommonersQuestRewardsItem2" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="CommonersQuestRewardsItem3" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="CommonersQuestRewardsItem4" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="CommonersQuestRewardsItem5" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="CommonersQuestRewardsItem6" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="CommonersQuestRewardsItem7" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="CommonersQuestRewardsItem8" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="CommonersQuestRewardsItem9" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="CommonersQuestRewardsItem10" inherits="QuestRewardItemTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>
+

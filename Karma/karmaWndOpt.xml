@@ -1,0 +1,3100 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+	..\FrameXML\UI.xsd">
+
+	<Button name="KarmaOptionWindowCategory_GlobalButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="120" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnClick>
+				KarmaOptionWindowCategory_OnClick(this);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="KarmaOptionsWindow_ColorSpace_Template" virtual="true">
+		<Size>
+			<AbsDimension x="100" y="20"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture">
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Fontstring name="$parentText" text="?" inherits="GameFontHighlight">
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+				</Fontstring>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				KarmaAvEnK.Colorspace.Init(self);
+			</OnLoad>
+			<OnShow>
+				KarmaAvEnK.Colorspace.Show(self);
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<!--
+		##############
+		Options window
+		##############
+	-->
+	<Frame name="KarmaOptionsWindow" frameStrata="HIGH" parent="UIParent" hidden="true" enableMouse="true">
+		<Size>
+			<!-- original x: 256, y = 256 -->
+			<!-- recently x: 368, y = 480 -->
+			<!-- more recently: x: 600, y: 700 -->
+			<AbsDimension x="600" y="350"/>
+		</Size>
+	
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="KarmaWindow" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	
+		<Scripts>
+			<OnLoad>
+				KarmaOptionsWindow_OnLoad(this);
+			</OnLoad>
+		</Scripts>
+
+		<!-- Options window: Frames -->
+		<!-- first left block: sorting/coloring -->
+		<Frames>
+			<Frame name="KarmaOptionCategory_Area" inherits="KarmaOptionsWindow_FrameBoxTemplate">
+				<Size>
+					<!-- orginal x: 231, y = 90 -->
+					<AbsDimension x="140" y="250"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="13" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_CATEGORYAREATITLE);
+					</OnLoad>
+				</Scripts>
+				<Frames>
+					<Button name="KarmaOptionWindowCategory_Button1"
+							inherits="KarmaOptionWindowCategory_GlobalButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionCategory_Area" relativePoint="TOPLEFT">>
+								<Offset>
+									<AbsDimension x="10" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."_Text"):SetText(KARMA_WINEL_OPTCAT1);
+							</OnLoad>
+						</Scripts>
+					</Button>
+					<Button name="KarmaOptionWindowCategory_Button2"
+							inherits="KarmaOptionWindowCategory_GlobalButtonTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindowCategory_Button1" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."_Text"):SetText(KARMA_WINEL_OPTCAT2);
+							</OnLoad>
+						</Scripts>
+					</Button>
+					<Button name="KarmaOptionWindowCategory_Button3"
+							inherits="KarmaOptionWindowCategory_GlobalButtonTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindowCategory_Button2" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."_Text"):SetText(KARMA_WINEL_OPTCAT3);
+							</OnLoad>
+						</Scripts>
+					</Button>
+					<Button name="KarmaOptionWindowCategory_Button4"
+							inherits="KarmaOptionWindowCategory_GlobalButtonTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindowCategory_Button3" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."_Text"):SetText(KARMA_WINEL_OPTCAT4);
+							</OnLoad>
+						</Scripts>
+					</Button>
+					<Button name="KarmaOptionWindowCategory_Button5"
+							inherits="KarmaOptionWindowCategory_GlobalButtonTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindowCategory_Button4" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."_Text"):SetText(KARMA_WINEL_OPTCAT5);
+							</OnLoad>
+						</Scripts>
+					</Button>
+					<Button name="KarmaOptionWindowCategory_Button80"
+							inherits="KarmaOptionWindowCategory_GlobalButtonTemplate" id="80">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindowCategory_Button5" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."_Text"):SetText(KARMA_WINEL_OPTCAT80);
+							</OnLoad>
+						</Scripts>
+					</Button>
+					<Button name="KarmaOptionWindowCategory_Button90"
+							inherits="KarmaOptionWindowCategory_GlobalButtonTemplate" id="90">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindowCategory_Button80" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."_Text"):SetText(KARMA_WINEL_OPTCAT90);
+							</OnLoad>
+						</Scripts>
+					</Button>
+					<Button name="KarmaOptionWindowCategory_Button95"
+							inherits="KarmaOptionWindowCategory_GlobalButtonTemplate" id="95">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindowCategory_Button90" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."_Text"):SetText(KARMA_WINEL_OPTCAT95);
+							</OnLoad>
+						</Scripts>
+					</Button>
+					<Button name="KarmaOptionWindowCategory_Button99"
+							inherits="KarmaOptionWindowCategory_GlobalButtonTemplate" id="99">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindowCategory_Button95" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."_Text"):SetText(KARMA_WINEL_OPTCAT99);
+							</OnLoad>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<Frame name="KarmaOptionsWindow_Sorting_Area" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<!-- orginal x: 231, y = 90 -->
+					<AbsDimension x="330" y="80"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="163" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_SORTINGAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 1);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer name="Foreground">
+						<FontString name="KarmaOptionsWindow_SortType_DropDown_Title" inherits="GameFontHighlight"
+					            text="KARMA_WINEL_SORTBYDROPDOWNTITLE" justifyH="RIGHT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<!-- original: x="34", y="-14" -->
+										<AbsDimension x="20" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaOptionsWindow_ColorType_DropDown_Title" inherits="GameFontHighlight"
+					            text="KARMA_WINEL_COLORBYDROPDOWNTITLE" justifyH="RIGHT">
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="KarmaOptionsWindow_SortType_DropDown_Title" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<!-- original: x="0", y="-18" -->
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<Frame name="KarmaOptionsWindow_SortType_DropDown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionsWindow_SortType_DropDown_Title" relativeFrom="TOPRIGHT" 
+								relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindowOptions_SortByDropDown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<Frame name="KarmaOptionsWindow_ColorType_DropDown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionsWindow_ColorType_DropDown_Title" relativeFrom="TOPRIGHT" 
+								relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindowOptions_ColorByDropDown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+				</Frames>
+			</Frame>
+
+			<Frame name="KarmaOptionsWindow_ColorSpace_Area" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<AbsDimension x="400" y="160"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+								relativeTo="KarmaOptionsWindow_Sorting_Area">
+						<Offset>
+							<AbsDimension x="0" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_COLORSPACE_AREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 1);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer>
+						<FontString name="KarmaOptionsWindow_ColorSpace_Enable_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_COLORSPACE_ENABLE_CHECKBOX_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<!-- original: x="34", y="-14" -->
+										<AbsDimension x="45" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaOptionsWindow_ColorSpace_Karma_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_COLORSPACE_KARMA_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<!-- original: x="34", y="-14" -->
+										<AbsDimension x="20" y="-40"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaOptionsWindow_ColorSpace_Time_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_COLORSPACE_TIME_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionsWindow_ColorSpace_Karma_Title">
+									<Offset>
+										<!-- original: x="0", y="-18" -->
+										<AbsDimension x="0" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaOptionsWindow_ColorSpace_XP_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_COLORSPACE_XP_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionsWindow_ColorSpace_Time_Title">
+									<Offset>
+										<!-- original: x="0", y="-18" -->
+										<AbsDimension x="0" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<CheckButton name="KarmaOptionsWindow_ColorSpace_Enable_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_Enable_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-5" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<Button name="KarmaOptionsWindow_ColorSpace_Karma_Min" text="1" inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="20" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="75" y="-35"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaAvEnK.Colorspace.Modify(self);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Frame name="KarmaOptionsWindow_ColorSpace_Karma_MinToAvg" inherits="KarmaOptionsWindow_ColorSpace_Template">
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_Karma_Min">
+								<Offset>
+									<AbsDimension x="5" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+
+					<Button name="KarmaOptionsWindow_ColorSpace_Karma_Avg" text="50"  inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="20" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_Karma_MinToAvg">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaAvEnK.Colorspace.Modify(self);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Frame name="KarmaOptionsWindow_ColorSpace_Karma_AvgToMax" inherits="KarmaOptionsWindow_ColorSpace_Template">
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_Karma_Avg">
+								<Offset>
+									<AbsDimension x="5" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+
+					<Button name="KarmaOptionsWindow_ColorSpace_Karma_Max"  text="100" inherits="UIPanelButtonTemplate" id="1">
+						<Size>
+							<AbsDimension x="20" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_Karma_AvgToMax">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaAvEnK.Colorspace.Modify(self);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="KarmaOptionsWindow_ColorSpace_Time_Min" text="Min" inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="20" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="75" y="-60"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaAvEnK.Colorspace.Modify(self);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Frame name="KarmaOptionsWindow_ColorSpace_Time_MinToAvg" inherits="KarmaOptionsWindow_ColorSpace_Template">
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_Time_Min">
+								<Offset>
+									<AbsDimension x="5" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+
+					<Button name="KarmaOptionsWindow_ColorSpace_Time_Avg" text="Avg"  inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="20" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_Time_MinToAvg">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaAvEnK.Colorspace.Modify(self);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Frame name="KarmaOptionsWindow_ColorSpace_Time_AvgToMax" inherits="KarmaOptionsWindow_ColorSpace_Template">
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_Time_Avg">
+								<Offset>
+									<AbsDimension x="5" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+
+					<Button name="KarmaOptionsWindow_ColorSpace_Time_Max"  text="Max" inherits="UIPanelButtonTemplate" id="1">
+						<Size>
+							<AbsDimension x="20" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_Time_AvgToMax">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaAvEnK.Colorspace.Modify(self);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="KarmaOptionsWindow_ColorSpace_XP_Min" text="Min" inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="20" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="75" y="-85"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaAvEnK.Colorspace.Modify(self);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Frame name="KarmaOptionsWindow_ColorSpace_XP_MinToAvg" inherits="KarmaOptionsWindow_ColorSpace_Template">
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_XP_Min">
+								<Offset>
+									<AbsDimension x="5" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+
+					<Button name="KarmaOptionsWindow_ColorSpace_XP_Avg" text="Avg"  inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="20" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_XP_MinToAvg">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaAvEnK.Colorspace.Modify(self);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Frame name="KarmaOptionsWindow_ColorSpace_XP_AvgToMax" inherits="KarmaOptionsWindow_ColorSpace_Template">
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_XP_Avg">
+								<Offset>
+									<AbsDimension x="5" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+
+					<Button name="KarmaOptionsWindow_ColorSpace_XP_Max"  text="Max" inherits="UIPanelButtonTemplate" id="1">
+						<Size>
+							<AbsDimension x="20" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT"
+									relativeTo="KarmaOptionsWindow_ColorSpace_XP_AvgToMax">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaAvEnK.Colorspace.Modify(self);
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<Frame name="KarmaOptionsWindow_ChatWindows_Area" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<!-- orginal x: 231, y = 90 -->
+					<!-- 1+2: 330/80 -->
+					<AbsDimension x="260" y="110"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="163" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_CHATWINDOWSAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 4);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer name="Foreground">
+						<FontString name="KarmaOptionsWindow_ChatDefault_DropDown_Title" inherits="GameFontHighlight"
+									text="KARMA_WINEL_CHATDEFAULTTITLE" justifyH="RIGHT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<!-- original: x="34", y="-14" -->
+										<AbsDimension x="30" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaOptionsWindow_ChatSecondary_DropDown_Title" inherits="GameFontHighlight"
+									text="KARMA_WINEL_CHATSECONDARYTITLE" justifyH="RIGHT">
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="KarmaOptionsWindow_ChatDefault_DropDown_Title" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<!-- original: x="0", y="-18" -->
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaOptionsWindow_ChatDebug_DropDown_Title" inherits="GameFontHighlight"
+									text="KARMA_WINEL_CHATDEBUGTITLE" justifyH="RIGHT">
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="KarmaOptionsWindow_ChatSecondary_DropDown_Title" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<!-- original: x="0", y="-18" -->
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<Frame name="KarmaOptionsWindow_ChatDefault_DropDown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionsWindow_ChatDefault_DropDown_Title" relativeFrom="TOPRIGHT" 
+								relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-15" y="6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindowOptions_ChatDefaultDropDown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<Frame name="KarmaOptionsWindow_ChatSecondary_DropDown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionsWindow_ChatSecondary_DropDown_Title" relativeFrom="TOPRIGHT" 
+								relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-15" y="6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindowOptions_ChatSecondaryDropDown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<Frame name="KarmaOptionsWindow_ChatDebug_DropDown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionsWindow_ChatDebug_DropDown_Title" relativeFrom="TOPRIGHT" 
+								relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-15" y="6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindowOptions_ChatDebugDropDown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+				</Frames>
+			</Frame>
+
+			<Frame name="KarmaOptionsWindow_Markup" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<!-- orginal x: 231 -->
+					<AbsDimension x="420" y="105"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<!-- y: -235 -->
+							<AbsDimension x="163" y="-160"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_MARKUPAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 4);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_MarkupEnabled_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MARKUPENABLEDCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="45" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_MarkupVersion_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MARKUPVERSIONCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"
+										relativeTo="KarmaOptionWindow_MarkupEnabled_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="75" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_MarkupWhispers_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MARKUPWHISPERSCHECKBOXTITLE" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="160" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupEnabled_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+											<Offset>
+										<AbsDimension x="10" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_MarkupChannels_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MARKUPCHANNELSCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupWhispers_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_MarkupYSE_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MARKUPYELLSAYEMOTECHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupChannels_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_MarkupGuild_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MARKUPGUILDCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupWhispers_Checkbox_Title"
+									relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="30" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_MarkupRaid_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MARKUPRAIDCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupGuild_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_MarkupBG_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MARKUPBGCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupRaid_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_MarkupEnabled_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupEnabled_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_MarkupVersion_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionWindow_MarkupVersion_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_MarkupVersion_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_MarkupVersion_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_MarkupWhispers_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupWhispers_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_MarkupChannels_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupChannels_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_MarkupYSE_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupYSE_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_MarkupGuild_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupGuild_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_MarkupRaid_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupRaid_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_MarkupBG_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_MarkupBG_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+
+			<!-- second left block: autoignore -->
+			<Frame name="KarmaOptionsWindow_Autoignore_Area" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<!-- original x="231", y="90" -->
+					<AbsDimension x="343" y="150"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="163" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_AUTOIGNOREAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 3);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_AutoignoreEnabled_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_AUTOIGNOREENABLEDCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<!-- original x="32", y="-10" -->
+										<AbsDimension x="45" y="-35"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_IgnoreInvites_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_IGNOREINVITESCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_AutoignoreEnabled_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<!-- original x="8", y="-10" -->
+										<AbsDimension x="10" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_WarnLowKarma_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_WARNLOWKARMA_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_IgnoreInvites_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<!-- original x="8", y="-10" -->
+										<AbsDimension x="-10" y="-50"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Editbox (*including* Title!) -->
+					<EditBox name="KarmaOptionWindow_AutoIgnoreThreshold" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaOptionsWindow_Autoignore_Area">
+								<Offset>
+									<AbsDimension x="20" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString inherits="GameFontHighlight" text="KARMA_WINEL_AUTOIGNORETHRESHOLD">
+									<Anchors>
+										<Anchor point="LEFT" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="10" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_AutoIgnoreThreshold_OnShow();
+							</OnShow>
+							<OnTextChanged>
+								KarmaOptionWindow_AutoIgnoreThreshold_OnChanged();
+							</OnTextChanged>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+							<OnTabPressed>
+								this:ClearFocus();
+							</OnTabPressed>
+						</Scripts>
+					</EditBox>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_AutoignoreEnabled_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_AutoignoreEnabled_Checkbox_Title">
+								<Offset>
+									<!-- original x="0", y="6" -->
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_AutoignoreEnabled_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_AutoignoreEnabled_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_IgnoreInvites_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_IgnoreInvites_Checkbox_Title">
+								<Offset>
+									<!-- original x="0", y="6" -->
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_IgnoreInvites_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_IgnoreInvites_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_WarnLowKarma_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_WarnLowKarma_Checkbox_Title">
+								<Offset>
+									<!-- original x="0", y="6" -->
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_WarnLowKarma_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_WarnLowKarma_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Editbox (*including* Title!) -->
+					<EditBox name="KarmaOptionWindow_WarnLowKarma_Threshold" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionWindow_WarnLowKarma_Checkbox">
+								<Offset>
+									<!-- original x="8", y="-10" -->
+									<AbsDimension x="10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString inherits="GameFontHighlight" text="KARMA_WINEL_WARNLOWKARMA_THRESHOLD">
+									<Anchors>
+										<Anchor point="LEFT" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="10" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_WarnLowKarma_Threshold_OnShow();
+							</OnShow>
+							<OnTextChanged>
+								KarmaOptionWindow_WarnLowKarma_Threshold_OnChanged();
+							</OnTextChanged>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+							<OnTabPressed>
+								this:ClearFocus();
+							</OnTabPressed>
+						</Scripts>
+					</EditBox>
+				</Frames>
+			</Frame>
+
+			<!-- new block: sharing -->
+			<Frame name="KarmaOptionsWindow_Sharing_Area" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<!-- original x="231", y="90" -->
+					<AbsDimension x="400" y="150"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="163" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_SHARINGAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 80);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Menu1: share level of Karma value -->
+						<FontString name="KarmaOptionWindow_Sharing_KarmaLevel_Menu_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_SHARING_KARMALEVEL" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="KarmaOptionWindow_Sharing_PublicnoteLevel_Menu_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_SHARING_PUBLICNOTELEVEL" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Sharing_KarmaLevel_Menu_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="KarmaOptionWindow_Sharing_ChannelName_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_SHARING_CHANNELNAME" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Sharing_PublicnoteLevel_Menu_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="KarmaOptionWindow_Sharing_ChannelAutoJoinHide_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_SHARING_CHANNELAUTOJOINHIDE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Sharing_ChannelName_Editbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="30" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<Frame name="KarmaOptionWindow_Sharing_KarmaLevel_Menu" inherits="UIDropDownMenuTemplate" id="1"  justifyH="LEFT">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"
+									relativeTo="KarmaOptionWindow_Sharing_KarmaLevel_Menu_Title">
+								<Offset>
+									<AbsDimension x="15" y="6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Sharing_KarmaLevel_Menu_OnShow(this);
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<Frame name="KarmaOptionWindow_Sharing_PublicnoteLevel_Menu" inherits="UIDropDownMenuTemplate" id="1"  justifyH="LEFT">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"
+									relativeTo="KarmaOptionWindow_Sharing_PublicnoteLevel_Menu_Title">
+								<Offset>
+									<AbsDimension x="15" y="6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Sharing_PublicnoteLevel_Menu_OnShow(this);
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<!-- Editbox (*including* Title!) -->
+					<EditBox name="KarmaOptionWindow_Sharing_ChannelName_Editbox" letters="31" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="KarmaOptionWindow_Sharing_ChannelName_Editbox_Title">
+								<Offset>
+									<AbsDimension x="20" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Sharing_ChannelName_OnShow();
+							</OnShow>
+							<OnTextChanged>
+								KarmaOptionWindow_Sharing_ChannelName_OnChanged();
+							</OnTextChanged>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+							<OnTabPressed>
+								this:ClearFocus();
+							</OnTabPressed>
+						</Scripts>
+					</EditBox>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Sharing_ChannelAutoJoinHide_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_Sharing_ChannelAutoJoinHide_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-5" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+
+			<Frame name="KarmaOptionsWindow_CleanDB" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<!-- orginal x: 231 -->
+					<AbsDimension x="400" y="305"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="163" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_OPTIONSDBCLEANAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 99);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_DBClean_AutoClean_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_AUTOCLEANCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="45" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_DBClean_AutoCleanPvP_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_AUTOCLEANPVPCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_AutoClean_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Section title -->
+						<FontString name="KarmaOptionWindow_DBClean_Section_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_DBCLEANSECTIONTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_AutoCleanPvP_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="-30" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_DBClean_RemovePvPJoins_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_DBCLEANREMOVEPVPJOINSTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_Section_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="30" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_DBClean_RemoveXServer_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_DBCLEANREMOVEXSERVERTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_RemovePvPJoins_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_DBClean_KeepIfNote_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_DBCLEANKEEPIFNOTETITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_RemoveXServer_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_DBClean_KeepIfKarma_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_DBCLEANKEEPIFKARMATITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfNote_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title placeholder -->
+						<FontString name="KarmaOptionWindow_DBClean_KeepIfQListThres_Editbox_Title" inherits="GameFontHighlight"
+								text=" " justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfKarma_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="-5" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaOptionWindow_DBClean_KeepIfZListThres_Editbox_Title" inherits="GameFontHighlight"
+								text=" " justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfQListThres_Editbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaOptionWindow_DBClean_KeepIfRListThres_Editbox_Title" inherits="GameFontHighlight"
+								text=" " justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfZListThres_Editbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_DBClean_IgnorePVPZones_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_DBCLEANIGNOREPVPZONESTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfRListThres_Editbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="5" y="-13"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_DBClean_AutoClean_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_AutoClean_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_AutoClean_Checkbox_OnLoad();
+							</OnShow>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnClick>
+								KarmaOptionWindow_DBClean_AutoClean_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_DBClean_AutoCleanPvP_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_AutoCleanPvP_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_AutoCleanPvP_Checkbox_OnLoad();
+							</OnShow>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnClick>
+								KarmaOptionWindow_DBClean_AutoCleanPvP_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_DBClean_KeepIfNote_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfNote_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_KeepIfNote_Checkbox_OnLoad();
+							</OnShow>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+							<OnClick>
+								KarmaOptionWindow_DBClean_KeepIfNote_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_DBClean_RemovePvPJoins_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_RemovePvPJoins_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_RemovePvPJoins_Checkbox_OnLoad();
+							</OnShow>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+							<OnClick>
+								KarmaOptionWindow_DBClean_RemovePvPJoins_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_DBClean_RemoveXServer_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_RemoveXServer_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_RemoveXServer_Checkbox_OnLoad();
+							</OnShow>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+							<OnClick>
+								KarmaOptionWindow_DBClean_RemoveXServer_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_DBClean_KeepIfKarma_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfKarma_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_KeepIfKarma_Checkbox_OnLoad();
+							</OnShow>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+							<OnClick>
+								KarmaOptionWindow_DBClean_KeepIfKarma_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Editbox (*including* Title!) -->
+					<EditBox name="KarmaOptionWindow_DBClean_KeepIfQListThres_Editbox" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfQListThres_Editbox_Title">
+								<Offset>
+									<AbsDimension x="-25" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString inherits="GameFontHighlight" text="KARMA_WINEL_DBCLEANKEEPIFQUESTNUMTITLE">
+									<Anchors>
+										<Anchor point="LEFT" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="10" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_KeepIfQListThres_OnShow();
+							</OnShow>
+							<OnTextChanged>
+								KarmaOptionWindow_DBClean_KeepIfQListThres_OnChanged();
+							</OnTextChanged>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+							<OnTabPressed>
+								this:ClearFocus();
+							</OnTabPressed>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+						</Scripts>
+					</EditBox>
+
+					<!-- Editbox (*including* Title!) -->
+					<EditBox name="KarmaOptionWindow_DBClean_KeepIfZListThres_Editbox" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfZListThres_Editbox_Title">
+								<Offset>
+									<AbsDimension x="-25" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString inherits="GameFontHighlight" text="KARMA_WINEL_DBCLEANKEEPIFZONENUMTITLE">
+									<Anchors>
+										<Anchor point="LEFT" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="10" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_KeepIfZListThres_OnShow();
+							</OnShow>
+							<OnTextChanged>
+								KarmaOptionWindow_DBClean_KeepIfZListThres_OnChanged();
+							</OnTextChanged>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+							<OnTabPressed>
+								this:ClearFocus();
+							</OnTabPressed>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+						</Scripts>
+					</EditBox>
+
+					<!-- Editbox (*including* Title!) -->
+					<EditBox name="KarmaOptionWindow_DBClean_KeepIfRListThres_Editbox" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_KeepIfRListThres_Editbox_Title">
+								<Offset>
+									<AbsDimension x="-25" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString inherits="GameFontHighlight" text="KARMA_WINEL_DBCLEANKEEPIFREGIONNUMTITLE">
+									<Anchors>
+										<Anchor point="LEFT" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="10" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_KeepIfRListThres_OnShow();
+							</OnShow>
+							<OnTextChanged>
+								KarmaOptionWindow_DBClean_KeepIfRListThres_OnChanged();
+							</OnTextChanged>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+							<OnTabPressed>
+								this:ClearFocus();
+							</OnTabPressed>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+						</Scripts>
+					</EditBox>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_DBClean_IgnorePVPZones_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_DBClean_IgnorePVPZones_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_DBClean_IgnorePVPZones_Checkbox_OnLoad();
+							</OnShow>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+							<OnClick>
+								KarmaOptionWindow_DBClean_IgnorePVPZones_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<Button name="KarmaOptionWindow_DBClean_Test_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_DBCLEAN_TESTBUTTON">
+						<Size>
+							<AbsDimension x="90" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOM" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+							<OnClick>
+								KarmaOptionWindow_DBClean_Test_OnClick();
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<Frame name="KarmaOptionsWindow_Tooltip" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<!-- orginal x: 231, then y: 170 -->
+					<AbsDimension x="390" y="290"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="163" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_OPTIONSTOOLTIPAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 2);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Tooltip_ShiftReq_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TIPS_SHIFTREQ_CHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="45" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaOptionWindow_OtherKarmaTips_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_KARMATIPSCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_Tooltip_ShiftReq_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaOptionWindow_OtherPlayedThisTips_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_PLAYEDTHISCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_OtherKarmaTips_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaOptionWindow_OtherPlayedTotalTips_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_PLAYEDTOTALCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_OtherPlayedThisTips_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_OtherNoteTips_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_NOTETIPSCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_OtherPlayedTotalTips_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Tooltip_Skill_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TIPS_SKILL_SCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_OtherNoteTips_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Tooltip_Talents_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TIPS_TALENTS_SCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_Tooltip_Skill_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Tooltip_Alts_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TIPS_ALTS_SCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_Tooltip_Talents_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Tooltip_Help_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TT_HELP_BOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_Tooltip_Alts_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Tooltip_LFMAddKarma_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TT_LFMADDKARMA_BOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_Tooltip_Help_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Tooltip_ShiftReq_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_Tooltip_ShiftReq_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Tooltip_ShiftReq_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_Tooltip_ShiftReq_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_OtherKarmaTips_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_OtherKarmaTips_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_OtherKarmaTips_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_OtherKarmaTips_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_OtherPlayedThisTips_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_OtherPlayedThisTips_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_OtherPlayedThisTips_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_OtherPlayedThisTips_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_OtherPlayedTotalTips_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_OtherPlayedTotalTips_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_OtherPlayedTotalTips_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_OtherPlayedTotalTips_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_OtherNoteTips_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_OtherNoteTips_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_OtherNoteTips_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_OtherNoteTips_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Tooltip_Skill_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_Tooltip_Skill_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Tooltip_Skill_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_Tooltip_Skill_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Tooltip_Talents_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_Tooltip_Talents_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Tooltip_Talents_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_Tooltip_Talents_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Tooltip_Alts_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_Tooltip_Alts_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Tooltip_Alts_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_Tooltip_Alts_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Tooltip_Help_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_Tooltip_Help_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Tooltip_Help_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_Tooltip_Help_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Tooltip_LFMAddKarma_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_Tooltip_LFMAddKarma_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Tooltip_LFMAddKarma_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_Tooltip_LFMAddKarma_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+
+			<Frame name="KarmaOptionsWindow_Other" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<AbsDimension x="400" y="240"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="163" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_OPTIONSOTHERAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 90);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_OtherTargetColored_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TARGETCOLOREDCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="45" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Other_QCacheWarn_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_QCACHWARNCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_OtherTargetColored_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Dropdown title -->
+						<FontString name="KarmaOptionWindow_Other_MainWndTab_Dropdown_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MAINWNDTAB_DROPDOWNTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Other_QCacheWarn_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="-35" y="-12"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Other_AutocheckTalents_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_AUTOCHECKTALENTSCHECKBOXTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Other_MainWndTab_Dropdown_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="35" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Other_MinimapIconHide_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MINIMAPICONHIDE_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Other_AutocheckTalents_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Other_QuestsIgnoreDailies_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_QUESTSIGNOREDAILIES_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Other_MinimapIconHide_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Other_UpdateWhileAFK_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_UPDATEWHILEAFK_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Other_QuestsIgnoreDailies_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Other_ContextMenuDeactivate_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_CONTEXTMENUDEACTIVATE_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Other_UpdateWhileAFK_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_Other_DBSparseTables_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_DBSPARSETABLES_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Other_ContextMenuDeactivate_Checkbox_Title"
+									relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_OtherTargetColored_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_OtherTargetColored_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Other_QCacheWarn_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaOptionWindow_Other_QCacheWarn_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Dropdown (title see above!) -->
+					<Frame name="KarmaOptionWindow_Other_MainWndTab_Dropdown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaOptionWindow_Other_MainWndTab_Dropdown_Title" relativeFrom="TOPRIGHT" 
+								relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Other_MainWndTab_Dropdown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Other_AutocheckTalents_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionWindow_Other_AutocheckTalents_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Other_AutocheckTalents_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_Other_AutocheckTalents_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Other_MinimapIconHide_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionWindow_Other_MinimapIconHide_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_Other_MinimapIconHide_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_Other_MinimapIconHide_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Other_QuestsIgnoreDailies_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionWindow_Other_QuestsIgnoreDailies_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Other_UpdateWhileAFK_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionWindow_Other_UpdateWhileAFK_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Other_ContextMenuDeactivate_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionWindow_Other_ContextMenuDeactivate_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_Other_DBSparseTables_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionWindow_Other_DBSparseTables_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+							<OnEnter>
+								Karma_FromTable_Tooltip();
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+
+			<Frame name="KarmaOptionsWindow_VirtualKarma" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<AbsDimension x="400" y="120"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="163" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_OPTIONSVIRTUALKARMAAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 5);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_VirtualKarma_TimeKarmaEnable_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TIMEKARMA_ENABLE_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="45" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaOptionWindow_VirtualKarma_TimeKarmaThreshold_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TIMEKARMA_MINVAL_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_VirtualKarma_TimeKarmaEnable_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="20" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaOptionWindow_VirtualKarma_TimeKarmaFactor_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TIMEKARMA_FACTOR_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_VirtualKarma_TimeKarmaThreshold_Editbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaOptionWindow_VirtualKarma_SkipBGTime_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TIMEKARMA_SKIPBGTIME_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaOptionWindow_VirtualKarma_TimeKarmaFactor_Editbox_Title">
+									<Offset>
+										<AbsDimension x="30" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_VirtualKarma_TimeKarmaEnable_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaOptionWindow_VirtualKarma_TimeKarmaEnable_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_VirtualKarma_TimeKarma_Checkbox_OnLoad();
+							</OnShow>
+							<OnClick>
+								KarmaOptionWindow_VirtualKarma_TimeKarma_Checkbox_OnClick();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+
+					<!-- Editbox (*EXcluding* Title!) -->
+					<EditBox name="KarmaOptionWindow_VirtualKarma_TimeKarmaThreshold_Editbox" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"
+									relativeTo="KarmaOptionWindow_VirtualKarma_TimeKarmaThreshold_Editbox_Title">
+								<Offset>
+									<AbsDimension x="5" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_VirtualKarma_TimeKarmaThreshold_Editbox_OnShow();
+							</OnShow>
+							<OnTextChanged>
+								KarmaOptionWindow_VirtualKarma_TimeKarmaThreshold_Editbox_OnChanged();
+							</OnTextChanged>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+							<OnTabPressed>
+								this:ClearFocus();
+							</OnTabPressed>
+						</Scripts>
+					</EditBox>
+
+					<!-- Editbox (*EXcluding* Title!) -->
+					<EditBox name="KarmaOptionWindow_VirtualKarma_TimeKarmaFactor_Editbox" letters="4" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="50" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"
+									relativeTo="KarmaOptionWindow_VirtualKarma_TimeKarmaFactor_Editbox_Title">
+								<Offset>
+									<AbsDimension x="5" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaOptionWindow_VirtualKarma_TimeKarmaFactor_Editbox_OnShow();
+							</OnShow>
+							<OnTextChanged>
+								KarmaOptionWindow_VirtualKarma_TimeKarmaFactor_Editbox_OnChanged();
+							</OnTextChanged>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+							<OnTabPressed>
+								this:ClearFocus();
+							</OnTabPressed>
+						</Scripts>
+					</EditBox>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_VirtualKarma_SkipBGTime_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor relativeTo="KarmaOptionWindow_VirtualKarma_SkipBGTime_Checkbox_Title"
+									point="TOPRIGHT" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+			<Frame name="KarmaOptionsWindow_CoreFeatures" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<AbsDimension x="400" y="105"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="163" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_COREFEATURESAREATITLE);
+
+						KarmaAvEnK.UI.OptWnd.CatAdd(this, 95);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_CoreFeatures_TrackingDisableQuests_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TRACKINGDISABLEQUESTSTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="45" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_CoreFeatures_TrackingDisableAchievements_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TRACKINGDISABLEACHIEVEMENTSTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor relativeTo="KarmaOptionWindow_CoreFeatures_TrackingDisableQuests_Checkbox_Title"
+									point="TOPLEFT" relativePoint="BOTTOMLEFT">
+											<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_CoreFeatures_TrackingDisableRegions_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TRACKINGDISABLEREGIONSTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor relativeTo="KarmaOptionWindow_CoreFeatures_TrackingDisableAchievements_Checkbox_Title"
+									point="TOPLEFT" relativePoint="BOTTOMLEFT">
+											<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaOptionWindow_CoreFeatures_TrackingDisableZones_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TRACKINGDISABLEZONESTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor relativeTo="KarmaOptionWindow_CoreFeatures_TrackingDisableRegions_Checkbox_Title"
+										point="TOPLEFT" relativePoint="BOTTOMLEFT">
+											<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_CoreFeatures_TrackingDisableQuests_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor relativeTo="KarmaOptionWindow_CoreFeatures_TrackingDisableQuests_Checkbox_Title"
+									point="TOPRIGHT" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_CoreFeatures_TrackingDisableAchievements_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor relativeTo="KarmaOptionWindow_CoreFeatures_TrackingDisableAchievements_Checkbox_Title"
+									point="TOPRIGHT" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_CoreFeatures_TrackingDisableRegions_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor relativeTo="KarmaOptionWindow_CoreFeatures_TrackingDisableRegions_Checkbox_Title"
+									point="TOPRIGHT" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaOptionWindow_CoreFeatures_TrackingDisableZones_Checkbox" inherits="UICheckButtonTemplate" >
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor relativeTo="KarmaOptionWindow_CoreFeatures_TrackingDisableZones_Checkbox_Title"
+									point="TOPRIGHT" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaAvEnK.UI.Config.CheckBox_OnLoad(this);
+							</OnShow>
+							<OnClick>
+								KarmaAvEnK.UI.Config.CheckBox_OnClick(this);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+</Ui>

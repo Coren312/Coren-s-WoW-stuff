@@ -1,0 +1,30 @@
+## Interface: 30200
+## Title: SaneLFG2
+## Version: 30300.01
+## Notes: Revival of the LFG/LFM window
+## Notes-deDE: Wiederbelebung für das Suchefenter
+## SavedVariables: SaneLFG2Global
+## SavedVariablesPerCharacter: SaneLFG2PerChar
+## Author: Kärbär, EU-Proudmoore
+## X-Date: 2009-??-??
+## X-Email: n/a
+## X-Website: n/a
+## X-Category: MYADDONS_CATEGORY_OTHERS
+## X-Help: n/a
+## DefaultState: enabled
+
+ChatThrottleLib\ChatThrottleLib.xml
+
+localization.enUS.lua
+localization.deDE.lua
+
+SaneLFG2Helper.lua
+
+SaneLFG2.lua
+SaneLFG2Channel.lua
+
+SaneLFG2Window.xml
+SaneLFG2Window.lua
+
+SaneLFG2Setup.lua
+

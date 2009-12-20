@@ -1,0 +1,88 @@
+30200.01:
+- initial release
+
+30200.02:
+- oops. forgot to replace the name in the .TOC file :D
+
+30200.03:
+- bit less debug output
+- "is active" message appears now before doing stuff
+- LFM frame: filtering by role should now work in mixed mode as well
+- LFM frame: restoring on logging on is a bit more persistent...
+- LFM frame: added a bit more comment parsing (looking for "# heal"/"heal" etc.)
+- added 'reset' command, because there's no (simple) way to tell if you simply leveled out of heroic dungeon range or if the information is just not yet available client-side (around 73ish all Outland heroic dungeons are dropped until 80)
+
+30200.04:
+- changed from "gloss" to "fine tuning"
+- added bits of localization support
+- fixed issues with group updates
+- on setting up, output be clearer about success/failure/nothing done
+- added output when previous LFG choice is forgotten
+- /sanelfg tells a bit clearer information
+
+30200.05:
+- pause button wasn't properly updating its text
+- pause status can now be stored between sessions ('/sanelfg config pausesave')
+
+30200.06:
+- removed some obsolete duplicate initializations
+- output for LFG/LFM choices is more often giving a comprehensible text (not everywhere yet)
+- new view mode: if "none" is selected as category, it shows all LFG groups
+- comment parsing: for 5-man parties, it tries to give (correct) numbers instead of ? marks
+- tooltip for parties: added colorization to class for party members
+- new LFM button: see delayed tooltip for basic information (left-click, middle-click, right-click actions)
+
+30200.07:
+- the dropping of heroic dungeons in 73 should now be properly handled
+- LFM set is now being updated on level-up
+- comment is only saved/restored if you are not in a group (and only set if necessary)
+- Pause: force-clear LFM more intensely
+- new command: '/sanelfg lfxstatus' (to show the internal client LFG/LFM state)
+- LFM restore: corrected output to tell the name
+- tooltip timer down to 3s until display, because clicking hides it now
+
+30200.08:
+- fixed level-up update error when being LFG for less than three dungeons
+- added one workaround for inherent bug in Blizzard's LFG system (game client accepts invalid data from server)
+
+30200.09:
+- Pause status is now stored per char instead of globally
+- added cycling through stored LFG set
+- fixed incomplete level-up handling when in Pause mode
+- initializing to "all" now also happens if started in Pause mode
+- if a comment is set, a small "+" is shown left of the level column
+- on only viewing groups, the member # has been corrected to the original position
+- SaneLFG LFM entry tooltip: added an option to always use this routine, even if not in full mixed mode
+- SaneLFG LFM entry tooltip: comment color can be set (to differentiate it more clearly)
+- cycle tooltip: now shows immediately the first time you hover over the button, the following times delayed 5 seconds
+- added the cycling function in key bindings
+
+30200.10:
+- heroic instance names should now be properly setup
+- added output to LFM restore to inform the user if LFGQuery() could (not) be sent
+
+30200.11:
+- after leaving a party, the restore is now delayed by 30 seconds
+- when paused, a tooltip on the button on the LFG tab indicates which state will be restored
+- tooltips: should now output " -- none -- " for no selection (instead of ?0)
+- corrected a bug when checking if all LFG data is available
+- full-mixed-mode: cycle button can now work off the custom LFM set
+- full-mixed-mode: now honors role filters
+- full-mixed-mode: fixed not functioning scrolling
+
+30200.12:
+- colorization: dungeons/raids that are currently in lockout are colored red
+- menu: separators now state what the scope of the next block of options is (global/per char)
+- menu: option for cycling in mixed mode named more clearly
+
+30200.13:
+- lockout colorization: now also for the LFM tab
+- workaround #3 for Blizzard's inconsistency in lockout name vs. LFG name of a dungeon...
+
+30200.14:
+- workaround #4 for Blizzard's inconsistency in lockout name vs. LFG name of a dungeon...
+
+30200.15:
+- added new per-char option "On login, start with PAUSEd LFG" (default: no)
+- on restoring after leaving a group, instances the char is saved to are dropped, unless the new global option "Keep LFG entries, even if saved to it" is on (default: off)
+

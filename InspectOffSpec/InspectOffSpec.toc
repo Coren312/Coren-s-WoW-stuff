@@ -1,0 +1,15 @@
+## Interface: 30200
+## Title: InspectOffSpec
+## Version: 30200.01
+## Notes: Adds an additional inspect talent tab for off-spec
+## Notes-deDE: Fügt eine zusätzliche Inspect-Talentseite für sekundäre Spezialisierung hinzu
+## Author: Kärbär, EU-Proudmoore
+## X-Date: 2009-11-18
+## X-Email: n/a
+## X-Website: n/a
+## X-Category: MYADDONS_CATEGORY_OTHERS
+## X-Help: n/a
+## DefaultState: enabled
+
+InspectOffSpec.lua
+

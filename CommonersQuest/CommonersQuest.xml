@@ -1,0 +1,160 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+
+	<Script file="CommonersQuest.lua"/>
+
+	<!-- Background main frame to receive global events -->
+	<Frame name="CommonersQuestEventframe" parent="UIParent" hidden="false" toplevel="false">
+		<Scripts>
+			<OnLoad>
+				CommonersQuest.OnLoad();
+			</OnLoad>
+			<OnEvent>
+				CommonersQuest.OnEvent(self, event, ...);
+			</OnEvent>
+			<OnUpdate>
+				CommonersQuest.OnUpdateEvent(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="CommonersQuestSplitAnchorframe" parent="UIParent" hidden="true" toplevel="false">
+		<Scripts>
+			<OnLoad>
+				-- CommonersQuest.OnLoad();
+			</OnLoad>
+			<OnEvent>
+				-- CommonersQuest.OnEvent(self, event, ...);
+			</OnEvent>
+			<OnUpdate>
+				-- CommonersQuest.OnUpdateEvent(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="CommonersQuestSliderFrame" parent="UIParent" hidden="true" toplevel="true" movable="true">
+		<Size>
+			<AbsDimension x="384" y="150"/>
+		</Size>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+		<Scripts>
+			<OnMouseDown>
+				if (arg1 == "LeftButton") then
+					self:StartMoving()
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				self:StopMovingOrSizing()
+			</OnMouseUp>
+		</Scripts>
+		<Layers>
+			<Layer>
+				<FontString name="CommonersQuestSliderFrameText1" inherits="GameFontHighlight" text="... ?">
+					<Size>
+						<AbsDimension x="320" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="32" y="-16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="CommonersQuestSliderFrameText2" inherits="GameFontHighlight" text="... ?">
+					<Size>
+						<AbsDimension x="320" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="32" y="-40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+ 		<Frames>
+			<Slider name="CommonersQuestSliderFrameSlider" inherits="OptionsSliderTemplate">
+				<Size>
+					<AbsDimension x="320" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="32" y="-80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						local	sName = self:GetName();
+						getglobal(sName .. "Text"):SetText("");
+						getglobal(sName .. "Low"):SetText(1);
+						getglobal(sName .. "High"):SetText(100);
+						self:SetMinMaxValues(1,100);
+						self:SetValueStep(1);
+						self:SetValue(50);
+					</OnLoad>
+					<OnValueChanged>
+						CommonersQuest.Slider.OnValueChanged(self);
+					</OnValueChanged>
+				</Scripts>
+			</Slider>
+
+			<Button name="CommonersQuestSliderFrameOk" inherits="UIPanelButtonTemplate" text="OK">
+				<Size>
+					<AbsDimension x="100" y="25"/>
+				</Size>
+				<Anchors>
+					<!-- relativeTo="CQKEP_Main_Invalid_Title" -->
+					<Anchor point="BOTTOMRIGHT"  relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="-20" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CommonersQuest.Slider.OnOk();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="CommonersQuestSliderFrameCancel" inherits="UIPanelButtonTemplate" text="CANCEL">
+				<Size>
+					<AbsDimension x="100" y="25"/>
+				</Size>
+				<Anchors>
+					<!-- relativeTo="CQKEP_Main_Invalid_Title" -->
+					<Anchor point="BOTTOMLEFT"  relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="20" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CommonersQuest.Slider.Reset();
+					</OnClick>
+				</Scripts>
+			</Button>
+ 		</Frames>
+	</Frame>
+
+	<Frame name="CommonersQuestLDBMenu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(self, CommonersQuest.LDBMenu.Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>
+

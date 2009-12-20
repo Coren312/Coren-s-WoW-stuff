@@ -1,0 +1,15 @@
+## Interface: 30300
+## Title: WorldEvents
+## Version: 30300.01
+## Notes: WorldEvents tracking helper
+## Author: Kärbär, EU-Proudmoore
+## SavedVariables: WorldEvents
+## X-Date: 2009-12-??
+## X-Email: n/a
+## X-Website: n/a
+## X-Category: MYADDONS_CATEGORY_OTHERS
+## X-Help: n/a
+## DefaultState: enabled
+
+WorldEvents.lua
+

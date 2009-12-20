@@ -1,0 +1,1176 @@
+ <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="CommonersQuestFrame.lua"/>
+
+	<!-- should be already loaded by QuestFrame:
+		<Include file="QuestFrameTemplates.xml"/>
+	-->
+	<Frame name="CommonersQuestFrame" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true">
+ 		<Size>
+ 			<AbsDimension x="384" y="512"/>
+ 		</Size>
+ 		<Anchors>
+ 			<Anchor point="TOPLEFT">
+ 				<Offset>
+ 					<AbsDimension x="0" y="-104"/>
+ 				</Offset>
+ 			</Anchor>
+ 		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="0" right="30" top="0" bottom="70"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="CommonersQuestFramePortrait">
+					<Size>
+						<AbsDimension x="60" y="60"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+ 		<Frames>
+			<Frame name="CommonersQuestNpcNameFrame">
+				<Size>
+					<AbsDimension x="300" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="CommonersQuestFrame" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-23"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="CommonersQuestFrameNpcNameText" inherits="GameFontHighlight" text="Title Text">
+							<Size>
+								<AbsDimension x="235" y="20"/>
+							</Size>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad function="RaiseFrameLevelByTwo"/>
+				</Scripts>
+			</Frame>
+			<Button name="CommonersQuestFrameCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="CommonersQuestFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-42" y="-31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+ 			<Frame name="CommonersQuestFrameRewardPanel" inherits="QuestFramePanelTemplate" hidden="true">
+ 				<Frames>
+ 					<Button name="CommonersQuestFrameCancelButton" inherits="UIPanelButtonTemplate" text="CANCEL">
+						<Size>
+							<AbsDimension x="78" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestFrame" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-39" y="73"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<!--
+							<OnClick function="CommonersQuestRewardCancelButton_OnClick"/>
+							-->
+							<OnClick>
+								CommonersQuest.FrameRewardPanel.RewardCancelButtonClicked(self, arg1);
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="CommonersQuestFrameCompleteQuestButton" inherits="UIPanelButtonTemplate" text="COMPLETE_QUEST" jumpNavigateStart="true">
+						<Size>
+							<AbsDimension x="120" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="CommonersQuestFrame" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="22" y="72"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<!--
+							<OnClick function="CommonersQuestRewardCompleteButton_OnClick"/>
+							-->
+							<OnClick>
+								CommonersQuest.FrameRewardPanel.RewardCompleteButtonClicked(self, arg1);
+							</OnClick>
+						</Scripts>
+					</Button>
+					<ScrollFrame name="CommonersQuestRewardScrollFrame" inherits="UIPanelScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="300" y="334"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CommonersQuestFrame">
+								<Offset>
+									<AbsDimension x="23" y="-81"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ScrollChild>
+							<Frame name="CommonersQuestRewardScrollChildFrame">
+								<Size>
+									<AbsDimension x="300" y="334"/>
+								</Size>
+								<Layers>
+									<Layer>
+										<FontString name="CommonersQuestRewardTitleText" inherits="QuestTitleFont" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="285" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT">
+													<Offset>
+														<AbsDimension x="5" y="-10"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestRewardText" inherits="QuestFont" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="275" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="CommonersQuestRewardTitleText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-5"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestRewardRewardTitleText" inherits="QuestTitleFont" text="QUEST_REWARDS" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="285" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="CommonersQuestRewardText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-10"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestRewardItemChooseText" inherits="QuestFont" text="REWARD_CHOOSE" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="295" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="CommonersQuestRewardRewardTitleText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-5"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestRewardItemReceiveText" inherits="QuestFont" justifyH="LEFT">
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="CommonersQuestRewardRewardTitleText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-5"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestRewardSpellLearnText" inherits="QuestFont" hidden="true" justifyH="LEFT">
+											<Anchors>
+												<Anchor point="TOPLEFT"/>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Frames>
+									<Button name="CommonersQuestRewardItem1" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestRewardItem2" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestRewardItem3" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestRewardItem4" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestRewardItem5" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestRewardItem6" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestRewardItem7" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestRewardItem8" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestRewardItem9" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestRewardItem10" inherits="QuestRewardItemTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+									</Button>
+									<Frame name="CommonersQuestRewardMoneyFrame" inherits="MoneyFrameTemplate">
+										<Anchors>
+											<Anchor point="LEFT" relativeTo="CommonersQuestRewardItemReceiveText" relativePoint="RIGHT">
+												<Offset x="15" y="0"/>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<!--
+											<OnLoad function="CommonersQuestMoneyFrame_OnLoad"/>
+											-->
+											<OnLoad>
+												CommonersQuest.FrameRewardPanel.MoneyFrame_OnLoad(self);
+											</OnLoad>
+										</Scripts>
+									</Frame>
+									<Frame name="CommonersQuestRewardHonorFrame" inherits="QuestHonorFrameTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestRewardItemReceiveText" relativePoint="BOTTOMLEFT">
+												<Offset x="0" y="-5"/>
+											</Anchor>
+										</Anchors>
+									</Frame>
+									<Frame name="CommonersQuestRewardTalentFrame" inherits="QuestTalentFrameTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestRewardItemReceiveText" relativePoint="BOTTOMLEFT">
+												<Offset x="0" y="-5"/>
+											</Anchor>
+										</Anchors>
+									</Frame>
+									<Frame name="CommonersQuestRewardPlayerTitleFrame" inherits="QuestPlayerTitleFrameTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestRewardItemReceiveText" relativePoint="BOTTOMLEFT">
+												<Offset x="0" y="-5"/>
+											</Anchor>
+										</Anchors>
+									</Frame>
+									<Frame name="CommonersQuestRewardItemHighlight" hidden="true">
+										<Size>
+											<AbsDimension x="256" y="64"/>
+										</Size>
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+										<Layers>
+											<Layer level="BACKGROUND">
+												<Texture file="Interface\QuestFrame\UI-QuestItemHighlight" alphaMode="ADD">
+													<Size>
+														<AbsDimension x="256" y="64"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPLEFT"/>
+													</Anchors>
+												</Texture>
+											</Layer>
+										</Layers>
+										<Scripts>
+											<!--
+											<OnLoad function="CommonersQuestRewardItemRaiseFrameLevel"/>
+											-->
+											<OnLoad>
+												CommonersQuest.FrameRewardPanel.RewardItemRaiseFrameLevel(self);
+											</OnLoad>
+										</Scripts>
+									</Frame>
+
+									<!-- EDITMODE BUTTONS -->
+									<Button name="CommonersQuestRewardText_EditBtn" hidden="true">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestRewardText" />
+											<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestRewardText" />
+										</Anchors>
+										<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+										<Scripts>
+											<OnClick>
+												CommonersQuest.QuestEdit.InitEdit(self, arg1);
+											</OnClick>
+										</Scripts>
+									</Button>
+								</Frames>
+							</Frame>
+						</ScrollChild>
+					</ScrollFrame>
+				</Frames>
+				<Scripts>
+					<!--
+					<OnShow function="CommonersQuestFrameRewardPanel_OnShow"/>
+					-->
+					<OnShow>
+						CommonersQuest.FrameRewardPanel.OnShow(self);
+					</OnShow>
+				</Scripts>
+ 			</Frame>
+			<Frame name="CommonersQuestFrameProgressPanel" inherits="QuestFramePanelTemplate" hidden="true">
+ 				<Frames>
+ 					<Button name="CommonersQuestFrameGoodbyeButton" inherits="UIPanelButtonTemplate" text="CANCEL">
+						<Size>
+							<AbsDimension x="78" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestFrame" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-39" y="73"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<!--
+							<OnClick function="CommonersQuestGoodbyeButton_OnClick"/>
+							-->
+							<OnClick>
+								CommonersQuest.FrameProgressPanel.GoodbyeButtonClicked(self, arg1);
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="CommonersQuestFrameCompleteButton" inherits="UIPanelButtonTemplate" text="CONTINUE" jumpNavigateStart="true">
+						<Size>
+							<AbsDimension x="120" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="CommonersQuestFrame" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="22" y="72"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<!--
+							<OnClick function="CommonersQuestProgressCompleteButton_OnClick"/>
+							-->
+							<OnClick>
+								CommonersQuest.FrameProgressPanel.ProgressCompleteButtonClicked(self, arg1);
+							</OnClick>
+						</Scripts>
+					</Button>
+					<ScrollFrame name="CommonersQuestProgressScrollFrame" inherits="UIPanelScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="300" y="334"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CommonersQuestFrame">
+								<Offset>
+									<AbsDimension x="23" y="-81"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ScrollChild>
+							<Frame name="CommonersQuestProgressScrollChildFrame">
+								<Size>
+									<AbsDimension x="300" y="334"/>
+								</Size>
+								<Layers>
+									<Layer level="BACKGROUND">
+										<FontString name="CommonersQuestProgressTitleText" inherits="QuestTitleFont" text="Quest Title" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="285" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT">
+													<Offset>
+														<AbsDimension x="5" y="-10"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestProgressText" inherits="QuestFont" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="275" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="CommonersQuestProgressTitleText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-5"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestProgressRequiredItemsText" inherits="QuestTitleFont" text="TURN_IN_ITEMS" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="295" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="CommonersQuestProgressText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-10"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestProgressRequiredMoneyText" inherits="QuestFontNormalSmall" text="REQUIRED_MONEY" justifyH="LEFT">
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="CommonersQuestProgressRequiredItemsText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-10"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Frames>
+									<Frame name="CommonersQuestProgressRequiredMoneyFrame" inherits="MoneyFrameTemplate">
+										<Anchors>
+											<Anchor point="LEFT" relativeTo="CommonersQuestProgressRequiredMoneyText" relativePoint="RIGHT">
+												<Offset>
+													<AbsDimension x="10" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnLoad>
+												SmallMoneyFrame_OnLoad(self);
+												MoneyFrame_SetType(self, "STATIC");
+											</OnLoad>
+										</Scripts>
+									</Frame>
+									<Button name="CommonersQuestProgressItem1" inherits="QuestItemTemplate" id="1">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestProgressRequiredItemsText" relativePoint="BOTTOMLEFT">
+												<Offset>
+													<AbsDimension x="-3" y="-5"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestProgressItem2" inherits="QuestItemTemplate" id="2">
+										<Anchors>
+											<Anchor point="LEFT" relativeTo="CommonersQuestProgressItem1" relativePoint="RIGHT">
+												<Offset>
+													<AbsDimension x="2" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestProgressItem3" inherits="QuestItemTemplate" id="3">
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CommonersQuestProgressItem1" relativePoint="BOTTOM">
+												<Offset>
+													<AbsDimension x="0" y="-3"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestProgressItem4" inherits="QuestItemTemplate" id="4">
+										<Anchors>
+											<Anchor point="LEFT" relativeTo="CommonersQuestProgressItem3" relativePoint="RIGHT">
+												<Offset>
+													<AbsDimension x="2" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestProgressItem5" inherits="QuestItemTemplate" id="5">
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CommonersQuestProgressItem3" relativePoint="BOTTOM">
+												<Offset>
+													<AbsDimension x="0" y="-3"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestProgressItem6" inherits="QuestItemTemplate" id="6">
+										<Anchors>
+											<Anchor point="LEFT" relativeTo="CommonersQuestProgressItem5" relativePoint="RIGHT">
+												<Offset>
+													<AbsDimension x="2" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+									</Button>
+
+									<!-- riddle: solve-button -->
+									<Button name="CommonersQuestProgressRiddle" inherits="UIPanelButtonTemplate" text="CQKEP_TEXT_SOLVE" hidden="true">
+										<Size>
+											<AbsDimension x="150" y="21"/>
+										</Size>
+										<Anchors>
+											<Anchor point="TOPLEFT"/>
+										</Anchors>
+										<Scripts>
+											<OnClick>
+												CommonersQuest.FrameProgressPanel.RiddleSolve(self, arg1);
+											</OnClick>
+										</Scripts>
+									</Button>
+
+									<!-- EDITMODE BUTTONS -->
+									<Button name="CommonersQuestProgressText_EditBtn" hidden="true">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestProgressText" />
+											<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestProgressText" />
+										</Anchors>
+										<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+										<Scripts>
+											<OnClick>
+												CommonersQuest.QuestEdit.InitEdit(self, arg1);
+											</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CommonersQuestProgressRequiredItemsText_MenuBtn" hidden="true">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestProgressRequiredItemsText" />
+											<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestProgressRequiredItemsText" />
+										</Anchors>
+										<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+										<Scripts>
+											<OnLoad>
+												self:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
+											</OnLoad>
+											<OnClick>
+												CommonersQuest.QuestEdit.InitMenu(self, arg1);
+											</OnClick>
+										</Scripts>
+									</Button>
+								</Frames>
+							</Frame>
+						</ScrollChild>
+					</ScrollFrame>
+ 				</Frames>
+				<Scripts>
+					<!--
+					<OnShow function="CommonersQuestFrameProgressPanel_OnShow"/>
+					-->
+					<OnShow>
+						CommonersQuest.FrameProgressPanel.OnShow(self);
+					</OnShow>
+				</Scripts>
+ 			</Frame>
+			<Frame name="CommonersQuestFrameDetailPanel" inherits="QuestFramePanelTemplate" hidden="true">
+ 				<Frames>
+					<Button name="CommonersQuestFrameDeclineButton" inherits="UIPanelButtonTemplate" text="DECLINE">
+						<Size>
+							<AbsDimension x="78" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestFrame" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-39" y="72"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<!--
+							<OnClick function="CommonersQuestDetailDeclineButton_OnClick"/>
+							-->
+							<OnClick>
+								CommonersQuest.FrameDetailPanel.DetailDeclineButtonClicked(self, arg1)
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="CommonersQuestFrameAcceptButton" inherits="UIPanelButtonTemplate" text="ACCEPT" jumpNavigateStart="true">
+						<Size>
+							<AbsDimension x="77" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="CommonersQuestFrame" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="23" y="72"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<!--
+							<OnClick function="CommonersQuestDetailAcceptButton_OnClick"/>
+							-->
+							<OnClick>
+								CommonersQuest.FrameDetailPanel.DetailAcceptButtonClicked(self, arg1)
+							</OnClick>
+						</Scripts>
+					</Button>
+					<ScrollFrame name="CommonersQuestDetailScrollFrame" inherits="UIPanelScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="300" y="334"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CommonersQuestFrame">
+								<Offset>
+									<AbsDimension x="23" y="-81"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ScrollChild>
+							<Frame name="CommonersQuestDetailScrollChildFrame">
+								<Size>
+									<AbsDimension x="300" y="334"/>
+								</Size>
+								<Layers>
+									<Layer>
+										<FontString name="CommonersQuestTitleText" inherits="QuestTitleFont" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="285" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT">
+													<Offset>
+														<AbsDimension x="5" y="-10"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestDescription" inherits="QuestFont" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="270" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-5"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Frames>
+									<Frame name="CommonersQuestTextAlphaDependentFrame">
+										<Size>
+											<AbsDimension x="1" y="1"/>
+										</Size>
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestDescription" relativePoint="BOTTOMLEFT">
+												<Offset>
+													<AbsDimension x="0" y="-5"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Layers>
+											<Layer level="BACKGROUND">
+												<FontString name="CommonersQuestDetailObjectiveTitleText" inherits="QuestTitleFont" text="QUEST_OBJECTIVES"  justifyH="LEFT">
+													<Size>
+														<AbsDimension x="285" y="18"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPLEFT" relativeTo="CommonersQuestDescription" relativePoint="BOTTOMLEFT">
+															<Offset>
+																<AbsDimension x="0" y="-15"/>
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</FontString>
+												<FontString name="CommonersQuestObjectiveText" inherits="QuestFont" justifyH="LEFT">
+													<Size>
+														<AbsDimension x="270" y="0"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPLEFT" relativeTo="CommonersQuestDetailObjectiveTitleText" relativePoint="BOTTOMLEFT">
+															<Offset>
+																<AbsDimension x="0" y="-5"/>
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</FontString>
+												<FontString name="CommonersQuestDetailRewardTitleText" inherits="QuestTitleFont" text="QUEST_REWARDS"  justifyH="LEFT">
+													<Size>
+														<AbsDimension x="285" y="18"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPLEFT" relativeTo="CommonersQuestObjectiveText" relativePoint="BOTTOMLEFT">
+															<Offset>
+																<AbsDimension x="0" y="-15"/>
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</FontString>
+												<FontString name="CommonersQuestDetailItemChooseText" inherits="QuestFont" text="REWARD_CHOICES" justifyH="LEFT">
+													<Size>
+														<AbsDimension x="295" y="0"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPLEFT" relativeTo="CommonersQuestDetailRewardTitleText" relativePoint="BOTTOMLEFT">
+															<Offset>
+																<AbsDimension x="0" y="-5"/>
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</FontString>
+												<FontString name="CommonersQuestDetailItemReceiveText" inherits="QuestFont" text="Reward receive text" justifyH="LEFT">
+													<Anchors>
+														<Anchor point="TOPLEFT"/>
+													</Anchors>
+												</FontString>
+												<FontString name="CommonersQuestDetailSpellLearnText" inherits="QuestFont" hidden="true" justifyH="LEFT">
+													<Anchors>
+														<Anchor point="TOPLEFT"/>
+													</Anchors>
+												</FontString>
+											</Layer>
+										</Layers>
+										<Frames>
+											<Button name="CommonersQuestDetailItem1" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Button name="CommonersQuestDetailItem2" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Button name="CommonersQuestDetailItem3" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Button name="CommonersQuestDetailItem4" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Button name="CommonersQuestDetailItem5" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Button name="CommonersQuestDetailItem6" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Button name="CommonersQuestDetailItem7" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Button name="CommonersQuestDetailItem8" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Button name="CommonersQuestDetailItem9" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Button name="CommonersQuestDetailItem10" inherits="QuestItemTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT"/>
+												</Anchors>
+											</Button>
+											<Frame name="CommonersQuestDetailMoneyFrame" inherits="MoneyFrameTemplate">
+												<Anchors>
+													<Anchor point="LEFT" relativeTo="CommonersQuestDetailItemReceiveText" relativePoint="RIGHT">
+														<Offset>
+															<AbsDimension x="15" y="0"/>
+														</Offset>
+													</Anchor>
+												</Anchors>
+												<Scripts>
+													<!--
+													<OnLoad function="CommonersQuestMoneyFrame_OnLoad"/>
+													-->
+													<OnLoad>
+														CommonersQuest.FrameMoney.OnLoad(self);
+													</OnLoad>
+												</Scripts>
+											</Frame>
+											<Frame name="CommonersQuestDetailHonorFrame" inherits="QuestHonorFrameTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT" relativeTo="CommonersQuestDetailItemReceiveText" relativePoint="BOTTOMLEFT">
+														<Offset>
+															<AbsDimension x="0" y="-5"/>
+														</Offset>
+													</Anchor>
+												</Anchors>
+											</Frame>
+											<Frame name="CommonersQuestDetailTalentFrame" inherits="QuestTalentFrameTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT" relativeTo="CommonersQuestDetailItemReceiveText" relativePoint="BOTTOMLEFT">
+														<Offset>
+															<AbsDimension x="0" y="-5"/>
+														</Offset>
+													</Anchor>
+												</Anchors>
+											</Frame>
+											<Frame name="CommonersQuestDetailPlayerTitleFrame" inherits="QuestPlayerTitleFrameTemplate">
+												<Anchors>
+													<Anchor point="TOPLEFT" relativeTo="CommonersQuestDetailItemReceiveText" relativePoint="BOTTOMLEFT">
+														<Offset>
+															<AbsDimension x="0" y="-5"/>
+														</Offset>
+													</Anchor>
+												</Anchors>
+											</Frame>
+										</Frames>
+									</Frame>
+									<Frame name="CommonersQuestSpacerFrame">
+										<Size>
+											<AbsDimension x="5" y="25"/>
+										</Size>
+										<Anchors>
+											<Anchor point="TOP">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+									</Frame>
+
+									<!-- EDITMODE BUTTONS -->
+									<Button name="CommonersQuestDetailTitleText_EditBtn" hidden="true">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleText" />
+											<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestTitleText" />
+										</Anchors>
+										<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+										<Scripts>
+											<OnClick>
+												CommonersQuest.QuestEdit.InitEdit(self, arg1);
+											</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CommonersQuestDetailDescription_EditBtn" hidden="true">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestDescription" />
+											<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestDescription" />
+										</Anchors>
+										<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+										<Scripts>
+											<OnClick>
+												CommonersQuest.QuestEdit.InitEdit(self, arg1);
+											</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CommonersQuestDetailObjectiveText_EditBtn" hidden="true">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestObjectiveText" />
+											<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestObjectiveText" />
+										</Anchors>
+										<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+										<Scripts>
+											<OnClick>
+												CommonersQuest.QuestEdit.InitEdit(self, arg1);
+											</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CommonersQuestDetailRewardTitleText_MenuBtn" hidden="true">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestDetailRewardTitleText" />
+											<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestDetailRewardTitleText" />
+										</Anchors>
+										<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+										<Scripts>
+											<OnLoad>
+												self:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
+											</OnLoad>
+											<OnClick>
+												CommonersQuest.QuestEdit.InitMenu(self, arg1);
+											</OnClick>
+										</Scripts>
+									</Button>
+								</Frames>
+							</Frame>
+						</ScrollChild>
+					</ScrollFrame>
+				</Frames>
+				<Scripts>
+					<!--
+					<OnShow function="CommonersQuestFrameDetailPanel_OnShow"/>
+					<OnUpdate function="CommonersQuestFrameDetailPanel_OnUpdate"/>
+					-->
+					<OnShow>
+						CommonersQuest.FrameDetailPanel.OnShow(self);
+					</OnShow>
+					<OnUpdate>
+						CommonersQuest.FrameDetailPanel.OnUpdate(self, arg1);
+					</OnUpdate>
+				</Scripts>
+ 			</Frame>
+			<Frame name="CommonersQuestFrameGreetingPanel" inherits="QuestFramePanelTemplate" hidden="true">
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture file="Interface\QuestFrame\UI-Quest-BotLeftPatch">
+							<Size>
+								<AbsDimension x="128" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="22" y="68"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="CommonersQuestFrameGreetingGoodbyeButton" inherits="UIPanelButtonTemplate" text="GOODBYE">
+						<Size>
+							<AbsDimension x="78" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativeTo="CommonersQuestFrame" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-39" y="73"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								HideUIPanel(CommonersQuestFrame);
+							</OnClick>
+						</Scripts>
+					</Button>
+					<ScrollFrame name="CommonersQuestGreetingScrollFrame" inherits="UIPanelScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="300" y="334"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CommonersQuestFrame">
+								<Offset>
+									<AbsDimension x="23" y="-81"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ScrollChild>
+							<Frame name="CommonersQuestGreetingScrollChildFrame">
+								<Size>
+									<AbsDimension x="300" y="334"/>
+								</Size>
+								<Layers>
+									<Layer>
+										<FontString name="CommonersQuestGreetingText" inherits="QuestFont" text="Filler Text" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="270" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT">
+													<Offset>
+														<AbsDimension x="10" y="-10"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="CommonersQuestCurrentQuestsText" inherits="QuestTitleFont" text="CURRENT_QUESTS" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="300" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="CommonersQuestGreetingText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-10"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<Texture name="CommonersQuestGreetingFrameHorizontalBreak" file="Interface\QuestFrame\UI-HorizontalBreak">
+											<Size>
+												<AbsDimension x="256" y="32"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT">
+													<Offset>
+														<AbsDimension x="22" y="5"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+										<FontString name="CommonersQuestAvailableQuestsText" inherits="QuestTitleFont" text="AVAILABLE_QUESTS" justifyH="LEFT">
+											<Size>
+												<AbsDimension x="300" y="0"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="GreetingText" relativePoint="BOTTOMLEFT">
+													<Offset>
+														<AbsDimension x="0" y="-10"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Frames>
+									<Button name="CommonersQuestTitleButton1" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestCurrentQuestsText" relativePoint="BOTTOMLEFT">
+												<Offset>
+													<AbsDimension x="-10" y="-20"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton2" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton1"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton3" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton2"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton4" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton3"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton5" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton4"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton6" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton5"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton7" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton6"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton8" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton7"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton9" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton8"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton10" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton9"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton11" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton10"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton12" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton11"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton13" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton12"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton14" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton13"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton15" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton14"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton16" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton15"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton17" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton16"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton18" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton17"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton19" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton18"/>
+										</Anchors>
+									</Button>
+									<Button name="CommonersQuestTitleButton20" inherits="QuestTitleButtonTemplate">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="CommonersQuestTitleButton19"/>
+										</Anchors>
+									</Button>
+								</Frames>
+							</Frame>
+						</ScrollChild>
+					</ScrollFrame>
+				</Frames>
+				<Scripts>
+					<!--
+					<OnShow function="CommonersQuestFrameGreetingPanel_OnShow"/>
+					-->
+					<OnShow>
+						CommonersQuest.FrameGreetingPanel.OnShow(self);
+					</OnShow>
+				</Scripts>
+ 			</Frame>
+ 		</Frames>
+		<Scripts>
+<!--
+			<OnLoad function="CommonersQuest.FrameMain.OnLoad"/>
+			<OnEvent function="CommonersQuest.FrameMain.OnEvent"/>
+			<OnShow function="CommonersQuest.FrameMain.OnShow"/>
+			<OnHide function="CommonersQuest.FrameMain.OnHide"/>
+-->
+			<OnLoad>
+				CommonersQuest.FrameMain.OnLoad(self);
+			</OnLoad>
+			<OnEvent>
+				CommonersQuest.FrameMain.OnEvent(self, event, ...);
+			</OnEvent>
+			<OnShow>
+				CommonersQuest.FrameMain.OnShow(self);
+			</OnShow>
+			<OnHide>
+				CommonersQuest.FrameMain.OnHide(self);
+			</OnHide>
+		</Scripts>
+ 	</Frame>
+
+	<Frame name="CommonersQuestMenu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(self, CommonersQuest.Menu.Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<!-- tooltip for hidden scanning-->
+	<GameTooltip name="CommonersQuestScanningTooltip" inherits="GameTooltipTemplate">
+		<Scripts>
+			<Onload>
+				this:SetOwner(WorldFrame, "ANCHOR_NONE");
+			</Onload>
+		</Scripts>
+	</GameTooltip>
+</Ui>
+

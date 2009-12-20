@@ -1,0 +1,35 @@
+## Interface: 30100
+## Title: CommonersQuest
+## Version: 30103.4
+## Notes: Quests by and for commoners
+## Notes-deDE: Schatzsuchen von und für Bürger
+## SavedVariablesPerCharacter: CommonersQuestKrbrPrdmrDataPerChar, CommonersQuestKrbrPrdmrOtherPerChar
+## SavedVariables: CommonersQuestKrbrPrdmrOther
+## Author: Kärbär, EU-Proudmoore (idea from abandonned MyQuest@WoWUI)
+## X-Date: 2009-07-09
+## X-Email: n/a
+## X-Website: http://www.wowinterface.com/downloads/info14012-CommonersQuestquestsfromplayersforplayers.html
+## X-Category: t.b.d.
+## X-Help: t.b.d.
+## DefaultState: disabled
+
+Libs\LibStub.lua
+Libs\CallbackHandler-1.0.lua
+Libs\LibDataBroker-1.1.lua
+
+CommonersQuestBase.lua
+CommonersQuestComm.lua
+CommonersQuestDB.lua
+localization.enUS.lua
+localization.frFR.lua
+localization.deDE.lua
+
+CommonersQuestTrade.lua
+CommonersQuestTracking.xml
+
+CommonersQuest.xml
+CommonersQuestFrame.xml
+CommonersQuestLogFrame.xml
+CommonersQuestMain.xml
+CommonersQuestRewards.xml
+

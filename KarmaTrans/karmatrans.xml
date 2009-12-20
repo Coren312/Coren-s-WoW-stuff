@@ -1,0 +1,24 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+	..\FrameXML\UI.xsd">
+	
+	<!-- Karma description XML 05.01.04 JCG -->
+	
+	<Script file="karmatrans.lua"/>
+
+	<!-- Background frame to receive global events -->
+	<Frame name="Karma" parent="UIParent" hidden="false" toplevel="false">
+		<Scripts>
+			<OnLoad>
+				KarmaTrans_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				KarmaTrans_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				KarmaTrans_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

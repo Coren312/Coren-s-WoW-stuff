@@ -1,0 +1,12 @@
+<Bindings>
+	<Binding name="KARMAWINDOW" description="Opens or closes the Karma main window." runOnUp="true" header="KARMA">
+		if ( keystate ~= "down" ) then
+			KarmaWindowKeyUp(1);
+		end
+	</Binding>
+	<Binding name="KARMAWINDOW2" description="Opens or closes the window of players online and known to Karma." runOnUp="true">
+		if ( keystate ~= "down" ) then
+			KarmaWindow2KeyUp(1);
+		end
+	</Binding>
+</Bindings>

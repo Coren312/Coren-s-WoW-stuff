@@ -1,0 +1,20 @@
+## Interface: 30100
+## Title: ReputationQuestTracker
+## Version: 30103.1
+## Notes: Tracking of quests giving specific reputations
+## Notes-deDE: Nachverfolgen von Quests für einen bestimmten Ruf
+## SavedVariablesPerCharacter: RepQTrackByKrbrEUPrdmr
+## Author: Kärbär, EU-Proudmoore
+## X-Date: 2009-07-XX
+## X-Email: n/a
+## X-Website: t.b.d.
+## X-Category: t.b.d.
+## X-Help: t.b.d.
+## DefaultState: enabled
+
+ReputationQuestTrackerTable.lua
+ReputationQuestTrackerTable_QuestsAlliance.lua
+ReputationQuestTrackerTable_QuestsAlliance_frFR.lua
+ReputationQuestTrackerTable_Stormwind.lua
+ReputationQuestTracker.lua
+

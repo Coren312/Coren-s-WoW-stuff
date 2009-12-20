@@ -1,0 +1,21 @@
+## Interface: 30100
+## Title: Karma: Broker
+## Version: 30102.1
+## Notes: Broker for Karma
+## Notes-deDE: Broker für Karma
+## SavedVariables: KarmaAvEnKBroker
+## Author: Kärbär, EU-Proudmoore
+## X-Date: 2009-07-?? (NYR)
+## X-Email: n/a
+## X-Website: http://www.wowinterface.com/downloads/info8712-Karmaplayertracking.html
+## X-Category: MYADDONS_CATEGORY_OTHERS
+## X-Help: KARMA_MYADDONS_HELP
+## DefaultState: enabled
+## RequiredDeps: Karma
+
+Libs\LibStub.lua
+Libs\CallbackHandler-1.0.lua
+Libs\LibDataBroker-1.1.lua
+
+KarmaBroker.xml
+

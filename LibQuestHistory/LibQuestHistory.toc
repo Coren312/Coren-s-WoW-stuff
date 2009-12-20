@@ -1,0 +1,17 @@
+## Interface: 30300
+## Title: LibQuestHistory
+## Version: 30300.01
+## Notes: Retrieves and stores the completed quests for a character
+## Notes-deDE: Fordert an und speichert die abgeschlossenen Questen für einen Character
+## SavedVariables: LibQuestHistoryGlobal
+## SavedVariablesPerCharacter: LibQuestHistoryPerChar
+## Author: Kärbär, EU-Proudmoore
+## X-Date: 2009-??-??
+## X-Email: n/a
+## X-Website: n/a
+## X-Category: MYADDONS_CATEGORY_OTHERS
+## X-Help: n/a
+## DefaultState: enabled
+
+LibQuestHistory.lua
+

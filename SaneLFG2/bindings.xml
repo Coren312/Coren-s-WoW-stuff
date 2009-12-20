@@ -1,0 +1,6 @@
+<Bindings>
+	<Binding name="SANELFG2_MAINWND" description="Open/Close SaneLFG2 window" header="SANELFG2">
+		SaneLFGObj2.MainWndToggle();
+	</Binding>
+</Bindings>
+

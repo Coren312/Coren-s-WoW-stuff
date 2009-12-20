@@ -1,0 +1,3576 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+	..\FrameXML\UI.xsd">
+
+	<Button name="PartyList_GlobalButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="120" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				-- want right-clicks also
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				KarmaWindow_PartyList_OnEnter(arg1);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+			<OnClick>
+				KarmaWindow_PartyList_OnClick(arg1,this);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="PartyList_KarmaValueTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="RIGHT" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="3" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Button name="MemberList_GlobalButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="105" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				-- want right-clicks also
+				this:RegisterForClicks("LeftButtonUp","RightButtonUp", "MiddleButtonUp");
+			</OnLoad>
+			<OnEnter>
+				KarmaWindow_MemberList_OnEnter(arg1);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+			<OnClick>
+				KarmaWindow_MemberList_OnClick(arg1, this);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="MemberList_KarmaValueTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="RIGHT" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="3" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Button name="QuestList_GlobalButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="120" y="12"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="LEFT" inherits="GameFontNormalSmall" text="">
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="10" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				KarmaWindow_QuestList_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+			<OnClick>
+				KarmaWindow_QuestList_OnClick(arg1);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="ZoneList_GlobalButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="120" y="12"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="LEFT" inherits="GameFontNormalSmall" text="">
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="10" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				KarmaWindow_ZoneList_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Button name="RegionList_GlobalButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="120" y="12"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="LEFT" inherits="GameFontNormalSmall" text="">
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="10" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				KarmaWindow_RegionList_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Button name="AchievementList_GlobalButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="120" y="12"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="LEFT" inherits="GameFontNormalSmall" text="">
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="10" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp", "MiddleButtonUp");
+			</OnLoad>
+			<OnClick>
+				KarmaWindow_AchievementList_OnClick(arg1, this);
+			</OnClick>
+			<OnEnter>
+				KarmaWindow_AchievementList_OnEnter(this);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Button name="AltList_KarmaValueButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="24" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="RIGHT" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Button name="AltList_LevelButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="RIGHT" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Button name="AltList_NameButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="100" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnEnter>
+				KarmaWindow_AltList_OnEnter(arg1);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+			<OnClick>
+				KarmaWindow_AltList_OnClick(arg1, this);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="Karma_SkillButton_Menu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(this, Karma_SkillButton_Menu_Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Frame name="Karma_GearPVEButton_Menu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(this, Karma_GearPVEButton_Menu_Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Frame name="Karma_GearPVPButton_Menu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(this, Karma_GearPVPButton_Menu_Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<!-- Main Karma window -->
+	<Frame name="KarmaWindow" parent="UIParent" hidden="true" enableMouse="true" toplevel="true" movable="true">
+		<Size>
+			<!-- x: 482->500 (+18) -> 650
+				 y: 530            -> 560
+				-->
+			<AbsDimension x="650" y="560"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				<!-- make it closeable with ESC -->
+				KarmaWindow_OnLoad();
+				tinsert(UISpecialFrames,this:GetName());
+			</OnLoad>
+			<OnMouseDown>
+				if arg1=="LeftButton" then
+					this:StartMoving()
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				this:StopMovingOrSizing()
+			</OnMouseUp>
+			<OnHide>
+				if (KARMA_MAINWND_KEEPOPEN) then
+					this:Show();
+				end
+				KARMA_MAINWND_KEEPOPEN = false;
+			</OnHide>
+		</Scripts>
+
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Layers>
+			<!-- Main layout layer: headers, labels, etc. -->
+			<Layer level="ARTWORK">
+				<!-- Window Header -->
+				<Texture name="KarmaWindow_TitleBox"
+							file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<FontString name="KarmaWindow_Title" inherits="GameFontNormal" text="KARMA_WINEL_TITLE">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="KarmaWindow_TitleBox">
+							<Offset>
+								<AbsDimension x="0" y="11" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<!-- Party&Member List Headers -->
+				<FontString name="KarmaWindow_PartyListTitle" inherits="GameFontHighlight"
+							text="KARMA_WINEL_PARTYLISTTITLE">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="KarmaWindow" relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="35" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<!--
+				<FontString name="KarmaWindow_MemberListTitle" inherits="GameFontHighlight"
+							text="KARMA_WINEL_MEMBERLISTTITLE">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="KarmaWindow_PartyListTitle"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-74"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				-->
+
+				<!-- Player Info Headers -->
+				<FontString name="KarmaWindow_ChosenPlayerTitle" inherits="GameFontHighlight"
+							text="KARMA_WINEL_CHOSENPLAYERTITLE" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="KarmaWindow" relativeFrom="TOPLEFT">
+							<Offset>
+								<!-- x: 160->178 (+18) -->
+								<AbsDimension x="178" y="-35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<!-- changed: justifyH RIGHT -> CENTER -->
+				<FontString name="KarmaWindow_ChosenPlayer" inherits="GameFontHighlight"
+							justifyH="CENTER">
+					<Size>
+						<AbsDimension x="230" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="KarmaWindow" relativeFrom="TOPRIGHT">
+							<Offset>
+								<!-- x: 160->178 (+18) -->
+								<AbsDimension x="-20" y="-29"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<!-- changed: justifyH RIGHT -> CENTER -->
+				<FontString name="KarmaWindow_ChosenPlayerInfo" inherits="GameFontHighlight"
+							justifyH="CENTER">
+					<Size>
+						<AbsDimension x="280" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="KarmaWindow_ChosenPlayer" relativeFrom="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-20"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<FontString name="KarmaWindow_KarmaIndicatorTitle" inherits="GameFontHighlight"
+							text="KARMA_WINEL_KARMAINDICATORTITLE" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="220" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerTitle" relativeFrom="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<FontString name="KarmaWindow_KarmaTextIndicator"
+							inherits="GameFontNormalSmall" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="220" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeTo="KarmaWindow_KarmaIndicatorTitle"
+									relativeFrom="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="13" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	
+		<Frames>
+			<Button name="KarmaWindow_Options_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_OPTIONSBUTTON">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaOptionsWindow_Show();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow_Close_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_CLOSEBUTTON">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Karma_ToggleWindow();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow_Update_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_UPDATEBUTTON">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow_Close_Button">
+						<Offset>
+							<AbsDimension x="-20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Karma_UpdateCurrentMember();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow_PostToChat_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_POSTTOCHATBUTTON">
+				<Size>
+					<AbsDimension x="110" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow_Update_Button">
+						<Offset>
+							<AbsDimension x="-20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Karma_CurrentMember_PostToChat();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow_Filter_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_FILTERBUTTON">
+				<Size>
+					<AbsDimension x="60" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" relativeTo="KarmaWindow_Options_Button">
+						<Offset>
+							<AbsDimension x="0" y="7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (not KarmaFilterWindow:IsVisible()) then
+							KarmaFilterWindow:Show();
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow_Talents_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_TALENTSBUTTON">
+				<Size>
+					<AbsDimension x="75" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerTitle" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (Karma_CurrentMemberValid() and not KarmaTalentWindow:IsVisible()) then
+							KarmaTalentWindow.iSpec = 1;
+							KarmaTalentWindow:Show();
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow_Talents2_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_TALENTS2BUTTON">
+				<Size>
+					<AbsDimension x="75" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow_Talents_Button" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (Karma_CurrentMemberValid() and Karma_SpecAvailable(2) and not KarmaTalentWindow:IsVisible()) then
+							KarmaTalentWindow.iSpec = 2;
+							KarmaTalentWindow:Show();
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Slider name="KarmaWindow_KarmaSlider" inherits="OptionsSliderTemplate">
+				<Size>
+					<AbsDimension x="260" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="KarmaWindow_KarmaIndicatorTitle">
+						<Offset>
+							<AbsDimension x="16" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Text"):SetText("");
+						getglobal(this:GetName().."High"):SetText(100);
+						getglobal(this:GetName().."Low"):SetText(1);
+						KarmaWindow_KarmaSlider:SetMinMaxValues(1,100);
+						KarmaWindow_KarmaSlider:SetValueStep(1);
+						KarmaWindow_KarmaSlider:SetValue(50);
+					</OnLoad>
+					<OnValueChanged>
+						KarmaWindow_KarmaSlider_OnValueChanged();
+					</OnValueChanged>
+					<OnMouseUp>
+						KarmaWindow_KarmaSlider_OnMouseUp();
+					</OnMouseUp>
+				</Scripts>
+			</Slider>
+
+			<StatusBar name="KarmaWindow_KarmaIndicator" inherits="TextStatusBar">
+				<Size>
+					<AbsDimension x="240" y="6"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="KarmaWindow_KarmaIndicatorTitle">
+						<Offset>
+							<AbsDimension x="25" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(1, 100);
+						self:SetValue(50);
+					</OnLoad>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<Frames>
+				<!-- buttons re-added: 20080518 -->
+					<Button name="KarmaWindow_KarmaDownButton">
+						<Size>
+							<AbsDimension x="16" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT" relativePoint="LEFT">
+								<Offset>
+									<AbsDimension  x="-10" y="-1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaWindow_KarmaIndicator_UpDownButtons(false);
+							</OnClick>
+							<OnMouseUp>
+								KarmaWindow_KarmaIndicator_OnMouseUp();
+							</OnMouseUp>
+						</Scripts>
+						<NormalTexture file="Interface\MoneyFrame\Arrow-Left-Up"/>
+						<PushedTexture file="Interface\MoneyFrame\Arrow-Left-Down"/>
+						<DisabledTexture file="Interface\MoneyFrame\Arrow-Left-Disabled"/>
+					</Button>
+					<Button name="KarmaWindow_KarmaUpButton">
+						<Size>
+							<AbsDimension x="16" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="15" y="-1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaWindow_KarmaIndicator_UpDownButtons(true);
+							</OnClick>
+							<OnMouseUp>
+								KarmaWindow_KarmaIndicator_OnMouseUp();
+							</OnMouseUp>
+						</Scripts>
+						<NormalTexture file="Interface\MoneyFrame\Arrow-Right-Up"/>
+						<PushedTexture file="Interface\MoneyFrame\Arrow-Right-Down"/>
+						<DisabledTexture file="Interface\MoneyFrame\Arrow-Right-Disabled"/>
+					</Button>
+				</Frames>
+			</StatusBar>
+
+			<Button name="KarmaWindow_ScrollToSelection_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_SCROLLTOSELECTION_BUTTON">
+				<Size>
+					<AbsDimension x="150" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="KarmaWindow_KarmaSlider" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Karma_MemberList_ResetMemberNamesCache();
+						KarmaWindow_Update();
+						KarmaWindow_ScrollToCurrentMember();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<!-- changes:
+				name: KarmaWindow_TrackingData_Button => KarmaWindowTab1
+				inheritance: UIPanelButtonTemplate => CharacterFrameTabButtonTemplate
+			-->
+			<Button name="KarmaWindowTab1" inherits="TabButtonTemplate" id="1" text="KARMA_WINEL_TRACKINGDATA_BUTTON">
+			<!--
+				<Size>
+					<AbsDimension x="150" y="25"/>
+				</Size>
+			-->
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow_KarmaIndicatorTitle" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow_SelectTab(1);
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<!-- changes:
+				name: KarmaWindow_OtherData_Button => KarmaWindowTab2
+				inheritance: UIPanelButtonTemplate => CharacterFrameTabButtonTemplate
+			-->
+			<Button name="KarmaWindowTab2" inherits="TabButtonTemplate" id="2" text="KARMA_WINEL_OTHERDATA_BUTTON">
+			<!--
+				<Size>
+					<AbsDimension x="150" y="25"/>
+				</Size>
+			-->
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindowTab1" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow_SelectTab(2);
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindowCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="4" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<!-- Current Party List Frame -->
+			<Frame name="KarmaWindow_PartyList_Frame" hidden="false">
+				<Size>
+					<!-- x: 128->146 (+18) -->
+					<AbsDimension x="146" y="62"/>
+					<!-- Make sure it's 8 bigger than the contents, for borders -->
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow_PartyListTitle"
+							relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+
+				<Frames>
+					<Button name="PartyList_KarmaValue1"
+							inherits="PartyList_KarmaValueTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow_PartyList_Frame">
+								<Offset>
+									<AbsDimension x="0" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PartyList_GlobalButton1"
+							inherits="PartyList_GlobalButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow_PartyList_Frame">
+								<Offset>
+									<!-- x: 4->22 (+18) -->
+									<AbsDimension x="25" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="PartyList_KarmaValue2"
+							inherits="PartyList_KarmaValueTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="PartyList_KarmaValue1"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="PartyList_GlobalButton2"
+							inherits="PartyList_GlobalButtonTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="PartyList_GlobalButton1"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="PartyList_KarmaValue3"
+							inherits="PartyList_KarmaValueTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="PartyList_KarmaValue2"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="PartyList_GlobalButton3"
+							inherits="PartyList_GlobalButtonTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="PartyList_GlobalButton2"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="PartyList_KarmaValue4"
+							inherits="PartyList_KarmaValueTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="PartyList_KarmaValue3"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="PartyList_GlobalButton4"
+							inherits="PartyList_GlobalButtonTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="PartyList_GlobalButton3"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<!-- Menu: memberlist/current raid/mouseovers -->
+			<Frame name="KarmaWindow_ListSelection_DropDown" inherits="UIDropDownMenuTemplate" id="2">
+				<Size>
+					<AbsDimension x="200" y="90"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"							 relativeTo="KarmaWindow_PartyList_Frame">
+						<Offset>
+							<AbsDimension x="-15" y="-15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						KarmaWindow_ListSelection_DropDownText:SetJustifyH("LEFT");
+						KarmaWindow_ListSelection_DropDown_OnShow();
+					</OnShow>
+				</Scripts>
+			</Frame>
+
+			<!-- Member List Frame -->
+			<Frame name="KarmaWindow_MemberList_Frame" hidden="false">
+				<Size>
+					<!-- x: 128->146 (+18) -->
+					<AbsDimension x="146" y="335"/>
+					<!-- Make sure it's 8 bigger than the contents, for borders -->
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+							relativeTo="KarmaWindow_PartyList_Frame">
+						<Offset>
+							<AbsDimension x="0" y="-45"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+
+				<Frames>
+					<Button name="MemberList_HelpQuestionMark"
+							inherits="Karma_HelpQuestionMarkTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaWindow_MemberList_Frame">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue1"
+							inherits="MemberList_KarmaValueTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow_MemberList_Frame">
+								<Offset>
+									<AbsDimension x="0" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton1"
+							inherits="MemberList_GlobalButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow_MemberList_Frame">
+								<Offset>
+									<!-- x: 4->22 (+18) -->
+									<AbsDimension x="25" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue2"
+							inherits="MemberList_KarmaValueTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue1"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton2"
+							inherits="MemberList_GlobalButtonTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton1"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue3"
+							inherits="MemberList_KarmaValueTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue2"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton3"
+							inherits="MemberList_GlobalButtonTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton2"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue4"
+							inherits="MemberList_KarmaValueTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue3"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton4"
+							inherits="MemberList_GlobalButtonTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton3"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue5"
+							inherits="MemberList_KarmaValueTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue4"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton5"
+							inherits="MemberList_GlobalButtonTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton4"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue6"
+							inherits="MemberList_KarmaValueTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue5"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton6"
+							inherits="MemberList_GlobalButtonTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton5"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue7"
+							inherits="MemberList_KarmaValueTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue6"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton7"
+							inherits="MemberList_GlobalButtonTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton6"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue8"
+							inherits="MemberList_KarmaValueTemplate" id="8">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue7"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton8"
+							inherits="MemberList_GlobalButtonTemplate" id="8">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton7"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue9"
+							inherits="MemberList_KarmaValueTemplate" id="9">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue8"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton9"
+							inherits="MemberList_GlobalButtonTemplate" id="9">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton8"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue10"
+							inherits="MemberList_KarmaValueTemplate" id="10">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue9"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton10"
+							inherits="MemberList_GlobalButtonTemplate" id="10">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton9"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue11"
+							inherits="MemberList_KarmaValueTemplate" id="11">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue10"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton11"
+							inherits="MemberList_GlobalButtonTemplate" id="11">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton10"
+								relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue12"
+							inherits="MemberList_KarmaValueTemplate" id="12">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue11"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton12"
+							inherits="MemberList_GlobalButtonTemplate" id="12">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton11"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue13"
+							inherits="MemberList_KarmaValueTemplate" id="13">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue12"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton13"
+							inherits="MemberList_GlobalButtonTemplate" id="13">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton12"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue14"
+							inherits="MemberList_KarmaValueTemplate" id="14">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue13"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton14"
+							inherits="MemberList_GlobalButtonTemplate" id="14">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton13"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue15"
+							inherits="MemberList_KarmaValueTemplate" id="15">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue14"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton15"
+							inherits="MemberList_GlobalButtonTemplate" id="15">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton14"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue16"
+							inherits="MemberList_KarmaValueTemplate" id="16">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue15"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton16"
+							inherits="MemberList_GlobalButtonTemplate" id="16">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton15"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue17"
+							inherits="MemberList_KarmaValueTemplate" id="17">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue16"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton17"
+							inherits="MemberList_GlobalButtonTemplate" id="17">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton16"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue18"
+							inherits="MemberList_KarmaValueTemplate" id="18">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue17"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton18"
+							inherits="MemberList_GlobalButtonTemplate" id="18">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton17"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue19"
+							inherits="MemberList_KarmaValueTemplate" id="19">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue18"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton19"
+							inherits="MemberList_GlobalButtonTemplate" id="19">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton18"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue20"
+							inherits="MemberList_KarmaValueTemplate" id="20">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue19"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton20"
+							inherits="MemberList_GlobalButtonTemplate" id="20">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton19"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue21"
+							inherits="MemberList_KarmaValueTemplate" id="21">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue20"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton21"
+							inherits="MemberList_GlobalButtonTemplate" id="21">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton20"
+								relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue22"
+							inherits="MemberList_KarmaValueTemplate" id="22">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue21"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton22"
+							inherits="MemberList_GlobalButtonTemplate" id="22">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton21"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue23"
+							inherits="MemberList_KarmaValueTemplate" id="23">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue22"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton23"
+							inherits="MemberList_GlobalButtonTemplate" id="23">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton22"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue24"
+							inherits="MemberList_KarmaValueTemplate" id="24">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue23"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton24"
+							inherits="MemberList_GlobalButtonTemplate" id="24">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton23"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+
+					<Button name="MemberList_KarmaValue25"
+							inherits="MemberList_KarmaValueTemplate" id="25">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_KarmaValue24"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+					<Button name="MemberList_GlobalButton25"
+							inherits="MemberList_GlobalButtonTemplate" id="25">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MemberList_GlobalButton24"
+									relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<ScrollFrame name="KarmaWindow_MemberList_ScrollFrame"
+			             inherits="FauxScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow_MemberList_Frame"
+							relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="KarmaWindow_MemberList_Frame"
+							relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-25" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						if (itemHeight == nil) then
+							KarmaChatDebug("ML: iH == nil!");
+							itemHeight = 13;
+						end;
+						FauxScrollFrame_OnVerticalScroll(self, offset, itemHeight, KarmaWindow_UpdateMemberList);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+
+			<!-- Menu: show data for current char/other chars/all chars -->
+			<Frame name="KarmaWindow_CharSelection_DropDown" inherits="UIDropDownMenuTemplate" id="1">
+				<Size>
+					<AbsDimension x="300" y="90"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+							 relativeTo="KarmaWindowTab1">
+						<Offset>
+							<AbsDimension x="-15" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						KarmaWindow_CharSelection_DropDownText:SetJustifyH("LEFT");
+						KarmaWindow_CharSelection_DropDown_OnShow();
+					</OnShow>
+				</Scripts>
+			</Frame>
+
+			<Frame name="KarmaWindow_TrackingData_Frame" inherits="KarmaOptionsWindow_FrameBoxTemplate">
+				<Size>
+					<AbsDimension x="300" y="90"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow_CharSelection_DropDown" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						-- getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_TRACKINGDATA_TITLE);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<FontString name="KarmaWindow_ChosenPlayerXPTitle" inherits="GameFontHighlight"
+								text="KARMA_WINEL_CHOSENPLAYERXPTITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="5" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerXPAccruedTitle"
+									inherits="GameFontNormalSmall" text="KARMA_WINEL_CHOSENPLAYERXPACCRUEDTITLE" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="220" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerXPTitle"
+											relativeFrom="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerXPAccrued" inherits="GameFontNormalSmall"
+									justifyH="RIGHT">
+							<Size>
+								<AbsDimension x="230" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerXPAccruedTitle"
+											relativeFrom="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerXPPercentageTitle"
+									inherits="GameFontNormalSmall" text="KARMA_WINEL_CHOSENPLAYERXPPERCENTAGETITLE" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="220" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerXPAccruedTitle"
+											relativeFrom="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerXPPercentage"
+									inherits="GameFontNormalSmall" justifyH="RIGHT">
+							<Size>
+								<AbsDimension x="220" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerXPPercentageTitle"
+											relativeFrom="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerTimeTitle" inherits="GameFontHighlight"
+								text="KARMA_WINEL_CHOSENPLAYERTIMETITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOP" relativeTo="KarmaWindow_ChosenPlayerXPPercentage"
+											relativeFrom="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+								<Anchor point="LEFT" relativeTo="KarmaWindow_ChosenPlayerXPTitle">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerTimeAccruedTitle" inherits="GameFontNormalSmall"
+									text="KARMA_WINEL_CHOSENPLAYERTIMEACCRUEDTITLE" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="220" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerTimeTitle"
+											relativeFrom="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerTimeAccrued" inherits="GameFontNormalSmall"
+									justifyH="RIGHT">
+							<Size>
+								<AbsDimension x="230" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerTimeAccruedTitle"
+											relativeFrom="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerTimePercentageTitle" inherits="GameFontNormalSmall"
+									text="KARMA_WINEL_CHOSENPLAYERTIMEPERCENTAGETITLE" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="220" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerTimeAccruedTitle"
+											relativeFrom="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerTimePercentage" inherits="GameFontNormalSmall"
+									justifyH="RIGHT">
+							<Size>
+								<AbsDimension x="220" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ChosenPlayerTimePercentageTitle"
+											relativeFrom="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<!-- Buttons to show/hide R, Z, Q lists -->
+			<Frame name="KarmaWindow_ListChoice_Area" inherits="KarmaOptionsWindow_FrameBoxTemplate" hidden="true">
+				<Size>
+					<!-- horiz: 150 / 33
+						 vert: 40/120?
+					-->
+					<AbsDimension x="55" y="100"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+							relativeTo="KarmaWindow_TrackingData_Frame">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						-- getglobal(this:GetName().."Title"):SetText("no title goes here");
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Checkbox title -->
+						<FontString name="KarmaWindow_ListChoice_Regions_Checkbox_Title" inherits="GameFontHighlight"
+								text="R" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<!-- original x="32", y="-10" -->
+										<AbsDimension x="30" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaWindow_ListChoice_Zones_Checkbox_Title" inherits="GameFontHighlight"
+								text="Z" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+									relativeTo="KarmaWindow_ListChoice_Regions_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaWindow_ListChoice_Quests_Checkbox_Title" inherits="GameFontHighlight"
+								text="Q" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+									relativeTo="KarmaWindow_ListChoice_Zones_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaWindow_ListChoice_Achievements_Checkbox_Title" inherits="GameFontHighlight"
+								text="A" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+									relativeTo="KarmaWindow_ListChoice_Quests_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaWindow_ListChoice_Regions_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaWindow_ListChoice_Regions_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="0" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindow_ListChoice_Checkbox_OnLoad("R");
+							</OnShow>
+							<OnClick>
+								KarmaWindow_ListChoice_Checkbox_OnClick("R");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaWindow_ListChoice_Zones_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaWindow_ListChoice_Zones_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="0" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindow_ListChoice_Checkbox_OnLoad("Z");
+							</OnShow>
+							<OnClick>
+								KarmaWindow_ListChoice_Checkbox_OnClick("Z");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaWindow_ListChoice_Quests_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaWindow_ListChoice_Quests_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="0" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindow_ListChoice_Checkbox_OnLoad("Q");
+							</OnShow>
+							<OnClick>
+								KarmaWindow_ListChoice_Checkbox_OnClick("Q");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaWindow_ListChoice_Achievements_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+									relativeTo="KarmaWindow_ListChoice_Achievements_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="0" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindow_ListChoice_Checkbox_OnLoad("A");
+							</OnShow>
+							<OnClick>
+								KarmaWindow_ListChoice_Checkbox_OnClick("A");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+
+			<!-- Regionlist: Area -->
+			<Frame name="KarmaWindow_RegionList_EnclosingArea" hidden="true">
+				<Size>
+					<AbsDimension x="150" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaWindow_ListChoice_Area">
+						<Offset>
+							<AbsDimension x="0" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer>
+						<FontString name="KarmaWindow_KarmaRegionList" inherits="GameFontHighlight"
+								text="KARMA_WINEL_KARMAREGIONLIST">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="5" y="15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<!-- Zonelist: Area -->
+			<Frame name="KarmaWindow_ZoneList_EnclosingArea">
+				<Size>
+					<AbsDimension x="150" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaWindow_ListChoice_Area">
+						<Offset>
+							<AbsDimension x="0" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer>
+						<FontString name="KarmaWindow_KarmaZoneList" inherits="GameFontHighlight"
+								text="KARMA_WINEL_KARMAZONELIST">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="5" y="15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<!-- Questlist: Area -->
+			<Frame name="KarmaWindow_QuestList_EnclosingArea">
+				<Size>
+					<AbsDimension x="150" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaWindow_ListChoice_Area">
+						<Offset>
+							<AbsDimension x="0" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer>
+						<FontString name="KarmaWindow_KarmaQuestList" inherits="GameFontHighlight"
+								text="KARMA_WINEL_KARMAQUESTLIST">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="3" y="15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<!-- Achievement list: Area -->
+			<Frame name="KarmaWindow_AchievementList_EnclosingArea">
+				<Size>
+					<AbsDimension x="150" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaWindow_ListChoice_Area">
+						<Offset>
+							<AbsDimension x="0" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer>
+						<FontString name="KarmaWindow_KarmaAchievementList" inherits="GameFontHighlight"
+								text="KARMA_WINEL_KARMAACHIEVEMENTLIST">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="3" y="15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<!-- Region List Frame -->
+			<Frame name="KarmaWindow_RegionList_Frame" parent="KarmaWindow_RegionList_EnclosingArea">
+				<Size>
+					<AbsDimension x="145" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaWindow_RegionList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="KarmaWindow_RegionList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="-18" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="RegionList_GlobalButton1"
+							inherits="RegionList_GlobalButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow_RegionList_Frame"/>
+						</Anchors>
+					</Button>
+					<!-- all others are created in KarmaWindow_OnLoad() --> 
+				</Frames>
+			</Frame>
+
+			<!-- Zone List Frame -->
+			<Frame name="KarmaWindow_ZoneList_Frame" parent="KarmaWindow_ZoneList_EnclosingArea">
+				<Size>
+					<AbsDimension x="145" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaWindow_ZoneList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="KarmaWindow_ZoneList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="-18" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="ZoneList_GlobalButton1"
+							inherits="ZoneList_GlobalButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow_ZoneList_Frame"/>
+						</Anchors>
+					</Button>
+					<!-- all others are created in KarmaWindow_OnLoad() --> 
+				</Frames>
+			</Frame>
+
+			<!-- Quest List Frame -->
+			<Frame name="KarmaWindow_QuestList_Frame" parent="KarmaWindow_QuestList_EnclosingArea">
+				<Size>
+					<AbsDimension x="145" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaWindow_QuestList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="KarmaWindow_QuestList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="-18" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="QuestList_GlobalButton1"
+							inherits="QuestList_GlobalButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow_QuestList_Frame"/>
+						</Anchors>
+					</Button>
+					<!-- all others are created in KarmaWindow_OnLoad() --> 
+		 		</Frames>
+			</Frame>
+
+			<!-- Achievement list frame -->
+			<Frame name="KarmaWindow_AchievementList_Frame" parent="KarmaWindow_AchievementList_EnclosingArea">
+				<Size>
+					<AbsDimension x="145" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaWindow_AchievementList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="KarmaWindow_AchievementList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="-18" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="AchievementList_GlobalButton1"
+							inherits="AchievementList_GlobalButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow_AchievementList_Frame"/>
+						</Anchors>
+					</Button>
+					<!-- all others are created in KarmaWindow_OnLoad() --> 
+		 		</Frames>
+			</Frame>
+
+			<Frame name="KarmaWindow_OtherData_Frame" inherits="KarmaOptionsWindow_FrameBoxTemplate">
+				<Size>
+					<AbsDimension x="300" y="75"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindowTab1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_OTHERDATA_TITLE);
+					</OnLoad>
+					<OnEnter>
+						KarmaWindow_OtherData_OnEnter();
+					</OnEnter>
+					<OnLeave>
+						KarmaAvEnK.UI.OnLeave();
+					</OnLeave>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<FontString name="KarmaWindow_ChosenPlayerSkillValue" inherits="GameFontHighlight"
+								justifyH="RIGHT">
+							<Size>
+								<AbsDimension x="200" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="85" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerGearPVEValue" inherits="GameFontHighlight"
+								justifyH="RIGHT">
+							<Size>
+								<AbsDimension x="200" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaWindow_ChosenPlayerSkillValue">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="KarmaWindow_ChosenPlayerGearPVPValue" inherits="GameFontHighlight"
+								justifyH="RIGHT">
+							<Size>
+								<AbsDimension x="200" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+										relativeTo="KarmaWindow_ChosenPlayerGearPVEValue">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<Button name="KarmaWindow_ChosenPlayerSkill_Button" inherits="UIPanelButtonTemplate"
+								text="KARMA_WINEL_CHOSENPLAYERSKILLTITLE">
+						<Size>
+							<AbsDimension x="75" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-8"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaWindow_SkillButton_OnClick(arg1, this);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="KarmaWindow_ChosenPlayerGearPVE_Button" inherits="UIPanelButtonTemplate"
+								text="KARMA_WINEL_CHOSENPLAYERGEARPVETITLE">
+						<Size>
+							<AbsDimension x="75" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+									relativeTo="KarmaWindow_ChosenPlayerSkill_Button">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaWindow_GearPVEButton_OnClick(arg1, this);
+							</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="KarmaWindow_ChosenPlayerGearPVP_Button" inherits="UIPanelButtonTemplate"
+								text="KARMA_WINEL_CHOSENPLAYERGEARPVPTITLE">
+						<Size>
+							<AbsDimension x="75" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"
+									relativeTo="KarmaWindow_ChosenPlayerGearPVE_Button">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								KarmaWindow_GearPVPButton_OnClick(arg1, this);
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<Frame name="KarmaWindow_NotesPublicBorder_Frame">
+				<Size>
+					<AbsDimension x="304" y="25"/>
+				</Size>				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow_OtherData_Frame">
+						<Offset>
+							<AbsDimension x="0" y="-15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer>
+						<FontString name="KarmaWindow_NotesPublicBorder_Frame_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_NOTESPUBLICFRAMETITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="5" y="15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<EditBox name="KarmaWindow_NotesPublic_EditBox" letters="120" multiLine="false" enableMouse="true" autoFocus="false">
+						<Size>
+							<AbsDimension x="350" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaWindow_NotesPublicBorder_Frame">
+								<Offset>
+									<AbsDimension x="8" y="1"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="KarmaWindow_NotesPublicBorder_Frame">
+								<Offset>
+									<AbsDimension x="-8" y="-1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>
+								KarmaAvEnK.UI.NotePublic_Editbox_Tooltip(this, KARMA_WINEL_NOTESPUBLIC, "PUBLICNOTE", "ANCHOR_TOPLEFT");
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnTextChanged>
+								-- ScrollingEdit_OnTextChanged(KarmaWindow_Notes_ScrollFrame);
+								KarmaWindow_NotePublic_UpdateText();
+							</OnTextChanged>
+							<OnCursorChanged>
+								ScrollingEdit_OnCursorChanged(self, x, y - 10, w, h);
+							</OnCursorChanged>
+							<OnEscapePressed>
+								this:ClearFocus();
+							</OnEscapePressed>
+						</Scripts>
+						<FontString inherits="ChatFontNormal"/>
+					</EditBox>
+				</Frames>
+			</Frame>
+
+			<Button name="KarmaWindow_NotesPublicQuery_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_NOTESPUBLICQUERYGUILD">
+				<Size>
+					<AbsDimension x="80" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow_NotesPublicBorder_Frame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaAvEnK.UI.NotesPublic.QueryBtnClicked(arg1, this);
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow_NotesPublicResults_Button">
+				<Size>
+					<AbsDimension x="40" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow_NotesPublicQuery_Button" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="25" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parent_Text" justifyH="RIGHT" inherits="GameFontNormalLarge" text="KARMA_WINEL_NOTESPUBLICRESULTS">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>
+						KarmaAvEnK.UI.NotesPublic.ResultsTip(arg1, this);
+					</OnEnter>
+					<OnLeave>
+						KarmaAvEnK.UI.OnLeave();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Frame name="KarmaWindow_NotesBorder_Frame">
+				<!--
+				<Size>
+					<AbsDimension x="304" y="137"/>
+				</Size>
+				-->
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow_NotesPublicBorder_Frame">
+						<Offset>
+							<AbsDimension x="0" y="-15"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOM" relativePoint="BOTTOM" relativeTo="KarmaWindow_MemberList_Frame">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer>
+						<FontString name="KarmaWindow_NotesScrollFrameTitle" inherits="GameFontHighlight"
+								text="KARMA_WINEL_NOTESSCROLLFRAMETITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="5" y="15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<ScrollFrame name="KarmaWindow_Notes_ScrollFrame" parent="KarmaWindow_NotesBorder_Frame" inherits="UIPanelScrollFrameTemplate">
+				<!--
+				<Size>
+					<AbsDimension x="260" y="147"/>
+				</Size>
+				-->
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-5"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-27" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					<Frame name="KarmaWindow_Notes_EditBox_ScrollChild" enableMouse="true">
+						<!--
+						<Size>
+							<AbsDimension x="300" y="150"/>
+						</Size>
+						-->
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							-- removed: letters="4096" (req. by Pydia)
+							<EditBox name="KarmaWindow_Notes_EditBox"
+									multiLine="true" enableMouse="true" autoFocus="false">
+								<!--
+								<Size>
+									<AbsDimension x="300" y="150"/>
+								</Size>
+								-->
+								<Anchors>
+									<Anchor point="TOPLEFT">
+										<Offset>
+											<AbsDimension x="8" y="-3"/>
+										</Offset>
+									</Anchor>
+									<Anchor point="BOTTOMRIGHT">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnTextChanged>
+										-- ScrollingEdit_OnTextChanged(self, scrollFrame); -- ... 3.0.2?
+										ScrollingEdit_OnTextChanged(self, KarmaWindow_Notes_ScrollFrame);
+										KarmaWindow_NotesUpdateText();
+									</OnTextChanged>
+									<OnCursorChanged>
+										ScrollingEdit_OnCursorChanged(self, x, y - 10, w, h);
+									</OnCursorChanged>
+									<OnUpdate>
+										ScrollingEdit_OnUpdate(self, elapsed, KarmaWindow_Notes_ScrollFrame);
+									</OnUpdate>
+									<OnTabPressed>
+									</OnTabPressed>
+									<OnEscapePressed>
+										this:ClearFocus();
+									</OnEscapePressed>
+								</Scripts>
+								<FontString inherits="ChatFontNormal"/>
+							</EditBox>
+						</Frames>
+						<Scripts>
+							<OnShow>
+								KarmaWindow_Notes_EditBox_ScrollChild:SetHeight(KarmaWindow_Notes_ScrollFrame:GetHeight());
+							</OnShow>
+							<OnMouseUp>
+								if (Karma_CurrentMemberValid()) then
+									KarmaWindow_Notes_EditBox:SetFocus();
+								end
+							</OnMouseUp> 
+						</Scripts>
+					</Frame>
+				</ScrollChild>
+				<Scripts>
+					<OnShow>
+						KarmaWindow_Notes_EditBox_ScrollChild:SetHeight(KarmaWindow_Notes_ScrollFrame:GetHeight());
+						KarmaWindow_Notes_EditBox_ScrollChild:SetWidth(KarmaWindow_Notes_ScrollFrame:GetWidth());
+					</OnShow>
+				</Scripts>
+			</ScrollFrame>
+			
+			<ScrollFrame name="KarmaWindow_QuestList_ScrollFrame" parent="KarmaWindow_QuestList_Frame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="250" y="158"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="KarmaWindow_QuestList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="KarmaWindow_QuestList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						if (itemHeight == nil) then
+							KarmaChatDebug("QL: iH == nil!");
+							itemHeight = 13;
+						end;
+						FauxScrollFrame_OnVerticalScroll(self, offset, itemHeight, KarmaWindow_UpdateQuestList);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+
+			<ScrollFrame name="KarmaWindow_ZoneList_ScrollFrame" parent="KarmaWindow_ZoneList_Frame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="250" y="158"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="KarmaWindow_ZoneList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="KarmaWindow_ZoneList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						if (itemHeight == nil) then
+							KarmaChatDebug("ZL: iH == nil!");
+							itemHeight = 13;
+						end;
+						FauxScrollFrame_OnVerticalScroll(self, offset, itemHeight, KarmaWindow_UpdateZoneList);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+
+			<ScrollFrame name="KarmaWindow_RegionList_ScrollFrame" parent="KarmaWindow_RegionList_Frame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="250" y="158"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="KarmaWindow_RegionList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="KarmaWindow_RegionList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						if (itemHeight == nil) then
+							KarmaChatDebug("RL: iH == nil!");
+							itemHeight = 13;
+						end;
+						FauxScrollFrame_OnVerticalScroll(self, offset, itemHeight, KarmaWindow_UpdateRegionList);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+
+			<ScrollFrame name="KarmaWindow_AchievementList_ScrollFrame" parent="KarmaWindow_AchievementList_Frame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="250" y="158"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="KarmaWindow_AchievementList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="KarmaWindow_AchievementList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						if (itemHeight == nil) then
+							KarmaChatDebug("RL: iH == nil!");
+							itemHeight = 13;
+						end;
+						FauxScrollFrame_OnVerticalScroll(self, offset, itemHeight, KarmaWindow_UpdateAchievementList);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+
+<!--
+	Altlist:
+	========
+		Area -->
+			<Frame name="KarmaWindow_AltList_EnclosingArea" hidden="true">
+				<Size>
+					<AbsDimension x="150" y="80"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaWindow_OtherData_Frame">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+				<Layers>
+					<Layer>
+						<FontString name="KarmaWindow_KarmaAltList" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MAINALTLIST">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="5" y="15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+	<!-- Frame -->
+			<Frame name="KarmaWindow_AltList_Frame" parent="KarmaWindow_AltList_EnclosingArea">
+				<Size>
+					<AbsDimension x="150" y="80"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaWindow_AltList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="KarmaWindow_AltList_EnclosingArea">
+						<Offset>
+							<AbsDimension x="-18" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<!-- want: Karma, Lvl, Name -->
+					<Button name="AltList_KarmaValueButton1"
+							inherits="AltList_KarmaValueButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow_AltList_Frame">
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AltList_LevelButton1"
+							inherits="AltList_LevelButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="AltList_KarmaValueButton1"/>
+						</Anchors>
+					</Button>
+					<Button name="AltList_NameButton1"
+							inherits="AltList_NameButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="AltList_LevelButton1"/>
+						</Anchors>
+					</Button>
+					<!-- all others are created in KarmaWindow_OnLoad() --> 
+				</Frames>
+			</Frame>
+
+	<!-- ScrollFrame -->
+			<ScrollFrame name="KarmaWindow_AltList_ScrollFrame" parent="KarmaWindow_AltList_Frame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="150" y="80"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="KarmaWindow_AltList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="KarmaWindow_AltList_Frame">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						if (itemHeight == nil) then
+							KarmaChatDebug("AL: iH == nil!");
+							itemHeight = 13;
+						end;
+						FauxScrollFrame_OnVerticalScroll(self, offset, itemHeight, KarmaWindow_UpdateAltList);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+
+			<!-- Filter input box -->
+			<EditBox name="KarmaWindow_Filter_EditBox" letters="128" multiLine="false" enableMouse="true" autoFocus="false">
+				<Size>
+					<AbsDimension x="350" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" relativeTo="KarmaWindow_Filter_Button">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativePoint="RIGHT" relativeTo="KarmaWindow_NotesBorder_Frame">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+					<OnEnter>
+						KarmaAvEnK.UI.Filter_Editbox_Tooltip(this, KARMA_WINEL_FILTER, "FILTER", "ANCHOR_TOPRIGHT");
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide()
+					</OnLeave>
+					<OnTextChanged>
+						-- ScrollingEdit_OnTextChanged(KarmaWindow_Notes_ScrollFrame);
+						KarmaWindow_FilterUpdateText();
+					</OnTextChanged>
+					<OnCursorChanged>
+						ScrollingEdit_OnCursorChanged(self, x, y - 10, w, h);
+					</OnCursorChanged>
+					<OnEscapePressed>
+						this:ClearFocus();
+					</OnEscapePressed>
+				</Scripts>
+				<FontString inherits="ChatFontNormal"/>
+			</EditBox>
+		</Frames>
+	</Frame>
+
+	<!-- Filter window -->
+	<Frame name="KarmaFilterWindow" frameStrata="HIGH" parent="UIParent" hidden="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="420" y="330"/>
+		</Size>
+	
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="KarmaWindow" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	
+		<Scripts>
+			<OnLoad>
+				<!-- make it closeable with ESC -->
+				tinsert(UISpecialFrames,this:GetName());
+			</OnLoad>
+			<OnShow>
+				if KarmaWindow:IsVisible() then
+					local	sName, k, v = KarmaWindow:GetName();
+					for k, v in pairs(UISpecialFrames) do
+						if (v == sName) then
+							KARMA_MAINWND_REINSERT = true;
+							tremove(UISpecialFrames, k);
+						--	MainChatDebug("Removed " .. v .. " at " .. k);
+						end
+					end
+				end
+
+				Karma_FilterInit();
+			</OnShow>
+			<OnHide>
+				-- at first glance, just setting KARMA_MAINWND_KEEPOPEN would work
+				-- at closer inspection, it depends on the position of the two windows
+				--    in the UISpecialFrames list.
+				-- therefore, re-add MainWindow here to make sure it is after OptionsWindow
+				-- and *that's* why it has to be removed above =)
+				if KARMA_MAINWND_REINSERT then
+					KARMA_MAINWND_REINSERT = false;
+					KARMA_MAINWND_KEEPOPEN = true;
+					tinsert(UISpecialFrames, KarmaWindow:GetName());
+				end
+			</OnHide>
+		</Scripts>
+	
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+
+		<!-- Filter window: Frames -->
+		<Frames>
+			<Frame name="KarmaFilterWindow_Frame" inherits="KarmaOptionsWindow_FrameBoxTemplate">
+				<Size>
+					<AbsDimension x="400" y="300"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="13" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_FILTER_TITLE);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_NameStarts_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_NAMESTARTS" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="15" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_NameContains_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_NAMECONTAINS" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_NameStarts_Editbox_Title"
+									relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="35" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_Class_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_CLASS" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_NameContains_Editbox_Title"
+									relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="-35" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_LevelFrom_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_LEVELFROM" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_Class_Editbox_Title"
+									relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_LevelTo_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_LEVELTO" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_LevelFrom_Editbox_Title"
+									relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="50" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_KarmaFrom_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_KARMAFROM" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_LevelFrom_Editbox_Title"
+									relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_KarmaTo_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_KARMATO" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_KarmaFrom_Editbox_Title"
+									relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="50" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_JoinedAfter_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_JOINEDAFTER" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_KarmaFrom_Editbox_Title"
+									relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_JoinedBefore_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_JOINEDBEFORE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_JoinedAfter_Editbox_Title"
+									relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="100" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_NotePrivate_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_NOTEPRIVATE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_JoinedAfter_Editbox_Title"
+									relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaFilterWindow_NotePublic_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTER_NOTEPUBLIC" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="KarmaFilterWindow_NotePrivate_Editbox_Title"
+									relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-45"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_NameStarts_Editbox" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="130" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaFilterWindow_NameStarts_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_NameContains_Editbox" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="130" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaFilterWindow_NameContains_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_Class_Editbox" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="130" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaFilterWindow_Class_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_LevelFrom_Editbox" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaFilterWindow_LevelFrom_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_LevelTo_Editbox" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaFilterWindow_LevelTo_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_KarmaFrom_Editbox" letters="3" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaFilterWindow_KarmaFrom_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_KarmaTo_Editbox" letters="3" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaFilterWindow_KarmaTo_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_JoinedAfter_Editbox" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="80" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaFilterWindow_JoinedAfter_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>
+								KarmaAvEnK.UI.Filter_Editbox_Tooltip(this, KARMA_WINEL_FILTER_JOINED_TITLE, "JOINED", "ANCHOR_TOPLEFT");
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+						</Scripts>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_JoinedBefore_Editbox" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="80" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaFilterWindow_JoinedBefore_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>
+								KarmaAvEnK.UI.Filter_Editbox_Tooltip(this, KARMA_WINEL_FILTER_JOINED_TITLE, "JOINED", "ANCHOR_TOPRIGHT");
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+						</Scripts>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_NotePrivate_Editbox" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="200" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaFilterWindow_NotePrivate_Editbox_Title">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaFilterWindow_NotePublic_Editbox" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="200" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="KarmaFilterWindow_NotePublic_Editbox_Title">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+				</Frames>
+			</Frame>
+
+			<Button name="KarmaFilterWindow_Ok_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_OK">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Karma_FilterOk();
+						KarmaFilterWindow:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaFilterWindow_Cancel_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_CANCEL">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaFilterWindow:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<!-- Talent window -->
+	<Frame name="KarmaTalentWindow" frameStrata="HIGH" parent="UIParent" hidden="true" enableMouse="true">
+		<Size>	<!-- x: 256 -> 320 -->
+			<AbsDimension x="320" y="245"/>
+		</Size>
+	
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="KarmaWindow" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	
+		<Scripts>
+			<OnLoad>
+				<!-- make it closeable with ESC -->
+				tinsert(UISpecialFrames,this:GetName());
+			</OnLoad>
+			<OnShow>
+				if KarmaWindow:IsVisible() then
+					local	sName, k, v = KarmaWindow:GetName();
+					for k, v in pairs(UISpecialFrames) do
+						if (v == sName) then
+							KARMA_MAINWND_REINSERT = true;
+							tremove(UISpecialFrames,k);
+						--	MainChatDebug("Removed " .. v .. " at " .. k);
+						end
+					end
+				end
+
+				Karma_TalentInit(this);
+			</OnShow>
+			<OnHide>
+				-- at first glance, just setting KARMA_MAINWND_KEEPOPEN would work
+				-- at closer inspection, it depends on the position of the two windows
+				--    in the UISpecialFrames list.
+				-- therefore, re-add MainWindow here to make sure it is after OptionsWindow
+				-- and *that's* why it has to be removed above =)
+				if KARMA_MAINWND_REINSERT then
+					KARMA_MAINWND_REINSERT = false;
+					KARMA_MAINWND_KEEPOPEN = true;
+					tinsert(UISpecialFrames, KarmaWindow:GetName());
+				end
+			</OnHide>
+		</Scripts>
+	
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+
+		<!-- Talent window: Frames -->
+		<Frames>
+			<Frame name="KarmaTalentWindow_Frame" inherits="KarmaOptionsWindow_FrameBoxTemplate">
+				<Size>	<!-- x: 231 -> 295 -->
+					<AbsDimension x="295" y="160"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="13" y="-45"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Window title bar: string "Player:" -->
+						<FontString name="KarmaTalentWindow_Player_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_PLAYER_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="5" y="30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Window title bar: playername -->
+						<FontString name="KarmaTalentWindow_Player_Name" inherits="GameFontHighlight"
+								text="..." justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-5" y="30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Window title bar: string "Player:" -->
+						<FontString name="KarmaTalentWindow_Talent_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TALENTWND_TALENT_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="5" y="15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Window title bar: playername -->
+						<FontString name="KarmaTalentWindow_Talent_Value" inherits="GameFontHighlight"
+								text="..." justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-5" y="15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbox title -->
+						<FontString name="KarmaTalentWindow_HPS_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_HPS" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="40" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaTalentWindow_DPS_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_DPS" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaTalentWindow_HPS_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaTalentWindow_Tank_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TANK" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaTalentWindow_DPS_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaTalentWindow_Melee_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MELEE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaTalentWindow_Tank_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaTalentWindow_Ranged_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_RANGED" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaTalentWindow_Melee_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaTalentWindow_HPS_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaTalentWindow_HPS_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Karma_TalentUpdate("H");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaTalentWindow_DPS_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaTalentWindow_DPS_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Karma_TalentUpdate("D");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaTalentWindow_Tank_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaTalentWindow_Tank_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Karma_TalentUpdate("T");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaTalentWindow_Melee_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaTalentWindow_Melee_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Karma_TalentUpdate("M");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaTalentWindow_Ranged_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaTalentWindow_Ranged_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Karma_TalentUpdate("R");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Editbox: total text -->
+					<EditBox name="KarmaTalentWindow_Result_Editbox" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="130" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaTalentWindow_Ranged_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-20" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+				</Frames>
+			</Frame>
+
+			<Button name="KarmaTalentWindow_Ok_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_OK">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Karma_TalentDone(true);
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaTalentWindow_Cancel_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_CANCEL">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Karma_TalentDone(false);
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

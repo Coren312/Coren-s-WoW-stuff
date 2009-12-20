@@ -1,0 +1,647 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+
+	<Script file="CommonersQuestMain.lua"/>
+
+	<Frame name="CQKEP_Main_QuestStateButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="150" y="18"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentLockedFG">
+					<Size>
+						<!-- 39x39 -->
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="1" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Button name="CQKEP_Main_QuestButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="288" y="18"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentLockedBG">
+					<Size>
+						<!-- 39x39 -->
+						<AbsDimension x="18" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentLockedFG">
+					<Size>
+						<!-- 39x39 -->
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="1" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				-- want right-clicks also
+				self:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				CommonersQuest.Main.SetupTip(self);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				CommonersQuest.Main.QuestClicked(self, arg1);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="CommonersQuestMainQuestEditMenu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(self, CommonersQuest.Main.QuestEditMenu_Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Button name="CQKEP_Main_PrereqButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="268" y="18"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				-- want right-clicks also
+				self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				CommonersQuest.Main.SetupTip(self);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				CommonersQuest.Main.PrereqClicked(self, arg1);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="CommonersQuestPrereqMenu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(self, CommonersQuest.Main.PrereqMenu_Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Button name="CQKEP_Main_RequiredButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="268" y="18"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				-- want right-clicks also
+				self:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				CommonersQuest.Main.SetupTip(self);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				CommonersQuest.Main.RequiredClicked(self, arg1);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="CQKEP_Main_RewardsetButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="288" y="18"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				-- want right-clicks also
+				self:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				CommonersQuest.Main.SetupTip(self);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				CommonersQuest.Main.RewardsetClicked(self, arg1);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<!-- used on req&reward! -->
+	<Button name="CQKEP_TinyItemTemplate" virtual="true">
+		<Size>
+			<!-- 41x41 -->
+			<AbsDimension x="25" y="25"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIconTexture">
+					<Size>
+						<!-- 39x39 -->
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentCount" inherits="NumberFontNormal" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentIconTexture">
+							<Offset>
+								<AbsDimension x="-1" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				self.hasItem = 1;
+			</OnLoad>
+			<OnEnter>
+				-- gets overwritten anyways
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+				ResetCursor();
+			</OnLeave>
+			<OnUpdate>
+				CursorOnUpdate(self);
+			</OnUpdate>
+			<OnClick>
+				-- gets overwritten anyways
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="CQKEP_Main_QuestEndTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="1" y="1"/>
+		</Size>
+	</Frame>
+
+	<!--
+	<Button name="CQKEP_RewardsetButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="210" y="16"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnClick>
+				CommonersQuest.Reward.RewardsetClicked(self);
+			</OnClick>
+		</Scripts>
+	</Button>
+	-->
+
+	<Frame name="CommonersQuestMainframe" parent="UIParent" hidden="true" enableMouse="true" toplevel="true" movable="true">
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Size>
+			<AbsDimension x="790" y="590"/>
+		</Size>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Scripts>
+			<OnLoad>
+				CommonersQuest.Main.OnLoad(self);
+				<!-- closable with ESC -->
+				tinsert(UISpecialFrames, self:GetName());
+			</OnLoad>
+			<OnShow>
+				CommonersQuest.Main.OnShow(self);
+			</OnShow>
+			<OnEvent>
+				CommonersQuest.Main.OnEvent(self, event, ...);
+			</OnEvent>
+			<OnMouseDown>
+				if (arg1 == "LeftButton") then
+					self:StartMoving()
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				self:StopMovingOrSizing()
+			</OnMouseUp>
+		</Scripts>
+
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="CQKEP_Main_PreReq_Title" inherits="GameFontNormal" text="Show pre-requisites">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="50" y="-20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="CQKEP_Main_Req_Title" inherits="GameFontNormal" text="Show requirements">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="CQKEP_Main_PreReq_Title">
+							<Offset>
+								<AbsDimension x="50" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="CQKEP_Main_Rew_Title" inherits="GameFontNormal" text="Show rewards">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="CQKEP_Main_Req_Title">
+							<Offset>
+								<AbsDimension x="50" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<FontString name="CQKEP_Main_Enabled_Title" inherits="GameFontNormal" text="Show |cFF80FF80enabled|r quests">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="CQKEP_Main_PreReq_Title">
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="CQKEP_Main_Disabled_Title" inherits="GameFontNormal" text="Show |cFFFF8080disabled|r quests">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="CQKEP_Main_Enabled_Title">
+							<Offset>
+								<AbsDimension x="50" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="CQKEP_Main_Invalid_Title" inherits="GameFontNormal" text="Show |cFFFFFF80invalid|r quests">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="CQKEP_Main_Disabled_Title">
+							<Offset>
+								<AbsDimension x="50" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- Checkbox (Title see above!) -->
+			<CheckButton name="CQKEP_Main_PreReq_Checkbox" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+							relativeTo="CQKEP_Main_PreReq_Title">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						CommonersQuest.Main.CheckOnShow(self);
+					</OnShow>
+					<OnClick>
+						CommonersQuest.Main.CheckOnClick(self, arg1);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!-- Checkbox (Title see above!) -->
+			<CheckButton name="CQKEP_Main_Req_Checkbox" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+							relativeTo="CQKEP_Main_Req_Title">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						CommonersQuest.Main.CheckOnShow(self);
+					</OnShow>
+					<OnClick>
+						CommonersQuest.Main.CheckOnClick(self, arg1);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!-- Checkbox (Title see above!) -->
+			<CheckButton name="CQKEP_Main_Rew_Checkbox" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+							relativeTo="CQKEP_Main_Rew_Title">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						CommonersQuest.Main.CheckOnShow(self);
+					</OnShow>
+					<OnClick>
+						CommonersQuest.Main.CheckOnClick(self, arg1);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+
+			<!-- Checkbox (Title see above!) -->
+			<CheckButton name="CQKEP_Main_Enabled_Checkbox" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+							relativeTo="CQKEP_Main_Enabled_Title">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						CommonersQuest.Main.CheckOnShow(self);
+					</OnShow>
+					<OnClick>
+						CommonersQuest.Main.CheckOnClick(self, arg1);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!-- Checkbox (Title see above!) -->
+			<CheckButton name="CQKEP_Main_Disabled_Checkbox" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+							relativeTo="CQKEP_Main_Disabled_Title">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						CommonersQuest.Main.CheckOnShow(self);
+					</OnShow>
+					<OnClick>
+						CommonersQuest.Main.CheckOnClick(self, arg1);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!-- Checkbox (Title see above!) -->
+			<CheckButton name="CQKEP_Main_Invalid_Checkbox" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+							relativeTo="CQKEP_Main_Invalid_Title">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						CommonersQuest.Main.CheckOnShow(self);
+					</OnShow>
+					<OnClick>
+						CommonersQuest.Main.CheckOnClick(self, arg1);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="CommonersQuestMainCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="CommonersQuestMainQuestNewButton" inherits="UIPanelButtonTemplate" text="Add and edit a new quest">
+				<Size>
+					<AbsDimension x="200" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="CQKEP_Main_Enabled_Checkbox">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CommonersQuest.QuestEdit.QuestAddNew();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Frame name="CommonersQuestMainQuestStateLocked" inherits="CQKEP_Main_QuestStateButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="CommonersQuestMainQuestNewButton">
+						<Offset>
+							<AbsDimension x="30" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+
+			<Frame name="CommonersQuestMainQuestStateEditable" inherits="CQKEP_Main_QuestStateButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="CommonersQuestMainQuestStateLocked">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+
+			<ScrollFrame name="CommonersQuestMainScrollFrame" inherits="UIPanelScrollFrameTemplate">
+				<Size>
+					<!-- 790 / 590 - (20/-50)*2: -->
+					<AbsDimension x="730" y="480"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="CommonersQuestMainframe">
+						<Offset>
+							<AbsDimension x="20" y="-90"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					<Frame name="CommonersQuestMainScrollChildFrame">
+						<Size>
+							<AbsDimension x="700" y="480"/>
+						</Size>
+					</Frame>
+				</ScrollChild>
+			</ScrollFrame>
+		</Frames>
+	</Frame>
+</Ui>
+

@@ -1,0 +1,11 @@
+## Interface: 30000
+## Title: KarmaTrans
+## Version: 30000.0
+## Notes: Load/Save (external) Karma databases
+## Notes-deDE: Sichern/Laden (externer) Karma Datenbanken
+## SavedVariables: KarmaImp, KarmaExp, KarmaForeign
+## SavedVariablesPerCharacter: KarmaChangelog
+## Author: Kärbär
+## DefaultState: disabled
+KarmaTrans.xml
+

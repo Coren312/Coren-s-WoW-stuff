@@ -1,0 +1,45 @@
+0. This does not yet add those players the other person's database contains and yours doesn't.
+It just imports* the Karma value and total time joined for those players that are in both databases.
+1. You need to be on a character (let's call him Bob) which has "KarmaTrans" enabled.
+2. The person you want to share from needs a new-enough "Karma" and is on character "Alice".
+3. If possible, "Alice" should just be doing something lazy while you pull data.
+Why?
+Well, Blizzard decided that transferring too much data too fast will simply disconnect the client.
+Unfortunately, Blizzard "forgot" to add some functions or any kind of information to give to AddOns to see how much "wiggle room" is left.
+So, if the other player is in a group (or worse, raid) and transfers lots of data (e.g. via Omen or KTM) or is sitting at the auction house and has a scanner AddOn running, there is a strong likelihood that the additional data flow will kick them.
+You don't want that to happen to "Alice", so just try to meet up at a break of her.
+(*You* can be as busy as you want, you're 'just' receiving and there are no real limits to receiving.)
+
+A.
+"Alice" (the other player) issues the command: /karma exchangeallow Bob
+Now "Bob" is allowed to pull Karma data from "Alice".
+The permission can be revoked by issueing the same command again (or simply relogging).
+The permission is NOT stored - so if "Alice" has a disconnect, she'll have to allow again.
+
+B.
+"Bob" (you) issues the command: /karma exchangerequest Alice
+If you have a window where Karma's Debug messages are displayed, you'll see some action going on for a while.
+If not, you'll just have to wait until the exchange is complete and a message with some statistics is shown.
+This will take a while, depending on the size of "Alice"'s database: about 200 entries per minute are transferred.
+
+C.
+After the transfer is complete, you have to "mix-in" the newly gathered data: /karma exchangeupdate
+This will walk over all the data you got from other players and mixes them together to fill the "imported Karma value".
+It does NOT add the other players (yet), it just updates the data on the players that are also in your database.
+
+D.
+How much actual "imported Karma" is added is mostly hardcoded.
+There's one parameter you can affect: How much you "trust" "Alice" with her ratings.
+To set the trust to 0.5: /karma exchangetrust Alice 0.5
+Trust is from 0.01 to 1.0 (default: 0.3) and is the multiplier to "Alice"'s Karma ratings.
+With the default value, a rating of +10 (i.e. 60) is at your end shown as (upto) +3 iK.
+
+The other parameters are not yet accessible, it's two sets.
+(We'll stay at +10 at "Alice"'s end for the examples.)
+(I) If "Alice" has grouped less than 3 minutes with them, it's just "+3".
+The logic is that a player must've done something extraordinary (great or stupid) to be added and rated, so it is not really influenced by "Alice" actually liking or not liking the person behind the player.
+(II) If "Alices" has grouped longer, the Karma value is *also* time-bound.
+The logic behind that is that "Alice" and the other player may or may not have conflicting personalities, and this is much harsher the lesser known the other player is.
+The other player may be a really nice person, but just initally said something that tipped "Alice" off.
+The more time "Alice" plays with that other player, the more likely it is an actually fair rating.
+The time-bound limit is 5 Karma per hour played together (rounded), so if "Alice" gave "-10" and has only played 10 minutes with the other player, it's not "-3" you'll see, but "-1".

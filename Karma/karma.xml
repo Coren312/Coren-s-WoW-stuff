@@ -1,0 +1,344 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="localization.tw.lua" /> <!-- translation thanks to SuKai@WoWI -->
+
+	<Script file="karmaBase.lua"/>
+	<Script file="karmaChat.lua"/>
+	<Script file="karmaDB.lua"/>
+	<Script file="karmaSlash.lua"/>
+	<Script file="karmaAchievements.lua"/>
+	<Script file="karmaTalents.lua"/>
+	<Script file="karma.lua"/>
+
+	<Button name="Karma_HelpQuestionMarkTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="10"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="RIGHT" inherits="GameFontNormalSmall" text="[?]">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				Karma_HelpQuestionMark_OnEnter(arg1, this);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<!-- used in Main, Options and Filter dialog -->
+	<Frame name="KarmaOptionsWindow_FrameBoxTemplate" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontHighlight">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="9" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+				this:SetBackdropColor(0.5, 0.5, 0.5);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Include file="karmaWndMain.xml"/>
+	<Include file="karmaWndOpt.xml"/>
+	<Include file="karmaWndLFG.xml"/>
+
+	<!-- Background frame to receive global events -->
+	<Frame name="Karma" parent="UIParent" hidden="false" toplevel="false">
+		<Scripts>
+			<OnLoad>
+				Karma_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Karma_OnEvent(self, event, ...);
+			</OnEvent>
+			<OnUpdate>
+				KarmaWindow_OnUpdateEvent(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Button name="Karma_MinimapIconFrame" toplevel="true" frameStrata="LOW" parent="Minimap" enableMouse="true" movable="true" hidden="true">
+		<Size>
+			<AbsDimension x="33" y="33"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-15" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<!-- icon from tutorial!! -->
+				<Texture name="Karma_MinimapIconFrame_Icon" file="Interface\AddOns\Karma\YinYang">
+					<Size>
+						<AbsDimension x="21" y="21"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.075" right="0.925" top="0.075" bottom="0.925"/>
+				</Texture>
+			</Layer>
+
+			<Layer level="OVERLAY">
+				<Texture file="Interface\Minimap\MiniMap-TrackingBorder">
+					<Size>
+						<AbsDimension x="56" y="56"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+
+		<Scripts>
+			<OnLoad>
+				Karma_MinimapIconFrame_OnLoad()
+			</OnLoad>
+			<OnEnter>
+				Karma_MinimapIconFrame_TooltipShow();
+			</OnEnter>
+			<OnLeave>
+				Karma_MinimapIconFrame_TooltipHide();
+			</OnLeave>
+			<OnDragStart>
+				Karma_MinimapIconFrame_IconDragStart();
+			</OnDragStart>
+			<OnDragStop>
+				Karma_MinimapIconFrame_IconDragStop();
+			</OnDragStop>
+			<OnClick>
+				Karma_MinimapIconFrame_Clicked(arg1);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="Karma_Minimap_Menu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(this, Karma_MinimapMenu_Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<!-- Copied from the general scripting error dialog -->
+	<Frame name="Karma_DialogBoxFrame" virtual="true" toplevel="true" frameStrata="DIALOG" hidden="true">
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+
+		<!-- original:
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+		</Backdrop>
+		-->
+
+		<!-- 'our' backdrop -->
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Frames>
+			<Button name="$parent_ButtonLeft">
+				<Size>
+					<AbsDimension x="160" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="10" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						local	Parent = this:GetParent();
+						Parent:Hide();
+						if (Parent.CallbackLeft_func ~= nil) then
+							Parent.CallbackLeft_func(Parent.CallbackLeft_arg1);
+						end
+					</OnClick>
+				</Scripts>
+				<NormalTexture inherits="DialogButtonNormalTexture"/>
+				<PushedTexture inherits="DialogButtonPushedTexture"/>
+				<HighlightTexture inherits="DialogButtonHighlightTexture"/>
+				<ButtonText text="_left_button"/>
+<!--
+				<NormalFont inherits="DialogButtonNormalText"/>
+				<HighlightFont inherits="DialogButtonHighlightText"/>
+-->
+				<NormalFont style="DialogButtonNormalText"/>
+				<HighlightFont style="DialogButtonHighlightText"/>
+			</Button>
+
+			<Button name="$parent_ButtonRight">
+				<Size>
+					<AbsDimension x="160" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-10" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						local	Parent = this:GetParent();
+						Parent:Hide();
+						if (Parent.CallbackRight_func ~= nil) then
+							Parent.CallbackRight_func(Parent.CallbackRight_arg1);
+						end
+					</OnClick>
+				</Scripts>
+				<NormalTexture inherits="DialogButtonNormalTexture"/>
+				<PushedTexture inherits="DialogButtonPushedTexture"/>
+				<HighlightTexture inherits="DialogButtonHighlightTexture"/>
+				<ButtonText text="_right_button"/>
+<!--
+				<NormalFont inherits="DialogButtonNormalText"/>
+				<HighlightFont inherits="DialogButtonHighlightText"/>
+-->
+				<NormalFont style="DialogButtonNormalText"/>
+				<HighlightFont style="DialogButtonHighlightText"/>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<Font name="Karma_DialogBox_MainFont" inherits="GameFontNormalLarge" virtual="true">
+		<FontHeight>
+			<AbsValue val="14"/>
+		</FontHeight>
+		<Color r="0.1" g="0.1" b="0.1"/>
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+	</Font>
+
+	<Frame name="Karma_DialogBox" inherits="Karma_DialogBoxFrame">
+		<Size>
+			<AbsDimension x="384" y="256"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="Karma_DialogBox_Text" inherits="Karma_DialogBox_MainFont" justifyH="CENTER" justifyV="TOP" nonspacewrap="true">
+					<Size>
+						<AbsDimension x="336" y="192"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnHide>
+				KARMA_MAINWND_KEEPOPEN = true;
+			</OnHide>
+		</Scripts>
+	</Frame>
+
+	<!-- tooltip for internal scanning of partymember to extract zone -->
+	<GameTooltip name="Karma_ScanningTooltip" inherits="GameTooltipTemplate">
+		<Scripts>
+			<Onload>
+				this:SetOwner(UIParent, "ANCHOR_NONE");
+			</Onload>
+		</Scripts>
+	</GameTooltip>
+
+	<Frame name="Karma_MemberlistMenu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(this, Karma_MemberlistMenu_Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Frame name="Karma_XFactionMenu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(this, Karma_XFactionMenu_Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<!-- used on: Partylist and Window2_List1 -->
+	<Frame name="Karma_MemberConflict_Menu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnShow>
+				UIDropDownMenu_Initialize(this, Karma_MemberConflict_Menu_Initialize, "MENU");
+			</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,1979 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+	..\FrameXML\UI.xsd">
+
+	<!--
+		#####
+		#####
+	-->
+	<Button name="List_OnlineTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="25" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Button name="List_KarmaValueTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="15" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" justifyH="RIGHT" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Button name="List1_NameTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="60" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				KarmaWindow_List1_OnEnter(arg1);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+			<OnClick>
+				KarmaWindow_List1_OnClick(arg1, this);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="List2_NameTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="60" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				KarmaWindow_List2_OnEnter(arg1);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+			<OnClick>
+				KarmaWindow_List2_OnClick(arg1, this);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="List_ClassLvlTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Button name="List_TalentTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parent_IconL">
+					<Size>
+						<!-- 39x39 -->
+						<AbsDimension x="13" y="13"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parent_TextL" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="13" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-35" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<Texture name="$parent_IconR">
+					<Size>
+						<!-- 39x39 -->
+						<AbsDimension x="13" y="13"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="35" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parent_TextR" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="48" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_TextWide" inherits="GameFontNormalSmall" text="" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Button name="List_LocationTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="75" y="13"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_Text" inherits="GameFontNormalSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<CheckButton name="List_SendMessageTemplate" inherits="UICheckButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="20"/>
+		</Size>
+		<Scripts>
+			<OnEnter>
+				KarmaWindow2_SendMessage_OnEnter(arg1);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+			<OnClick>
+				KarmaWindow2_SendMessage_OnClick(arg1, this);
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+
+	<CheckButton name="List_SentMessageTemplate" inherits="UICheckButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="20"/>
+		</Size>
+		<Scripts>
+			<OnEnter>
+				KarmaWindow2_SentMessage_OnEnter(arg1);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	<CheckButton name="List_PositiveReplyTemplate" inherits="UICheckButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="20"/>
+		</Size>
+		<Scripts>
+			<OnEnter>
+				KarmaWindow2_PositiveReply_OnEnter(arg1);
+			</OnEnter>
+			<OnLeave>
+				KarmaAvEnK.UI.OnLeave();
+			</OnLeave>
+			<OnClick>
+				KarmaWindow2_PositiveReply_OnClick(arg1, this);
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+
+	<!--
+		########################
+		NEW: Second Karma window
+		########################
+	-->
+	<Frame name="KarmaWindow2" parent="UIParent" hidden="true" enableMouse="true" toplevel="true" movable="true">
+		<Size>
+			<!-- x: 482->500 (+18) -->
+			<AbsDimension x="985" y="540"/>
+		</Size>
+
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+
+		<Scripts>
+			<OnLoad>
+				<!-- make it closeable with ESC -->
+				KarmaWindow2_CreateButtons();
+				tinsert(UISpecialFrames,this:GetName());
+			</OnLoad>
+			<OnMouseDown>
+				if arg1=="LeftButton" then
+					this:StartMoving()
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				this:StopMovingOrSizing()
+			</OnMouseUp>
+			<OnShow>
+				KarmaWindow2_OnShow();
+			</OnShow>
+		</Scripts>
+
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Layers>
+			<!-- Main layout layer: headers, labels, etc. -->
+			<Layer level="ARTWORK">
+				<!-- Window Header -->
+				<Texture name="KarmaWindow2_TitleBox"
+							file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				
+				<FontString name="KarmaWindow2_Title" inherits="GameFontNormal" text="KARMA_WINEL_LFM_TITLE">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="KarmaWindow2_TitleBox">
+							<Offset>
+								<AbsDimension x="0" y="11" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<!-- List1/2 Headers -->
+				<FontString name="KarmaWindow2_List1_Title" inherits="GameFontHighlight"
+							text="KARMA_WINEL_LIST1_TITLE">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="KarmaWindow2" relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="-35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="KarmaWindow2_List2_Title" inherits="GameFontHighlight"
+							text="KARMA_WINEL_LIST2_TITLE">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="KarmaWindow2_List1_Title"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="370" y="-20"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="KarmaWindowCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="4" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="KarmaWindow2_Close_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_CLOSEBUTTON">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<!-- List Frame 1 -->
+			<Frame name="KarmaWindow2_List1_Frame" hidden="false">
+				<Size>
+					<AbsDimension x="350" y="450"/>
+					<!-- Make sure it's 8 bigger than the contents, for borders -->
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow2_List1_Title"
+							relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+
+				<!--
+					Ein Eintrag:
+					- Zeit seit Online-Check
+					- Karma
+					- Name
+					- Klasse+Level
+					- (Icon) Talente
+					- (Icon) Stadt/Outdoor/PVP/Arena/Instanz/Raid
+					- (Icon) char online/alt online
+				-->
+				<Frames>
+					<Button name="KarmaWindow2_List1_HelpQuestionMark"
+							inherits="Karma_HelpQuestionMarkTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"
+									relativeTo="KarmaWindow2_List1_Frame">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="List1_Online1"
+							inherits="List_OnlineTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow2_List1_Frame">
+								<Offset>
+									<AbsDimension x="4" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List1_KarmaValue1"
+							inherits="List_KarmaValueTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List1_Online1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List1_Name1"
+							inherits="List1_NameTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List1_KarmaValue1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List1_ClassLvl1"
+							inherits="List_ClassLvlTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List1_Name1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List1_Talent1"
+							inherits="List_TalentTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List1_ClassLvl1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List1_Location1"
+							inherits="List_LocationTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List1_Talent1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<!-- ScrollFrame for List1 -->
+			<ScrollFrame name="KarmaWindow2_List1_ScrollFrame"
+			             inherits="FauxScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow2_List1_Frame"
+							relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="KarmaWindow2_List1_Frame"
+							relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-25" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						if (itemHeight == nil) then
+							KarmaChatDebug("W2L1: iH == nil!");
+							itemHeight = 13;
+						end;
+						FauxScrollFrame_OnVerticalScroll(self, offset, itemHeight, KarmaWindow2_UpdateList1);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+
+			<Button name="KarmaWindow2_Populate_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_POPULATE_TITLE">
+				<Size>
+					<AbsDimension x="130" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT"
+							relativeTo="KarmaWindow2_List1_Frame">
+						<Offset>
+							<AbsDimension x="20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if not KarmaWindow2_PopulateWindow:IsVisible() then
+							KarmaWindow2_PopulateWindow:Show();
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow2_Filter_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_FILTERLIST1_TITLE">
+				<Size>
+					<AbsDimension x="60" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+							relativeTo="KarmaWindow2_Populate_Button">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if not KarmaWindow2_FilterList1:Show() then
+							KarmaWindow2_FilterList1:Show();
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow2_Alts_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_LFMALTS">
+				<Size>
+					<AbsDimension x="60" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT"
+							relativeTo="KarmaWindow2_Filter_Button">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2_Alts_Toggle();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<!-- List Frame 2 -->
+			<Frame name="KarmaWindow2_List2_Frame" hidden="false">
+				<Size>
+					<AbsDimension x="425" y="430"/>
+					<!-- Make sure it's 8 bigger than the contents, for borders -->
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow2_List2_Title"
+							relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+
+				<!--
+					Ein Eintrag:
+					- Zeit seit Online-Check
+					- Karma
+					- Name
+					- Klasse+Level
+					- Icon: Talente
+					- Icon: Stadt/Outdoor/PVP/Arena/Instanz/Raid
+					- Icon: char online/alt online
+				-->
+				<Frames>
+					<Button name="List2_Online1"
+							inherits="List_OnlineTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="KarmaWindow2_List2_Frame">
+								<Offset>
+									<AbsDimension x="4" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List2_KarmaValue1"
+							inherits="List_KarmaValueTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List2_Online1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List2_Name1"
+							inherits="List2_NameTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List2_KarmaValue1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List2_ClassLvl1"
+							inherits="List_ClassLvlTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List2_Name1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List2_Talent1"
+							inherits="List_TalentTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List2_ClassLvl1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="List2_Location1"
+							inherits="List_LocationTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List2_Talent1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<CheckButton name="List2_SendMessage1"
+							inherits="List_SendMessageTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List2_Location1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="List2_SentMessage1"
+							inherits="List_SentMessageTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List2_SendMessage1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="List2_PositiveReply1"
+							inherits="List_PositiveReplyTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="List2_SentMessage1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+
+				<Layers>
+					<Layer>
+						<FontString name="List2_InfoText_SendMessage" inherits="GameFontNormal" text="KARMA_WINEL_SENDMESS_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-90" y="45" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="List2_InfoText_SentMessage" inherits="GameFontNormal" text="KARMA_WINEL_SENTMESS_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-60" y="30" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="List2_InfoText_PositiveReply" inherits="GameFontNormal" text="KARMA_WINEL_POSREPLY_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-30" y="15" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="List2_InfoText_Send" inherits="GameFontNormal" text="KARMA_WINEL_SEND_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="20" y="-120" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="List2_InfoText_Invite" inherits="GameFontNormal" text="KARMA_WINEL_INVITE_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="20" y="-195" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<!-- ScrollFrame for List2 -->
+			<ScrollFrame name="KarmaWindow2_List2_ScrollFrame"
+			             inherits="FauxScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KarmaWindow2_List2_Frame"
+							relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="KarmaWindow2_List2_Frame"
+							relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-25" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						if (itemHeight == nil) then
+							KarmaChatDebug("W2L2: iH == nil!");
+							itemHeight = 13;
+						end;
+						FauxScrollFrame_OnVerticalScroll(self, offset, itemHeight, KarmaWindow2_UpdateList2);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+
+			<!-- Message input box -->
+			<EditBox name="KarmaWindow2_Message_EditBox" letters="127" multiLine="false" enableMouse="true" autoFocus="false">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="15"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="40"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativeTo="KarmaWindow2_Close_Button" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+				          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+					<OnEnter>
+						KarmaWindow2_Message_EditBox_Tooltip();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide()
+					</OnLeave>
+					<OnEscapePressed>
+						this:ClearFocus();
+					</OnEscapePressed>
+				</Scripts>
+				<FontString inherits="ChatFontNormal"/>
+			</EditBox>
+
+			<Button name="KarmaWindow2_QueryNotesPub_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_QUERYNOTESPUB_BTNTITLE">
+				<Size>
+					<AbsDimension x="150" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"
+							relativeTo="KarmaWindow2_List2_Frame">
+						<Offset>
+							<AbsDimension x="0" y="-75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2_QueryNotesPub();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow2_SendMessage_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_SENDMESSAGE_BTNTITLE">
+				<Size>
+					<AbsDimension x="150" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"
+							relativeTo="KarmaWindow2_List2_Frame">
+						<Offset>
+							<AbsDimension x="0" y="-150"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2_SendMessage();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow2_Invite_Button" inherits="UIPanelButtonTemplate"
+						text="KARMA_WINEL_INVITE_BTNTITLE">
+				<Size>
+					<AbsDimension x="150" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"
+							relativeTo="KarmaWindow2_List2_Frame">
+						<Offset>
+							<AbsDimension x="0" y="-225"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2_Invite();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<!-- Populate... window -->
+	<Frame name="KarmaWindow2_PopulateWindow" frameStrata="HIGH" parent="UIParent" hidden="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="345" y="370"/>
+		</Size>
+	
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="KarmaWindow2" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Scripts>
+			<OnLoad>
+				<!-- make it closeable with ESC -->
+				tinsert(UISpecialFrames,this:GetName());
+				KarmaWindow2_CreateButtons();
+			</OnLoad>
+		</Scripts>
+		
+		<!-- Populate... window: Frames -->
+		<Frames>
+			<Frame name="KarmaWindow2_PopulateWindow_Frame" inherits="KarmaOptionsWindow_FrameBoxTemplate">
+				<Size>
+					<AbsDimension x="320" y="305"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="13" y="-13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Checkbox title -->
+						<FontString name="KarmaWindow2_PopulateWindow_Channel_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_POPULATE_CHANNEL_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="40" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaWindow2_PopulateWindow_Channels_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_POPULATE_CHANNELS_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow2_PopulateWindow_Channel_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-45"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Editbox title -->
+						<FontString name="KarmaWindow2_PopulateWindow_Level_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_POPULATE_LEVEL_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow2_PopulateWindow_Channels_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="-30" y="-35"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaWindow2_PopulateWindow_Class_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_POPULATE_CLASS_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow2_PopulateWindow_Level_Editbox_Title">
+									<Offset>
+										<AbsDimension x="30" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbox title -->
+						<FontString name="KarmaWindow2_PopulateWindow_Classes_Checkbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_POPULATE_CLASSES_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow2_PopulateWindow_Class_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-45"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaWindow2_PopulateWindow_Guild_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_POPULATE_GUILD_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow2_PopulateWindow_Classes_Checkbox_Title">
+									<Offset>
+										<AbsDimension x="0" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<Button name="KarmaWindow2_PopulateWindow_HelpQuestionMark"
+							inherits="Karma_HelpQuestionMarkTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT"
+									relativeTo="KarmaWindow2_PopulateWindow_Frame">
+								<Offset>
+									<AbsDimension x="-5" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaWindow2_PopulateWindow_Channel_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_PopulateWindow_Channel_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if (this:GetChecked() == 1) then
+									KarmaWindow2_PopulateWindow_ClickedSearch(this);
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<Frame name="KarmaWindow2_PopulateWindow_Channel_DropDown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT"  relativePoint="BOTTOMLEFT"
+									relativeTo="KarmaWindow2_PopulateWindow_Channel_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindow2_PopulateWindow_Channel_DropDown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<!-- level range box -->
+					<EditBox name="KarmaWindow2_PopulateWindow_Level_Editbox" letters="5" multiLine="false" enableMouse="true" autoFocus="false">
+						<Size>
+							<AbsDimension x="75" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaWindow2_PopulateWindow_Level_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+						          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="16"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="5" right="5" top="5" bottom="5"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnShow>
+								KarmaWindow2_PopulateWindow_Level_Editbox_OnShow();
+							</OnShow>
+							<OnLoad>
+								this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+								this:SetBackdropColor(0.1, 0.1, 0.1);
+							</OnLoad>
+							<OnTabPressed>
+								this:ClearFocus();
+							</OnTabPressed>
+							<OnEscapePressed>
+								this:ClearFocus();
+							</OnEscapePressed>
+						</Scripts>
+						<FontString inherits="ChatFontNormal"/>
+					</EditBox>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaWindow2_PopulateWindow_Channels_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_PopulateWindow_Channels_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if (this:GetChecked() == 1) then
+									KarmaWindow2_PopulateWindow_ClickedSearch(this);
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaWindow2_PopulateWindow_Class_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_PopulateWindow_Class_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if (this:GetChecked() == 1) then
+									KarmaWindow2_PopulateWindow_ClickedSearch(this);
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<Frame name="KarmaWindow2_PopulateWindow_Class_DropDown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT"  relativePoint="BOTTOMLEFT"
+									relativeTo="KarmaWindow2_PopulateWindow_Class_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindow2_PopulateWindow_Class_DropDown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<!-- Checkbox (Title see above!) -->
+					<CheckButton name="KarmaWindow2_PopulateWindow_Classes_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_PopulateWindow_Classes_Checkbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if (this:GetChecked() == 1) then
+									KarmaWindow2_PopulateWindow_ClickedSearch(this);
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<CheckButton name="KarmaWindow2_PopulateWindow_Guild_Checkbox" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_PopulateWindow_Guild_Editbox_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if (this:GetChecked() == 1) then
+									KarmaWindow2_PopulateWindow_ClickedSearch(this);
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaWindow2_PopulateWindow_Guild_Editbox" letters="50" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="150" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="KarmaWindow2_PopulateWindow_Guild_Editbox_Title">
+								<Offset>
+									<AbsDimension x="30" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+				</Frames>
+			</Frame>
+
+			<Button name="KarmaWindow2_PopulateWindow_Ok_Button" inherits="UIPanelButtonTemplate"
+					text="KARMA_WINEL_OK">
+				<Size>
+					<AbsDimension x="75" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2_PopulateWindow_Execute();
+						KarmaWindow2_PopulateWindow:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow2_PopulateWindow_Apply_Button" inherits="UIPanelButtonTemplate"
+					text="KARMA_WINEL_APPLY">
+				<Size>
+					<AbsDimension x="85" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2_PopulateWindow_Execute();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow2_PopulateWindow_Cancel_Button" inherits="UIPanelButtonTemplate"
+					text="KARMA_WINEL_CANCEL">
+				<Size>
+					<AbsDimension x="75" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2_PopulateWindow:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<!-- Filter window: minKarma, minSkill, classKnown -->
+	<Frame name="KarmaWindow2_FilterList1" frameStrata="HIGH" parent="UIParent" hidden="true" enableMouse="true">
+		<Size>
+			<!-- 256, 170 -->
+			<AbsDimension x="410" y="430"/>
+		</Size>
+	
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="KarmaWindow2_List1_Frame" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	
+		<Scripts>
+			<OnLoad>
+				<!-- make it closeable with ESC -->
+				tinsert(UISpecialFrames,this:GetName());
+			</OnLoad>
+			<OnShow>
+				KarmaWindow2_FilterList1_Init();
+			</OnShow>
+		</Scripts>
+	
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+
+		<!-- Filter window: Frames -->
+		<Frames>
+			<Frame name="KarmaWindow2_FilterList1_Frame" inherits="KarmaOptionsWindow_FrameBoxTemplate">
+				<Size>
+					<AbsDimension x="385" y="360"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="13" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(KARMA_WINEL_FILTER_TITLE);
+					</OnLoad>
+				</Scripts>
+
+				<Layers>
+					<Layer>
+						<!-- Editbox title -->
+						<FontString name="KarmaWindow2_FilterList1_KarmaMin_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTERLIST1_KARMAMIN_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="15" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_KarmaReq_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTERLIST1_KARMAREQ_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_KarmaMin_Editbox_Title">
+									<Offset>
+										<AbsDimension x="30" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- DropDown title -->
+						<FontString name="KarmaWindow2_FilterList1_SkillMin_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTERLIST1_SKILLMIN_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_KarmaReq_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="-30" y="-40"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_ClassReq_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTERLIST1_CLASSREQ_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_SkillMin_Editbox_Title">
+									<Offset>
+										<AbsDimension x="30" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Editbox title -->
+						<FontString name="KarmaWindow2_FilterList1_LevelRange_Editbox_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_FILTERLIST1_LEVELRANGE_TITLE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_ClassReq_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="-30" y="-40"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_HPS_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_HPS" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_LevelRange_Editbox_Title">
+									<Offset>
+										<AbsDimension x="30" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_TANK_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_TANK" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_HPS_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_DPS_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_DPS" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_TANK_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Melee_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_MELEE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_HPS_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="170" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Range_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_WINEL_RANGED" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Melee_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Druid_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_DRUID_F" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_DPS_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Mage_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_MAGE_F" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Druid_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Priest_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_PRIEST_F" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Mage_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Shaman_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_SHAMAN_F" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Priest_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Warlock_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_WARLOCK_F" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Shaman_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Hunter_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_HUNTER_M" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Druid_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="170" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Paladin_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_PALADIN_M" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Hunter_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Rogue_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_ROGUE_M" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Paladin_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Warrior_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_WARRIOR_M" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Rogue_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!-- Checkbutton title -->
+						<FontString name="KarmaWindow2_FilterList1_Deathknight_Checkbutton_Title" inherits="GameFontHighlight"
+								text="KARMA_CLASS_DEATHKNIGHT_M" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"
+										relativeTo="KarmaWindow2_FilterList1_Warrior_Checkbutton_Title">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<!-- Editbox -->
+					<EditBox name="KarmaWindow2_FilterList1_KarmaMin_Editbox" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="48" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaWindow2_FilterList1_KarmaMin_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_KarmaReq_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_KarmaReq_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+
+					<!-- minSkill DropDown -->
+					<Frame name="KarmaWindow2_FilterList1_SkillMin_DropDown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT"  relativePoint="TOPRIGHT"
+									relativeTo="KarmaWindow2_FilterList1_SkillMin_Editbox_Title">
+								<Offset>
+									<AbsDimension x="-5" y="6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								KarmaWindow2_FilterList1_SkillMin_DropDown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_ClassReq_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_ClassReq_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+
+					<!-- Editbox -->
+					<EditBox name="KarmaWindow2_FilterList1_LevelRange_Editbox" letters="5" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="64" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="KarmaWindow2_FilterList1_LevelRange_Editbox_Title">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</EditBox>
+
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_HPS_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_HPS_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_TANK_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_TANK_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_DPS_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_DPS_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Melee_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Melee_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Range_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Range_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Druid_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Druid_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Mage_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Mage_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Priest_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Priest_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Shaman_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Shaman_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Warlock_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Warlock_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Hunter_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Hunter_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Paladin_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Paladin_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Rogue_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Rogue_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Warrior_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Warrior_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Checkbox -->
+					<CheckButton name="KarmaWindow2_FilterList1_Deathknight_Checkbutton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="KarmaWindow2_FilterList1_Deathknight_Checkbutton_Title">
+								<Offset>
+									<AbsDimension x="-10" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+			</Frame>
+
+			<Button name="KarmaWindow2_FilterList1_Ok_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_OK">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2_FilterList1_Ok();
+						KarmaWindow2_FilterList1:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="KarmaWindow2_FilterList1_Cancel_Button" inherits="UIPanelButtonTemplate" text="KARMA_WINEL_CANCEL">
+				<Size>
+					<AbsDimension x="90" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-13" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KarmaWindow2_FilterList1:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

@@ -1,0 +1,12 @@
+<Bindings>
+	<Binding name="COMMONERSQUEST_KRBREUPRDMRE_EDIT" description="Opens or closes CommonersQuest's edit window" runOnUp="true" header="COMMONERSQUEST">
+		if ( keystate ~= "down" ) then
+			CommonersQuest.Toggle(nil, 1);
+		end
+	</Binding>
+	<Binding name="COMMONERSQUEST_KRBREUPRDMRE_QLOG" description="Opens or closes CommonersQuest's questlog" runOnUp="true">
+		if ( keystate ~= "down" ) then
+			CommonersQuest.Toggle(nil, 2);
+		end
+	</Binding>
+</Bindings>

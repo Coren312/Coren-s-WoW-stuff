@@ -1,0 +1,15 @@
+## Interface: 30300
+## Title: Karma
+## Version: 30300.02
+## Notes: Rating system for players of your faction
+## Notes-deDE: Bewertungssystem für Spieler/-innen der eigenen Fraktion
+## SavedVariables: KarmaConfig, KarmaData
+## Author: Kärbär, EU-Proudmoore (original author Aveasau, revived by Endareth)
+## X-Date: 2009-12-15
+## X-Email: n/a
+## X-Website: http://www.wowinterface.com/downloads/info8712-KarmaplayertrackingLFGtool.html
+## X-Category: MYADDONS_CATEGORY_OTHERS
+## X-Help: KARMA_MYADDONS_HELP
+## DefaultState: enabled
+Karma.xml
+

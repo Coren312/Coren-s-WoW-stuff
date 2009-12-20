@@ -1,0 +1,450 @@
+
+20090416 (v30100.1): >>
+New:
+- it is now possible to enable time/zone/quest tracking for the whole raid, see '/karma raid' for more information
+- tooltip: added the option to display the time played together with the player (total time or time for the current character)
+- public note:
+  - when the player is in a guild, various hooked menus got an additional entry, this allows to collect the public note about a player in the guild
+    (the public notes from others are currently NOT stored)
+  - the public note is either spammed into chat if the player is not yet on your Karma list,
+    or it is silently stored and you get it as tooltip of the <!> - area on the "Other data" page when you select that player
+
+- new command to query about the public note: '/karma sharequery', this allows to query other audiences besides guild
+
+Changes:
+- on group changes Karma delays 10 seconds to let the Blizzard UI enter a sane state
+- when trying to convert a name to a unit, raid is now also considered
+- the public note request format was slightly changed on purpose to make it impossible to mine people with an older version who can't disable it...
+
+Fixes:
+- /who: stopped spamming debug output when the social frame is open...
+- updating the DB from ancient versions was broken, fixed
+- throwing a few bits around for sanity's sake...
+<< (v30100.1): 20090416
+
+20090423 (v30100.2): >>
+New:
+- autoclean pvp: this cleans Karma's list from cross-server people every time after you leave the BG (actually, after leaving the 'raid')
+- shareconfig: you can set a data channel for Karma now
+- sharequery: new audience '#' to query into the data channel you set with shareconfig
+  (Karma won't use the channel *UNTIL* it saw any message in it! Say something in the channel to let Karma validate it)
+
+Changes:
+- tracking the whole raid is now on BY DEFAULT
+- public notes: added a history
+- forceupdate: now queueing an automatic update automatically after clearing the conflict
+- regions that are added due to Blizzard's flakey update mechanism (entries with zero duration) are removed if older than one day
+- LFG window: added raw talents to tooltip
+
+Fixes:
+- LFG window: checking channel doesn't forget the selection any longer
+- selecting of which output of Karma shall go to which chat windows should work again
+<< (v30100.2): 20090423
+
+20090424 (v30100.3): >>
+New:
+- LFG window: button to (queue up) sharequery for all selected players
+- sharequery: informant is now colored according to their Karma (if they have any)
+
+Changes:
+- sharequery: clearer error messages for #channel sending
+
+Fixes:
+- while integrating raid tracking, group tracking got partly broken... oops. fixed.
+<< (v30100.3): 20090424
+
+20090429 (v30100.4): >>
+New:
+- main window, "previous people" list: it's now possible to display some other lists there, e.g.:
+  * raid history: raid compositions of the current session can be reviewed
+  * mouseover: the /karma mouseover list is now a bit more accessible
+- added an informational message if cross-faction data is waiting to be integrated
+- Strand of the Ancients and Wintergrasp: now recognized as pvp zones
+
+Changes:
+- chat filtering: changed around stuff to get rid of the dirty hook into chatframes... (currently not enabled by default) :D
+- version check in guild: now just checking if you got a guild, not if people are online besides you (Blizzard UI is sometimes misleading there)
+- channel reset is only done when *custom* channels change
+- if tooltip is online enriched with shift, Karma value itself is still immediately inserted
+- if more than 5 alts are in the alt group, the tooltip should break it into two lines
+- warning message for player-changed-race-or-class: player is now clickable also when he's in the group
+- add and ignore commands: should now also use the level, race, class from the /who result
+- localization: some strings were changed in a slightly non-compatible way (*UNITPOPUP*)
+
+Fixes:
+- various duration displays: showed hour at minute and minute at second... fixed
+- self-character selection (show data for...) was sometimes flakey... partly fixed
+<< (v30100.4): 20090429
+
+20090504 (v30100.5): >>
+Changes:
+- mouseover list: clearer error message for not executed actions
+
+Fixes:
+- mouseover list: copy&paste error in query channel/guild... fixed
+- chat filtering (new variant): the decision, if a channel is active in the current window, is made by code *after* the filtering... adjusted to that -- uh, logic?
+<< (v30100.5): 20090504
+
+20090507 (v30100.6): >>
+New:
+- sharing options got their UI part in the options window: channel got a default value, autojoin/-hide is off per default
+
+Changes:
+- more gear quality levels
+- memberlist selections: mouse-seen is now third instead of last to keep it from shifting when you join/leave raids/bgs
+
+Fixes:
+- various pointless (and potentially harmful) code removed
+<< (v30100.6): 20090507
+
+20090507 (v30100.7): >>
+Changes:
+- LFG window filter: added deathknight
+- LFG window filter: default level range now 1-80 (i.e. no filter by level)
+
+Fixes:
+- BG "raids": should now properly create raid history
+- raid history: should now properly display the attendence for the selected raid 
+<< (v30100.7): 20090507
+
+20090508 (v30100.8): >>
+New:
+- added "query in channel" to the menus that already had "query in guild" (if you have a channel name set)
+- added delayed 'self-test' of share-channel to enable it (if no other message happen before)
+
+Changed:
+- various commands that were queued and delaying other subsequent commands are now waiting "outside" the regular command queue
+
+Fixes:
+- name@server shouldn't blur outside the partylist/memberlist anymore
+<< (v30100.8): 20090508
+
+20090509 (v30100.9): >>
+New:
+- newer kind of chat markup has an option to enable it
+
+Changes:
+- right-click menu on cross-server entries: removed "invite" and "update"
+- shift-click on cross-server entries: should now use name-server instead of name@server :)
+
+Fixes:
+- help: unset secondary window without any existing secondary window should now properly use the main window for output
+<< (v30100.9): 20090509
+
+20090520 (v30102.1): >>
+Changes:
+- workaround (by using a completely inappropriate function) to Blizzard's mind-boggling avoidance of GameTooltip.SetUnit() on players (the actual player graphic, not any unit frame)
+- workaround to tooltip name colorization in hook of GameTooltip.SetUnit() (it gets lost for no inferable reason)
+<< (v30102.1): 20090520
+
+20090528 (v30102.2): >>
+New:
+- added switches to disable various types of tracking (because some people use Karma just as a fancy note keeper...), they still lack UI elements though
+- implemented tracking for group-related achievements (PvP/Arena category, Dungeon&Raid categories -- missing: seasonal categories), but did not enable it yet per default (more internal testing for partial achievements wanted, because it must be deduced indirectly -- Blizzard sends events *only* for completely done achievements, not for progress)
+
+Changes:
+- options window is now on the standard UI page (Interface -> AddOns)
+<< (v30102.2): 20090528
+
+20090529 (v30102.3): >>
+New:
+- added two options to sort/color: time/xp summed across all chars of yours
+- "Show total data" is now selectable and shows summed time&xp (only absolute values)
+
+Testing: (only happens if you have beta switch enabled)
+- started to change some db stuff: no more creating containers for each alt until the player joins that alt (this can reduce the database size considerably)
+- some more stuff related to achievement tracking
+
+Changes:
+- sorting: is now always related to your current char, no matter what is selected on the "Show data related to..." menu
+- /karma xupdate gives slightly more information about what it chose to do
+
+Fixes:
+- "Show data for ..." menu: the click area was pretty small, widened
+- sorting: accidently added players twice in time/xp based sorting modes, removed duplicates
+- sorting: corner cases (e.g. grouped for half a second) ended up at the wrong end, fixed
+- "joined with current char" now really shows joined with current char, not with data-selected
+- Signatures.txt: added missing .lua entries
+<< (v30102.3): 20090529
+
+20090530 (v30102.4): >>
+New:
+- if Karma is blocking target/focus, a dialog pops which allows now to deactivate Karma's context menu entries for those who prioritize 'target'/'focus' higher
+- command '/karma tracking' for those eager to disable various tracking options
+
+Fixes:
+- some global taint removed (while trying anything to avoid the 'target'-taint issue...)
+<< (v30102.4): 20090530
+
+20090601 (v30102.5): >>
+Changes:
+- LFG window shift-click: if there is info, the name of the char is now clickable
+- Post To Chat: cut down information to a smaller set (aggregated dungeons, removed private note, added public instead, removed "joined with")
+- rewrote large portions of achievement tracking again
+  * checking for partial progress much optimized, triggers straigthened
+  * now also picking up selected world event achievements which are group-related
+
+Fixes:
+- showing notes on /who: often didn't display due to missing initialisation, fixed
+- "Show data to" was wrongly displayed on the 2nd 'tab' of the main window since last version, fixed
+- achievement tracking: missing local function in debug-output, fixed
+<< (v30102.5): 20090601
+
+20090604 (v30102.6): >>
+New:
+- achievement tracking is out of beta :-)
+
+Fixes:
+- ninja-change of Blizzard (FriendsFrame_OnHide went dysfunctional, making /whos of Karma block indefinitely when the frame was opened while a /who-query was in progress), work-around in place
+- various stuff around achievement tracking fixed
+<< (v30102.6): 20090604
+
+20090609 (v30102.7): >>
+New:
+- Achievements: added shift-click (creates chat link) and middle-click (opens the selected achievement in Achievement UI)
+- Filter dialog: added "name contains" and "joined after/before"
+- Option window: category "Standard features" for people who want to disable various group tracking parts of Karma
+
+Changes:
+- should now also filtering GEM 3.x (pointlessly incompatible to GEM 2.x meta-format)
+
+Fixes:
+- some cleanup around the options window
+<< (v30102.7): 20090609
+
+20090617 (v30102.8): >>
+New:
+- if /who gets broken by Ace::WhoLib or similar, that should be recognized and the command queue be unlocked; there is also an initial warning and regular reminders to ask for a '/console reloadui'
+- if you are in a pvp-zone, the time tracked there can now be ignored for VirtualKarma
+- tracking the most recent change done to an entry (to get an age of an entry for a future additional database clean parameter), displayed in tooltip of Karma window
+- added "select in Karma window" to LFM window right-click menu (formerly menu was just shown on conflicts)
+- "total data": listing all regions for all chars (grouped by char)
+
+Changes:
+- achievement: linking should now insert into the chatline instead of completely overwriting it
+- trying to fix the incorrect out-of-instance region entries
+  - not adding current zone when player is a ghost
+  - on zone change now forces the global map to be initialized
+- LFM window: the green timestamp should now properly turn yellow when the person wasn't seen more than 5m in #LFG
+- LFM window: color to zone assignment slightly changed (red=pvp, yellow=outdoors, turquoise=5-man, blue=10-man, purple=25-man)
+- help has been split up into multiple parts
+- random updates in background: entries with +conflict got a higher priority to be selected for update
+- full exchange: delaying request according to received data
+- WIM: should now work properly with newer chat version (filters instead of hook)
+
+Fixes:
+- scrolling to current member: the previous optimization was a bit too optimized... fixed
+- achievement tracking: final completion for partless achievements wasn't properly tracked... fixed
+- tooltip info for Blizzard LFG window was breaking alignment for groups... fixed
+- Karma's LFM-window: now also regularly updating the list of selected players
+- main chat window can now *actually* be set per char...
+- removed some pointlessly created tables
+<< (v30102.8): 20090617
+
+20090622 (v30102.9): >>
+New:
+- an inferred talent spec is now used if the talent point distribution is known and one tree clearly dominates (> 40 points)
+- added achievements from 'General' to track: levelling, money, needy, greedy
+
+Changes:
+- talent setting window: now displaying the points which the spec should be according to
+- tooltip display of talents should now be the same in all tooltips: spec {points}
+
+Fixes:
+- LFM window: DK should now be sorted like a warrior; order of dps classes changed (dps/m (physical), dps/r (magic), dps/r (physical))
+<< (v30102.9): 20090622
+
+20090704 (v30102.A): >>
+Changes:
+- if possible, the exchange channel is already validated at joining
+- the message for channel change should now appear even less frequently
+- an empty database shouldn't loop any longer when trying to find someone to update while /afk
+- setting the map to the current zone to get valid data isn't happening now when on a taxi, mounted or the map is shown
+<< (v30102.A): 20090704
+
+20090711 (v30102.B): >>
+Changes:
+- guessing of spec from talents now takes total talent points used into consideration instead of a hard >40 margin (for non-80 players)
+- checking for class: now starts with no race and only explodes into check-per-race if that were too many
+- checking for class: if a level range is given, too many results will also lead to more checks with smaller level ranges, with level 80 check split off first
+- checking for class: some completion messages make a bit more sense now
+<< (v30102.B): 20090711
+
+20090716 (v30102.C): >>
+Changes:
+- shortened tooltip doesn't say "time" anymore, if the actual time is 0, nor "talents" anymore if they contain only specs with ?s
+- changed the main sort routine a bit to be slightly more efficient
+- slider: not anymore updating the memberlist on Karma change, if it's not sorted by Karma
+- slider: only re-sorting when the slider has been let go (i.e. once, no sorting while moving)
+- LFM: doesn't pointlessly update Karma window anymore while checking for players
+- minimap menu: removed code to force expanding the first submenu to the left (because that killed the automatic aligning by the default UI)
+- minimap menu: greyed options that do nothing for the current target
+- minimap menu: added "separators" before the "cancel" option, moved "cancel" to the bottom if possible
+<< (v30102.C): 20090716
+
+20090721 (v30102.D): >>
+New:
+- a (not very pretty but working) LDB broker
+
+Changes:
+- DPS/? is now considered an indefinite spec (just like ???/R has been)
+<< (v30102.D): 20090721
+
+20090724 (v30102.E): >>
+New:
+- LFM window: added a button to show alts of people (on adding an alt and sending a message, the message is automatically sent to the main char)
+- LFM window: on first opening, it now automatically adds online guild members and people in LFG channel (if you're LFG)
+- LFM window: replaced talent spec texts where possible with the LFG window icons, for ranged dps some class specific icons are shown (but not class+talent specific, all mages get the same icon...)
+- DB: sparse option available to make Karma use a bit less space at the price of a bit of user inconvenience
+- Broker: added some mouse interaction, similar to the minimap icon
+
+Changes:
+- minimap menu: offset a bit to the topright to not overlay the icon (looks weird on minimap at the bottom :D)
+
+Fixes:
+- old chat markup was partially broken, fixed
+- LFM window: in old chat markup mode, checking channels didn't work, fixed
+<< (v30102.E): 20090724
+
+20090726 (v30102.F): >>
+Changes:
+- localization: zhTW update from SuKai
+- localization: zhTW merge-updated help from enUS
+- localization: deDE updated help
+- localization: changed all localization files slightly to allow easier automatic parsing (every key/value ends with a semicolon, every table entry with a comma)
+- localization: added localization.<language>.missing.txt for missing translation keys in deDE and zhTW
+<< (v30102.F): 20090726
+
+20090727 (v30102.10): >>
+Fixes:
+- corrected reference to renamed function regarding talents in tooltips
+<< (v30102.10): 20090727
+
+20090731 (v30102.11): >>
+New:
+- sorting: new sort mode "by guild", groups players of same guild together, automatically adds a meta-entry for each guild on the memberlist (two sub modes, top puts the players without guild as the first block, bottom as the last block)
+- addguild: manually adds a new meta-entry for a guild (only accessible in one of the "guild" sort modes), entry is colored bright green
+- filter: new filter "by guild", prefix is "g-"
+- broker: added a line with current length of command queue (with ctrl also the first 9 pending commands)
+
+Changes:
+- filter: changed to allow spaces in filters, if the filter value is encased in quotes (no quotes inside the value allowed), e.g. [i-"nice guy"] filters for nice guy in private notes
+- Karma slider: now updates the current value "live" again
+- forced update: modifies "last action" field with "update"+timestamp
+- LFM talents: on identical values, only one spec should be showed and if that's text, centered (was missing for members)
+
+Fixes:
+- LFM: initial opening now *really* checks in LFG channel if you're in it
+- LFM with alts: clicks/tooltips on alts are now properly working
+- bug in initialization of conflict menu on LFM window fixed
+<< (v30102.11): 20090731
+
+20090810 (v30200.01): >>
+Changes:
+- .TOC bump for 3.2
+- added categories for CotC - achievements (they were already recognized, this just avoids the message at login)
+
+Fixes:
+- still trying to get a consistent type (outdoor, dungeon, raid, ...) for zones (asynchronous updating of zone type and zone location is the core of this issue)
+- dual spec: for known players, two ???-specs are now merged properly to one
+<< (v30200.01): 20090810
+
+20090814 (v30200.02): >>
+New:
+- minimap/LDB menu: now working off additional name sources (chat, raid members, mouseover) - a valid target overrides though!
+- minimap/LDB menu: added "select in Karma's window"
+- main window: added a "scroll to this char" button on the top right
+
+Changes:
+- chat/unit menu: default is now OFF (toggle in Options/Other), as X-Perl fixed the /focus issue
+- markup: default is now the newer version (via filters)
+- localization update for zhTW by Sukai
+
+In progress:
+- preparing to (ab)use the new builtin name by class markup (much less intrusive)
+- colors for by time/by exp are quite hard to read depending on the chat window background, they will be replaced by brighter colors (or even be configurable)
+
+Fixes:
+- Karma shouldn't try to update cross-server entries any longer
+- internal sort routine: better range check
+<< (v30200.02): 20090814
+
+20090817 (v30200.03): >>
+New:
+- color spaces for color-by can now be configured
+- color spaces for color-by-time and color-by-xp have been changed slightly
+
+Fixes:
+- LFM window: toggling alts should now properly remove alts at all times
+- options tooltips are now displayed in the place they'd be expected
+<< (v30200.03): 20090817
+
+20090825 (v30200.04): >>
+New:
+- sorting: added two new choice, by level and by level/all (sorts by *relative* xp, not absolute, so doing 30% in lvl 30 is similar to 30% in lvl 80)
+
+Changes:
+- sorting: should now be *much* faster for sorting by time/xp
+
+In progress:
+- still fiddling around with new markup code
+<< (v30200.04): 20090825
+
+20091011 (v30200.05): >>
+New:
+- achievement: checking for terrorist achievements on group members
+- add member stores the GUID from the chat, if available
+
+Fixes:
+- added missing chat filter for emotes
+- sharing: levels are now properly displayed in the options window
+- menu should now work properly also for targets from chat/mouseover/etc.
+- re-added lost menu entry for "mob-stealer"
+- cleanup of implicit argument from target, added checks for server
+<< (v30200.05): 20091011
+
+20091020 (v30200.06): >>
+Changes:
+- mob player check: not showing result per-player in raids, but a total
+
+Fixes:
+- issue with Wintertimer/WIM should be fixed
+<< (v30200.06): 20091020
+
+20091129 (v30200.07): >>
+New:
+- added achievement groups for 3.3 (ICC raids)
+- added new filter "r-<instance>" (e.g. "r-Naxxramas")
+
+Changes:
+- LFG tooltip: not adding an extra line, instead the Karma rating (plus note notifier "+") are padded into the 'regular' line after the name
+- "Test clean" button got a tooltip to reduce confusion
+
+Fixes:
+- corrected a long-standing issue with the checkboxes in the "Database cleansing" options
+- added a number of additional updates to the cache that holds the main list
+<< (v30200.07): 20091129
+
+20091212 (v30300.01): >>
+Changes:
+- added instance "size" to region tracking
+- quest type "log" is no longer tracked (typically, this is a "talk to $Foo" quest that's 'completed' when you get it)
+- pvp areas are no longer tracked
+
+Fixes:
+- some issues around quest/region/zone tracking (hopefully) fixed
+<< (v30300.01): 20091212
+
+20091215 (v30300.02): >>
+New:
+- tracking the zone you see first after joining someone (to track pvp joins)
+- new clear option to remove those who joined you first in pvp zones (defaults to enabled)
+
+Changes:
+- sharing: less spammy
+- UI: replaced the two buttons for tracked/other data with tab buttons
+
+Fixes:
+- sharing: added checks for empty channel name
+<< (v30300.02): 20091215
+

@@ -1,0 +1,13 @@
+
+1. Add my key to your keyring.
+
+2. Create a file Blob.all by (Unix: cat) (Windows: xcopy) the files in this order: (Should be *.lua *.xml in an average shell)
+
+karmaAchievements.lua karmaBase.lua karmaChat.lua karmaDB.lua karma.lua karmaSlash.lua localization.de.lua localization.fr.lua localization.lua localization.tw.lua
+bindings.xml karmaWndLFG.xml karmaWndMain.xml karmaWndOpt.xml karma.xml
+
+3. gpg --verify Blob.asc Blob.all
+
+That should output:
+gpg: Good signature from "Coren"
+

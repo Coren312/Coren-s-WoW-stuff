@@ -1,0 +1,524 @@
+20080416: Added visible credits for original author Aveasau and "resurrector" Endareth, this AddOn is not *new* in the true sense, I was merely the last "official" co-author.
+
+20080417 (v20400.2): Added additional column next to the list of people to display their Karma value.
+
+20080418 (v20400.3): Added the Karma value column also in the list of people in the current party.
+
+20080421 (v20400.4): >>
+Changes:
+- (implicit) /who-calls *finally* queue properly, i.e. the queue doesn't get stuck terminally when it once fails to get a reply
+- myAddOns support slightly improved (+ help)
+- "/karma qcachewarn": command to toggle the Questlog-is-partially-collapsed warning
+- randomly selected members for "/karma update" (i.e. without a commandline argument nor current target): the process is more likely to succeed after it checked each place of the alphabet once
+- clicking on a member with the middle mouse button executes an update request (without selecting the member actually)
+
+Fixes:
+- another correction at the multilingual front... (internal 'ClassID' is only updated, when 'Class' is known in the current locale)
+- mouseover in memberlist shouldn't cough at "Unknown" anymore
+
+Internal:
+- .TOC is now UTF-8, allowing accented letters (the usual escape codes obviously don't work)
+- reading the version from the .TOC file (always forgetting to keep the string in localisation.lua synchronous...)
+- removed various return nil from Set* functions
+- cut identical intro from helptext, injecting at output loop
+<< (v20400.4): 20080421
+
+20080502 (v20400.5): >>
+Changes:
+- a bunch of new values added, notably: Talent (so you can finally flag that paladin as tank, warrior as dps and shaman as healer!)
+- UI: lots of changes, *still* trying hard to find a way to split the amount of information in useful groupings :/
+- a dozen new commands waiting for a proper UI counterpart and help (try /karma checkclass Warrior and /karma showonline for some stuff that's on the TODO list...)
+
+Fixes:
+- longterm bug: when a *new* person (new to Karma) joined your group, tracking wasn't working until the group changed somehow (order, another join/leave)
+
+Internal:
+- two old unused values in DB get removed now
+- the xml file is split in three, it got really unreadable large a long time ago :D
+<< (v20400.5): 20080502
+
+20080504 (v20400.6): >>
+Changes:
+- fleshed out a bunch of commands, changed command alts to altadd/altrem/altlist
+- can add alts also with right-click menü in the Karma window, joins clicked member with currently selected member
+- LFM window:
+  - is now of *some* use
+  - (and has a name, kinda)
+  - sort there is always by "talent"
+  - got a key binding, yay!
+  - tooltip on left side also lists the alts as known
+  - middle click on left side queues a /who-update request
+- Minimap icon: when simpleMinimap et. al. returns a different shape than "round", the icon should end on the square border now
+- looked over the old logic regarding pvp - entries, changed stuff around so the server is a part of the name for a cross-server entry
+
+Fixes:
+- some implicit fixes with the pvp and the internal changes
+
+Internal:
+- some initial code for AddOn communication: version, playerinfo (the latter yields a Karma "impression")
+- many Karma_GetMemberObject replaced by Karma_MemberList_GetObject
+- many times the same code as Karma_MemberList_GetObject replaced with call
+<< (v20400.6): 20080504
+
+20080505 (v20400.7): >>
+Changes:
+- tooltips for some helping info can be disabled now
+- questcache warning can be disabled in option window now
+
+Fixes:
+- a correction with a fallout from internal changes in v20400.6
+<< (v20400.7): 20080505
+
+20080510 (v20400.8): >>
+Changes:
+- quests:
+--- the "official" id can be scanned meanwhile via questlink-request, it displayed in the questlist, no more reliance on the non-unique quest names :-)
+--- the "official" id is also added to existing quests by name, if they have no id yet
+- semi-automatic storing of talents is in, but per default disabled right now
+- LFM window:
+--- new subwindow (button at the top right of the left list) to populate the list of players online
+--- online in channel checks are now queued, so *all* channels can be queued via the new subwindow
+--- %t in the message at the bottom gets replaced with the name of the player the message gets sent to
+--- online checks over 30m ago get a different timestamp format to keep them readable
+
+Internal:
+- some more "local" variables
+<< (v20400.8): 20080510
+
+20080511 (v20400.9): >>
+Changes:
+- dateformat in frFR and deDE is now day/month/year instead of month/day/year
+- sortby class now ignores gender if possible, i.e. each class is not anymore split up in two groups for male female
+- tooltip in main Karma window now also on the party member list, slightly trimmed down
+
+Fixes:
+- talent checking should now work, you can de-/activate it with /karma autochecktalents
+- sortby class is now more forgiving for broken memberlist entries
+- version check now understands that 20400.10 is after 20400.9 (and not between 20400.1 and 20400.2)
+
+Internal:
+- some more "local" variables
+<< (v20400.9): 20080511
+
+20080512 (v20400.A): >>
+Changes:
+- main window:
+-- skill: added a second, more simple model of A-F (1-6 for deDE) for skill level range
+-- skill, gear/pve, gear/pvp: basic commands implemented, UI elements to come
+
+- LFM window:
+-- all people /who returned are now added to the list
+-- completely changed the sort logic
+-- added a minimal filter dialog
+-- left list is now cached, so it doesn't have to be sorted again unless an entry is added or changed
+
+- option window/Other:
+-- new option to activate automatic fetch of talents
+
+- option window/DB cleaning:
+-- output of "dryrun" is now more sensible: first all kept entries (as Debug output), then all to be removed entries (into Secondary window)
+-- "dryrun" now also has an UI element: in options/db cleaning there's a "test clean" button :-)
+
+- as usual, more texts added than localized...
+
+Fixes:
+- main window:
+-- questlist: external ID never made it into the right function (typo ftl), hopefully catched now
+
+- version check:
+-- should now finally actually work the way it should *crosses fingers*
+-- price is, that it's now hexadecimal for a while to catch the "1 < 10 < 11 < .. < 2" logical error
+
+Internal:
+- Karma_MemberList_GetObject: new third arg, if many members are requested it makes more sense to request the list outside
+- some more "local" variables (as always...)
+<< (v20400.A): 20080512
+
+20080513 (v20400.B): >>
+Changes:
+- main window:
+-- Skill, Gear/PVE and Gear/PVP buttons now do something (useful)
+
+- options window:
+-- the button of the current category gets highlight-locked now
+
+- LFM window:
+-- filter: added a new option, Karma required (i.e. player must be in Karma's list)
+-- filter: skill option is now a dropdown menu instead of a value
+
+- Other:
+-- update messages (<Player> updated, <Player> online) include guild now, if known
+-- the window which asks if you really want to remove someone is a bit smaller now
+-- if you join a group, the client sometimes gets "Unknown" for one player, and Karma then assigns wrongly... now re-assigns again after 10 seconds (until all group members are known)
+
+Fixes:
+- I messed up the scrolling ranges recently :-( now I read the documentation and fixed that again; on the bright side: lists don't seem to be half filled all the time anymore ;-)
+- joining a group left the people still improperly updated (i.e. *not*), fallout from the code for pvp (multiserver capabilities), fixed now
+- guild is NOT updated until you are close enough to the group member, because WoW doesn't send it properly for larger distances (cross-zone etc.)
+
+Internal:
+- some more "local" variables (as always...)
+<< (v20400.B): 20080513
+
+20080516 (v20400.C): >>
+Changes:
+- looots of localisation (pulled a billion strings out and added to deDE), all but Import/Export is currently localized
+- commands: added "checkguild" (like other check* to look for players), removed "talent", "skill", "gear/pve" and "gear/pvp" (all via UI accessible)
+- command: altadd now checks if the two given players are actually non-identical...
+
+- minimap icon:
+-- added middle-click which opens LFM window now (also mentioned in the expanded tooltip of the icon)
+
+- main window:
+-- right-click menu on memberlist: alt add/remove is not available on *selected* member, alt add now explicitly states to whom the right-clicked player is added (=> the selected one)
+
+- options window:
+-- new options in category autoignore (now auto. ignore/warn): warn on group member of group you just joined if below the (configurable) Karma threshold
+
+- LFM window:
+-- populate: added "Check for players of guild" option
+-- filters: added by level, by talent (HPS/TANK/DPS/Melee/Range) and by class
+
+Internal:
+- removed a number of functions unused since ages
+- streamlined Karma_AutoIgnore_Invites, Karma_GetConfigPerChar
+- some more "local" variables (as always...)
+<< (v20400.C): 20080516
+
+20080517 (v20400.D): >>
+Changes:
+- tooltip: it is now configurable if skill/talent/alts are displayed
+- right-click menu on Party/Target: return of the direct +4/+1/-1/-4 Karma changing (hooksecurefunc'd UnitPopup_OnClick)
+- if you change target to a player known to Karma, and no member is selected (or the Karma window is hidden), Karma switches to that player as selected
+- a warning was added, if other frames are registered for inspect messages (Karma doesn't fetch talents in that case currently)
+
+Fixes:
+- note creep: all functions that changed the current member were checked against properly switching the note also
+- some checks for party members are now only done when they were newly added to the party
+
+Internal:
+- removed some double checks on invalid KARMA_CURRENTMEMBER
+- some more "local" variables (as always...)
+<< (v20400.D): 20080517
+
+20080518 (v20400.E): >>
+Changes:
+- added a "virtual" splitter in the right-click menus of party/target to make it more visible that Karma options are additional
+- *completely* rewritten talent fetch code, slower but reliable if multiple frames are registered and trying the same
+
+- main window:
+-- buttons at the Karma slider moved a bit more outwards and disabled at border values
+
+Internal:
+- some more "local" variables (as always...)
+<< (v20400.E): 20080518
+
+20080522 (v20400.F): >>
+New:
+- added infrastructure for 'virtual' Karma; 'virtual' Karma means, it's a value that is not stored on its own, but calculated on demand
+- first 'virtual' Karma: Karma per total time played (see new category in options window)
+-- players with non-zero 'virtual' Karma are displayed with a star next to the Karma value
+-- TODO: possibility to enable/disable per player
+
+Changes:
+- various results of /who checks are now displaying in a way that you can right-click the playername to get the usual menu
+- display of Karma values in chat windows: replaced <> with {}
+- chat window markup: changed the * for "player has note" to + (because * is now a 'virtual' Karma notifier)
+- colorization: as usually most players spread between 40 and 60 Karma, the colors are now a bit more "changing" in that range
+- minimap icon tooltip: now displays the key bindings, if available
+- normal tooltip: Karma value is now colored according to the... Karma value :D
+
+- main window:
+-- shift-left-click on party-/playerlist now opens the Chatline with /whisper <player> in it
+-- tooltip on players with non-zero 'virtual' Karma has additional information about that
+-- added a [?] (Help) to the playerlist to show what you can do there (ever noticed middle-click?)
+
+- option window:
+-- 'virtual' Karma category added
+-- minimap icon: added option to hide it (in Other)
+
+- LFM window:
+-- time since check: "> **m" was too wide, cut to "**m"
+<< (v20400.F): 20080522
+
+20080525 (v20400.10): >>
+New:
+- every instance you visit should now be recognized, the region and its zones marked as instance; this will be visible in the LFM window as the instances got the color blue (raid instances got purple and pvp instances got red)
+- every instance you visit with someone gets now tracked in a new substructure, if you hover over the region in the zonelist, you should see the results
+- every player's GUID is now tracked, if the GUID changes, the player is *not* updated (i.e. assuming that the char was deleted and newly created, so not the one you once played with)
+- if not in an instance, tracking the most recent 25 players (both factions!) you moused-over (there's no way to display that list thru regular commands or buttons yet though)
+
+Changes:
+- zonelist: zones have been sorted by regions since some while; format changed: there's one region entry (without zone) and the zones got the region name removed and a hyphen added in front
+- questlist: similar to zonelist, only that questlist *wasn't* sorted by region before (is now)
+- version information: it should now only show once per session that there's a newer version (for every newer version you encounter that is...)
+
+Fixes:
+- menu on playerlist: remove from alt list is now displayed always (in contrast to add to alt list, which is only shown if a member is displayed and another clicked)
+- low Karma warning: this was accidently propagating the wrong name, i.e. always the last member of the group; should now actually warn with the right name
+- zone tracking: the timer to avoid *too* many calls of zone tracking that I added at some point in time was almost *too* successful... zone tracking should now actually work again :D
+
+Internal:
+- Karma_OnEvent: moved the more common events up, less common down the test chain
+- renamed all the DB access variables into a different hierarchy, hopefully nothing went wrong :>
+- added lists to replace a dozen Karma_<ConfigBla>_<OnLoad/OnShow/OnChange/On...> into three with logic, didn't write those three yet though ~
+<< (v20400.10): 20080525
+
+20080526 (v20400.11): >>
+New:
+- shift-click in the questlist on quests with external id gives you an URL to copy in your browser to lookup the quest (at allakhazam)
+
+Changes:
+- region log: updating the total time now, and showing it
+
+Fixes:
+- questlist/zonelist: forgot to count the added region lines to the number of total lines; fixed
+- version check was *still* not correct; fixed
+- LFM window: showed tooltip for the wrong player on the right list; fixed
+
+Internal:
+- removed some empty functions
+- tooltip is in some places now generic and table-driven
+<< (v20400.11): 20080526
+
+20080602 (v20400.12): >>
+(Should have released a version in between. Added lots of stuff, might've broken something. Bug reports are welcome!)
+New:
+- new menu in main window: defaults to your current char, chooses to which of your characters the data is related which is displayed about the selected player
+- new checkboxes "R"/"Z"/"Q" - show/hide the related lists
+- new list in Karma main window: region list - shows region/difficulty/dates information
+- new command: mouseover - lists the most recent 25 people you moused-over (only tracking outside instances)
+- new commands: xinfo/xnote/xupdate - for people who play on both sides, to see if you know that person and change their entry
+- new commands: forcenew/forceupdate - if Karma thinks that there's a collision and refuses to update a player to either force it to backup the current entry and add a new one or overwrite the current entry
+- new option: tracking for daily quests can be disabled
+
+Changes:
+- command: "help quick" is now sorted
+- Karma is much more careful about updating a player, checking if that is actually (probably) the same player, on trouble use the forcenew/forceupdate commands
+
+Internal:
+- quest-/zonelist: entries are now created OnLoad
+<< (v20400.12): 20080602
+
+20080607 (v20400.13): >>
+New:
+- added a level-relative display (and internal fields) for xp-together data
+
+Fixes:
+- bug on players with missing time-together data fixed
+<< (v20400.13): 20080607
+
+20080608 (v20400.14): >>
+New:
+- main window (second "tab"): alt list of selected player, names are clickable to switch to the alts
+- option window (other "tab"): update while afk, if enabled, does the same as /karma update when player is afk (and has no target)
+
+Changes:
+- the played time for a character now sums only time in parties, i.e. times of soloing are excluded
+- when a collision occurs and Karma can't update a player, it now shows a bit more details about the conflict, the warning is not that red anymore and the name is clickable in the warning
+- PostToChat - Button: (tried to) explain a bit more clearly how to fulfill the precondition for it
+- LFM window: entries which are older than an hour are automatically deleted, unless they were added to the candidate list
+
+Fixes:
+- random selection of a player for /karma update preferred to update non-70 chars too much; fixed
+- version check: check for "most-recently-seen version is newer than less-recently-seen version (which are both newer than the current)" is now... fixed
+<< (v20400.14): 20080608
+
+20080609 (v20400.15): >>
+New:
+- progressed in implementing data exchange on willing other Karma users (not yet useable though...)
+
+Internal:
+- locals, locals, locals (bulk of the change)
+<< (v20400.15): 20080609
+
+20080615 (v20400.16): >>
+Changes:
+- members with conflicting data are now more visible in the partylist and the left list of the LFM window
+- /karma forcenew / /karma forceupdate: if there's a conflict, a context menu on party members and in LFM window on left side is available to choose how to fix it
+
+Fixes:
+- /karma forceupdate was clearing to harsh, messing up lists; fixed to the standard "level"
+
+Internal:
+- MemberName2UnitName: now preferring party* over other Unit-groups
+- playing around with proper region/zone collation, the recently added region tracking forced some old, logical misconception to the surface that needs a closer look
+<< (v20400.16): 20080615
+
+20080622 (v20400.17): >>
+Fixes:
+- conflict check was incorrect for party members that got /karma forceudpdate'd
+
+Internal:
+- started to add racebygender tables
+<< (v20400.17): 20080622
+
+20080706 (v20400.18): >>
+New:
+- added KarmaTrans into the Karma - archive, now you can play around with the /karma exchange* - commands (use "/karma help quick" for a list of all commands)
+
+Internal:
+- still fighting with proper and sensible parameters for the integration of imported Karma
+<< (v20400.18): 20080706
+
+20080718 (v20400.19): >>
+Fixes:
+- checkbox for "message sent" is now also properly displaying for players which are not on Karma's list
+<< (v20400.19): 20080718
+
+20080824 (v20400.1A): >>
+Fixes:
+- Post to chat: Is now again able to whisper to your current chat target.
+<< (v20400.1A): 20080824
+
+20081012 (v20400.1B): >>
+Changes:
+- I started (a bit) ripping the huge monolithic source blob into smaller, more manageable files... As with changes of that type, it's complex to be 100% sure it went ok, that's why I waited a bit with publishing the (first) changes.
+- if you open the social frame (Friends, Ignore, Who, Guild, etc.), pending /who-requests from Karma are now stalled to not interfere with manual interactions
+
+Fixes:
+- zoning: Hopefully the zone type is now more often correct. (The issue is that one cannot rely on the Blizzard calls to be sure that zone X is of type Y, because those two are updated seperately...)
+- /who handling: should now not taint the social frame anymore (raid frames - not that any regular raider uses the standard frames, but it still annoyed me enough ;))
+<< (v20400.1B): 20081012
+
+20081018 (v30000.1): >>
+Fixes:
+- various adaptions necessary for new WoW interface version
+<< (v30000.1): 20081018
+
+20081025 (v30000.2): >>
+Changes:
+- Tooltip: without Shift, the talent tree names in the tooltip are cut to 4 characters (e.g. "feral combat" -> fera)
+- Tooltip: new option to only show Karma info in normal tooltip when Shift is pressed (otherwise shows if info is available)
+
+Fixes:
+- Tooltip: the manually set spec is now added to the talent line in front of the tree info
+- Tooltip and LFG window: colored texts should now terminate more properly (formerly it was sometimes blurring into following lines)
+<< (v30000.2): 20081025
+
+20081108 (v30000.3): >>
+** Remember to backup your WTF folder regularly! **
+
+Changes:
+- Database:
+  - the most common accented characters are now mapped onto the character closest to them (instead of onto 'A')
+    => special exception: ß is mapped to B (!!), as that's the most common (ab)use I see in names (actually it should map to S, but who would find *that*? ;))
+    => this made it necessary to increase the database version to let the new mapping apply automatically
+  - now tracking the group when you enter a new area the *first* time ("Discovered: <Zone>" - message)
+    (not yet displaying that anywhere; will add some marker in the zonelist)
+- Popup menu on target frame:
+  - added "add" and "remove" and a message to the +4/+1/-1/-4 changes if the target is not yet added
+- Main window: Filter
+  - added a new option "p-<pattern>" searches for pattern
+    => this can be anywhere in the name: p-al finds Hale as well as Ale and Pal
+    => the comparison tries to strip all the accents for the comparison: p-ego finds also Légôlas, Lègolãs and Léègôlâs
+    => this is neither documented nor added to the filter-input-dialog yet
+
+Fixes:
+- not actually a fix, but I guess it confused plenty of people... searches are now trying to auto-capitalize
+  => if you just type into the filter box, it should automatically convert the first character (or the character following the "n-" key) into a capital letter
+  => this works unless Karma doesn't recognize it because the letter is not inside the scope of Latin-1
+<< (v30000.3): 20081108
+
+20081113 (v30000.4): >>
+Changes:
+- new-area-discovered tracking improved a bit
+- added a bit more infrastructure for a public note (in addition to the current, private, note)
+<< (v30000.4): 20081113
+
+20081115 (v30000.5): >>
+Fixes:
+- discovering an area first time in a BG doesn't throw an error anymore (bug reported by Maischter)
+<< (v30000.5): 20081115
+
+20081116 (v30000.6): >>
+Changes:
+- added Deathknight at various necessary places
+- Karma can now inject available information into the tooltip of the "regular" LFG tool (looks ugly, but works... :D see Options->Tooltip if you want to disable it)
+- Click on an LFG-player/group posts all Karma related infos into the secondary window
+- Shift-Click on an LFG-player/group selects the player with Karma in the Karma window (does nothing if two players with Karma are in the group already)
+- regular party/target tip also reworked, should behave more definite now...
+<< (v30000.6): 20081116
+
+20081116 (v30000.7): >>
+Fixes:
+- safeguarded Karma against WIM calling SetOwner with wrong arguments... (bug reported by Maischter)
+<< (v30000.7): 20081116
+
+20081124 (v30000.8): >>
+Changes:
+- LFM-window: Class is now truncated at the first space to avoid it spilling into the role column (most obvious with frFR-"Death Knight")
+
+Fixes:
+- Karma is now aware that the max. level is 80...
+- Death knight: Added missing entries for role matrices (Melee/Tank, Melee/DPS)
+<< (v30000.8): 20081124
+
+20081129 (v30000.9): >>
+Fixes:
+- Tooltip: missed a call to Show (to resize it to the additional info)
+<< (v30000.9): 20081129
+
+20090112 (v30000.A): >>
+New:
+- minimal WIM integration: added Karma to name in title of WIM tab (default: disabled, toggled with /karma wim_module)
+- popup menus: new choice "select" to select a player into Karma's window (if known), also added to the chat window popup
+- new command: "cleanpvp" to clean pvp entries (unless they have note or +/- Karma and you want to keep that)
+
+Changes:
+- "veryclean" command removed
+
+Fixes:
+- the Notes entrybox shouldn't try to force a maximum size anymore (didn't work anyways...)
+<< (v30000.A): 20090112
+
+20090118 (v30000.B): >>
+New:
+- popup menus: added choice "add to Karma" to the chat window popup
+
+Changes:
+- "select" in chat window popup now also scrolls to the selected member
+- selecting in the party list in the Karma window should now scroll to the selected member in the member list
+
+Fixes:
+- the buttons in the confirmation dialog for deleting members have again a font... (bug reported by alchmo)
+<< (v30000.B): 20090118
+
+20090125 (v30000.C): >>
+New:
+- localization: TW (Taiwan), thanks to SuKai
+
+(no other changes)
+<< (v30000.C): 20090125
+
+20090222 (v30000.D): >>
+New:
+- localization: TW (Taiwan) (is now actually pulled...), again thanks to SuKai
+
+Fixes:
+- Popup-Menu: adapted to under-the-hood change of Blizzard, should now work again
+<< (v30000.D): 20090222
+
+20090412 (v30000.E): >>
+New:
+- compatible with 3.1 dual-spec (at least on PTR)
+- public note to share with 'anyone' (with Karma), share reach configurable with /karma shareconfig
+- LFM window: people who were in the LFG-channel no less than 5 mins ago are marked green in the time
+
+Changes:
+- note in Tooltip and on-/who is now cut down to 5 lines max. (and 200 bytes max.)
+- LFM window: added some more [?]-help
+- Populate dialog: class check now initially starts with only class (i.e. all races) to fill up faster
+- waiting up to twice as long to get any result when checking players in channel
+- Populate dialog: not resetting fields/dropdowns after executing
+
+Fixes:
+- DK wasn't handled all that well in the LFM window
+- missing class was white instead of grey in main list
+- added two commands: forcecheck and altcheck to fixup missing code related to forcenew... (only executing the changes if additional argument 'execute' is given)
+- command xinfo: failed to properly return in case that Karma didn't know the player
+- version checking less spammy
+- various UI elements should be more intuitive
+- scrolling to the selected member should work much better
+<< (v30000.E): 20090412
+

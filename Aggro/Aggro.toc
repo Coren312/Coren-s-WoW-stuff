@@ -1,0 +1,15 @@
+## Interface: 30200
+## Title: Aggro
+## Version: 30200.01
+## Notes: Aggro checker for stupid DPS
+## Notes-deDE: Aggro tester für dumme DDler
+## Author: Kärbär, EU-Proudmoore
+## X-Date: 2009-11-13
+## X-Email: n/a
+## X-Website: n/a
+## X-Category: MYADDONS_CATEGORY_OTHERS
+## X-Help: n/a
+## DefaultState: enabled
+
+Aggro.lua
+

@@ -1,0 +1,16 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+
+	<Script file="CommonersQuestTracking.lua"/>
+
+	<!-- Background main frame to receive global events -->
+	<Frame name="CommonersQuestTrackingFrame" parent="UIParent" hidden="false" toplevel="false">
+		<Scripts>
+			<OnEvent>
+				CommonersQuestTracking.OnEvent(self, event, ...);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>
+

@@ -1,0 +1,215 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+	<!-- virtual stuff still *must* be put into XML files :( -->
+
+	<Button name="SaneLFG2MainWndBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="492" y="18"/>
+		</Size>
+		<NormalFont style="GameFontNormalSmall"/>
+
+		<!--
+			0. Name
+			1. Texture: LFG, LFM, unknown
+			2. Number: Number of tanks required if > 0
+			3. Texture: Role Tank if > 0
+			4., 5., 6., 7. for other two roles
+			8. place(s)
+		-->
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentWho" inherits="GameFontNormalSmall" text="" justifyH="LEFT" parentKey="Who">
+					<Size>
+						<AbsDimension x="75" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<Texture name="$parentLFx" parentKey="LFx">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentWho"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="75" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<FontString name="$parentRole1Cnt" inherits="GameFontNormalSmall" text="" justifyH="CENTER" parentKey="Role1Cnt">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentLFx"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="16" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentRole1Icon1" parentKey="Role1Icon1">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentRole1Cnt"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="16" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRole1Icon2" parentKey="Role1Icon2">
+					<Size>
+						<AbsDimension x="8" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentRole1Cnt"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="16" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRole1Icon3" parentKey="Role1Icon3">
+					<Size>
+						<AbsDimension x="8" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentRole1Cnt"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="24" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<FontString name="$parentRole2Cnt" inherits="GameFontNormalSmall" text="" justifyH="CENTER" parentKey="Role2Cnt">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentRole1Cnt"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="32" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentRole2Icon1" parentKey="Role2Icon1">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentRole2Cnt"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="16" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<FontString name="$parentRole3Cnt" inherits="GameFontNormalSmall" text="" justifyH="CENTER" parentKey="Role3Cnt">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentRole2Cnt"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="32" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentRole3Icon1" parentKey="Role3Icon1">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentRole3Cnt"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="16" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<FontString name="$parentPlaces" inherits="GameFontNormalSmall" text="" justifyH="LEFT" parentKey="Places">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentRole3Cnt"
+						        relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="40" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parentPlaces"/>
+				<Anchor point="BOTTOMRIGHT" relativeTo="$parentPlaces"/>
+			</Anchors>
+		</HighlightTexture>
+
+		<Frames>
+			<CheckButton name="$parentCheckbox" inherits="UICheckButtonTemplate" parentKey="Checkbox">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentRole3Cnt"
+					        relativeFrom="TOPLEFT">
+						<Offset>
+							<AbsDimension x="34" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+
+			<StatusBar name="$parentSlider" inherits="TextStatusBar" parentKey="Slider">
+				<Size>
+					<AbsDimension x="400" y="2"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(0, 600);
+						self:SetValue(0);
+					</OnLoad>
+				</Scripts>
+			</StatusBar>
+		</Frames>
+	</Button>
+</Ui>

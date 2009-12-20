@@ -1,0 +1,22 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+
+	<Script file="KarmaBroker.lua"/>
+
+	<!-- Background main frame to receive global events -->
+	<Frame name="KarmaBrokerEventframe" parent="UIParent" hidden="false" toplevel="false">
+		<Scripts>
+			<OnLoad>
+				KarmaBroker.OnLoad();
+			</OnLoad>
+			<OnEvent>
+				KarmaBroker.OnEvent(self, event, ...);
+			</OnEvent>
+			<OnUpdate>
+				KarmaBroker.OnUpdateEvent(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>
+

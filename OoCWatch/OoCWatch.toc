@@ -1,0 +1,7 @@
+## Interface: 30000
+## Title: OoCWatch
+## Notes: Omen of Clarity Audio Notification
+## SavedVariables:
+## OptionalDeps:
+## Dependencies:
+OoCWatch.lua
